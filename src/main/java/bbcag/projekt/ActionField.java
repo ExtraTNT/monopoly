@@ -8,7 +8,7 @@ public class ActionField extends Field {
     }
     @Override
     public void steppingOnIt(Player player) {
-
+        //Random events (pay 50, go 5 backwards ect.)
     }
 
 
