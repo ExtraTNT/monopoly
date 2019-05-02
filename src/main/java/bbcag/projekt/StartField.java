@@ -7,6 +7,7 @@ public class StartField extends Field {
     public StartField(short money){
         name = "Start";
         StartMoney = money;
+        Owner = Game.getBank();
     }
     @Override
     public void stepingOnIt(Player player) {
