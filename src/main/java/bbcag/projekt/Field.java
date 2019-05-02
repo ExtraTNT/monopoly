@@ -1,15 +1,23 @@
 package bbcag.projekt;
 
-public class Field {
-    public String Owner = null;
-    public String name;
+public abstract class Field {
+    protected String Owner = null;
+    protected String name;
 
-    Field(String name){
-        this.name = name;
-    }
-
-    public void stepingOnIt(){
-    }
+    public abstract void stepingOnIt(Player player);
     public void passIt(Player player){
+    }
+
+    public String getOwner() {
+        return Owner;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
