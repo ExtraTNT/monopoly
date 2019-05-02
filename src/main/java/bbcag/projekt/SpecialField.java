@@ -8,7 +8,7 @@ public class SpecialField extends Field {
     }
 
     @Override
-    public void stepingOnIt(Player player) {
+    public void steppingOnIt(Player player) {
 
     }
 }

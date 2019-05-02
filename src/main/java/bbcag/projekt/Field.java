@@ -5,7 +5,7 @@ public abstract class Field {
     protected Player Owner = null;
     protected String name;
 
-    public abstract void stepingOnIt(Player player);
+    public abstract void steppingOnIt(Player player);
     public void passIt(Player player){
     }
 

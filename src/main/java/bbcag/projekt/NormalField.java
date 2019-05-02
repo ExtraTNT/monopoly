@@ -11,7 +11,7 @@ public class NormalField extends Field{
         this.Rent = rent;
     }
     @Override
-    public void stepingOnIt(Player player) {
+    public void steppingOnIt(Player player) {
         if(this.Owner == null){
             if(this.Worth < player.Money) {
                 if (true)//UI.askBuy {

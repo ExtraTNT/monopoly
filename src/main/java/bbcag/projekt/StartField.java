@@ -10,7 +10,7 @@ public class StartField extends Field {
         Owner = Game.getBank();
     }
     @Override
-    public void stepingOnIt(Player player) {
+    public void steppingOnIt(Player player) {
     }
     public void passIt(Player player){
     }

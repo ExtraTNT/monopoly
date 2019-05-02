@@ -7,7 +7,7 @@ public class ActionField extends Field {
         this.name = name;
     }
     @Override
-    public void stepingOnIt(Player player) {
+    public void steppingOnIt(Player player) {
 
     }
 
