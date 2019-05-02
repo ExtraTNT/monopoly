@@ -17,11 +17,12 @@ public class NormalField extends Field{
                 if (true)//UI.askBuy {
                     this.buy(player);
                 }
-            else {
-                    //
-                }
             }
+        else {
+            player.Money -= this.getRent();
+            Owner.Money += this.getRent();
         }
+    }
 
     public int getRent() {
         return Rent[Hotel];
@@ -30,5 +31,11 @@ public class NormalField extends Field{
     private void buy (Player player){
         player.Money = player.Money - this.Worth;
         this.Owner = player;
+    }
+    public byte getHotel() {
+        return Hotel;
+    }
+    public void setHotel(byte hotel) {
+        Hotel = hotel;
     }
 }
