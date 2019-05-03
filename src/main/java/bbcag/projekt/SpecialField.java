@@ -9,6 +9,9 @@ public class SpecialField extends Field {
 
     @Override
     public void steppingOnIt(Player player) {
-
+        /*
+           /      |||
+         L      + |||
+       */
     }
 }
