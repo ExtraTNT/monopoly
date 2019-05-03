@@ -68,7 +68,12 @@ public class FieldCreator {
 
         fieldMap.put("Chance3", new ActionField("Chance"));
 
+        fieldMap.put("Lausanne, Place St. Franços", new NormalField("Lausanne, Place St. Franços", (short) 350, new int[]{1,2,3,4,5,6}));
 
+        fieldMap.put("Nachsteuer", new NormalField("Nachsteuer", (short) 0, new int[]{100}));
+        fieldMap.get("Nachsteuer").Owner = Game.getBank();
+
+        fieldMap.put("Zuerich, Paradeplatz", new NormalField("Zuerich, Paradeplatz",(short) 400, new int[]{1,2,3,4,5,6}));
 
 
         Game.setFieldMap(fieldMap);
