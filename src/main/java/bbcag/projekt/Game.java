@@ -1,11 +1,17 @@
 package bbcag.projekt;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Game {
+
+    Map<String, Player> playerMap = new HashMap<String, Player>();
+    Map<String, Field> fieldMap = new HashMap<String, Field>();
 
     private static Player Bank = new Player();
     public static void main(String[] args) {
 
-        System.out.println("Test");
+        System.out.println("\n\n\nTest\n\n");
 
     }
     public void start(){
