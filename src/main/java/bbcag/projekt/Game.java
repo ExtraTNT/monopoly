@@ -17,6 +17,7 @@ public class Game {
     public void start(){
     }
     public void config(){
+
     }
 
     public static Player getBank() {

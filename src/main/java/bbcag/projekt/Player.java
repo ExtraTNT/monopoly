@@ -1,7 +1,7 @@
 package bbcag.projekt;
 
 public class Player {
-    public byte Position;
+    public byte Position = 0;
     public int Money;
     public byte Days;
     public byte FreeCards;

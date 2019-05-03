@@ -10,6 +10,7 @@ public class FieldCreator {
         //Free to reconfigure
 
         fieldMap.put("Start", new StartField((short) 400)); //start extension... (opt)
+
         fieldMap.put("Chur, Kornplatz", new NormalField("Chur, Kornplatz", (short)60, new int[] {1,2,3,4,5,6}));
 
         fieldMap.put("Kanzlei1", new ActionField("Kanzlei"));
