@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class Game {
 
-    Map<String, Player> playerMap = new HashMap<String, Player>();
-    Map<String, Field> fieldMap = new HashMap<String, Field>();
+    private static Map<String, Player> playerMap = new HashMap<String, Player>();
+    private static Map<String, Field> fieldMap = new HashMap<String, Field>();
 
     private static Player Bank = new Player();
     public static void main(String[] args) {
@@ -21,6 +21,22 @@ public class Game {
 
     public static Player getBank() {
         return Bank;
+    }
+
+    public static Map<String, Player> getPlayerMap() {
+        return playerMap;
+    }
+
+    public static void setPlayerMap(Map<String, Player> playermap) {
+        playerMap = playermap;
+    }
+
+    public static Map<String, Field> getFieldMap() {
+        return fieldMap;
+    }
+
+    public static void setFieldMap(Map<String, Field> fieldmap) {
+        fieldMap = fieldmap;
     }
 }
     /*

@@ -7,6 +7,8 @@ public class Player {
     public byte FreeCards;
     public Figure Color;
     public String name;
+    public byte works;
+    public byte railwayStations;
 
     public void playMove(){
     }
