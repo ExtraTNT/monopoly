@@ -25,7 +25,7 @@ public class UI extends Application {
 
 
             //Gameboard stuff
-            ImageView gameBoard = new ImageView("FALLOUT.png");
+            ImageView gameBoard = new ImageView("SWISS.png");
             gameBoard.setFitHeight(900);
             gameBoard.setFitWidth(900);
 
