@@ -16,7 +16,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-mainClassName = 'bbcag.projekt.App'
+mainClassName = 'bbcag.projekt.UI'
 
 javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
