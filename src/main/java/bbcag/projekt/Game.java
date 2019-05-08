@@ -2,6 +2,8 @@ package bbcag.projekt;
 
 import bbcag.projekt.board.Board;
 import bbcag.projekt.board.BoardFactory;
+import bbcag.projekt.UI;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +46,7 @@ public class Game {
 
     public void config() {
         //while
+
     }
 }
     /*

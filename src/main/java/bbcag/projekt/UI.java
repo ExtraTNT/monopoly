@@ -95,8 +95,8 @@ public class UI extends Application {
                 @Override
                 public void handle(ActionEvent event) {
 
-                    rollResult.setText(dice.dice());
-                    //dice.dice();
+                    //rollResult.setText(dice.dice());
+                    dice.dice();
                 }
             });
 
