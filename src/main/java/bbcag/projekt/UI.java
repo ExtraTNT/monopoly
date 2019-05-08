@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import java.util.Random;
 
 public class UI extends Application {
-    //UI <- Javafx
 
         @Override
         public void start(Stage primaryStage) throws Exception {
