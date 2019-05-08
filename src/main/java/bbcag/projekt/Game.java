@@ -1,11 +1,13 @@
 package bbcag.projekt;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
 
     private static Map<String, Player> playerMap = new HashMap<String, Player>();
+    private static ArrayList<Field> fieldList = new ArrayList<>();
     private static Map<String, Field> fieldMap = new HashMap<String, Field>();
 
     private static Player Bank = new Player();
@@ -14,6 +16,9 @@ public class Game {
         System.out.println("\n\n\nTest\n\n");
 
     }
+
+
+
     public void start(){
     }
     public void config(){
@@ -38,6 +43,13 @@ public class Game {
 
     public static void setFieldMap(Map<String, Field> fieldmap) {
         fieldMap = fieldmap;
+    }
+    public static ArrayList<Field> getFieldList() {
+        return fieldList;
+    }
+
+    public static void setFieldList(ArrayList<Field> fieldList) {
+        Game.fieldList = fieldList;
     }
 }
     /*
