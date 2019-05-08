@@ -104,32 +104,64 @@ public class UI extends Application {
 
             //Start screen
             BorderPane startScreen = new BorderPane();
-            Scene startScene = new Scene(mainArea, Color.WHITE);
+            Scene startScene = new Scene(startScreen, Color.WHITE);
+            VBox startCenterArea = new VBox(5);
 
+            //Center area
+            startCenterArea.setPadding(new Insets(20));
             Label startTitleLabel = new Label("Player");
             TextField startPlayerEntry = new TextField();
             TextField startFigureEntry = new TextField();
 
+            ToggleGroup startRadioGroup = new ToggleGroup();
 
             RadioButton startFigureRed = new RadioButton("Red");
-            RadioButton startFigureBlue = new RadioButton("Blue");
-            RadioButton startFigureGreen = new RadioButton("Green");
-            RadioButton startFigurePink = new RadioButton("Pink");
+            startFigureRed.setToggleGroup(startRadioGroup);
 
+            RadioButton startFigureBlue = new RadioButton("Blue");
+            startFigureBlue.setToggleGroup(startRadioGroup);
+
+            RadioButton startFigureGreen = new RadioButton("Green");
+            startFigureGreen.setToggleGroup(startRadioGroup);
+
+            RadioButton startFigurePink = new RadioButton("Pink");
+            startFigurePink.setToggleGroup(startRadioGroup);
+
+            startCenterArea.getChildren().addAll(
+                    startTitleLabel,startPlayerEntry,
+                    startFigureEntry,startFigureRed,startFigureBlue,
+                    startFigureGreen,startFigurePink);
+
+            //Bottom area
             HBox startBottomArea = new HBox(5);
             startBottomArea.setPadding(new Insets(20));
             Button startCreateButton = new Button("Create");
             Button startDoneButton = new Button("Done");
             startBottomArea.getChildren().addAll(startCreateButton,startDoneButton);
 
-            ScrollPane startPlayerList = new ScrollPane();
+            //Right area
+            ScrollPane startPlayerListScroll = new ScrollPane();
+
+            startScreen.setCenter(startCenterArea);
+            startScreen.setRight(startPlayerListScroll);
+            startScreen.setBottom(startBottomArea);
 
 
-            primaryStage.setScene(mainScene);
+            startDoneButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    primaryStage.setScene(mainScene);
+                }
+            });
+
+
+            primaryStage.setScene(startScene);
             primaryStage.show();
         }
     }
 
+
+    // MODEL CONTROLLER VIEW AREA
 
 
       class Model {
