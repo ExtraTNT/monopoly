@@ -26,7 +26,8 @@ public class NormalField extends Field {
                 if (true)//UI.askBuy {
                     this.buy(player);
             }
-        } else {
+        }
+        else {
             player.Money -= this.getRent();
             Owner.Money += this.getRent();
         }

@@ -6,6 +6,7 @@ public class dice {
     public static String dice() {
         int dice1 = 0;
         int dice2 = 0;
+        int total = 0;
         if (Game.getInstance().currentPlayer.roll) {
 
             Random rand = new Random();
@@ -15,8 +16,14 @@ public class dice {
 
             Game.getInstance().currentPlayer.roll = false;
             Game.getInstance().currentPlayer.rolled = dice1 + dice2;
-            }
+
+            total = dice1 + dice2;
+            Game.getInstance().playMove(dice1 + dice2);
+
+        }
+        UI.setRollResult(dice1 + " and " + dice2);
         return (dice1 + " and " + dice2);
+
         }
     }
 

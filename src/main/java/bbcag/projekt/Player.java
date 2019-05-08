@@ -5,7 +5,7 @@ public class Player {
     public boolean roll = true;
     public int rolled = 0;
     public byte Position = 0;
-    public int Money;
+    public int Money = 1500;
     public byte Days;
     public byte FreeCards;
     public Figure Color;

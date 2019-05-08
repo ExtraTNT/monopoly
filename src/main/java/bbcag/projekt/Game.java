@@ -48,8 +48,21 @@ public class Game {
         //while
 
     }
-    public void playMove(int diceNbr){
-        int newpos = currentPlayer.Position + diceNbr % board.size();
+    public void playMove(int diceNbr) {
+        if (currentPlayer.isDeath()){
+            allPlayer.remove(currentPlayer);
+
+        }
+
+        for (int i = 1; i <= diceNbr; i++) {
+            if(i < diceNbr) {
+                board.getFieldByIndex((currentPlayer.Position + i) % board.size()).passIt(currentPlayer);
+            }
+            if (i == diceNbr){
+                board.getFieldByIndex((currentPlayer.Position + i) % board.size()).steppingOnIt(currentPlayer);
+            }
+        }
+        currentPlayer.Position = (byte) ((currentPlayer.Position + diceNbr) % board.size());
     }
 }
     /*

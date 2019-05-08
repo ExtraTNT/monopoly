@@ -29,6 +29,9 @@ public abstract class Board {
 
         return null;
     }
+    public Field getFieldByIndex(int index){
+        return fields.get(index);
+    }
 
     protected abstract List<Field> createFields();
 
