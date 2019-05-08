@@ -1,5 +1,7 @@
 package bbcag.projekt;
 
+import bbcag.projekt.field.Field;
+
 public class ActionField extends Field {
 
     public ActionField(String name){

@@ -1,55 +1,58 @@
 package bbcag.projekt;
 
-import java.util.ArrayList;
+import bbcag.projekt.board.Board;
+import bbcag.projekt.board.BoardFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
 
-    private static Map<String, Player> playerMap = new HashMap<String, Player>();
-    private static ArrayList<Field> fieldList = new ArrayList<>();
-    private static Map<String, Field> fieldMap = new HashMap<String, Field>();
+    private static Game instance;
 
-    private static Player Bank = new Player();
-    public static void main(String[] args) {
+    private Map<String, Player> playerMap = new HashMap<String, Player>();
 
-        System.out.println("\n\n\nTest\n\n");
+    private Board board;
+
+    private Player bank = new Player();
+
+    private Game() {
+        board = BoardFactory.getInstance().createBoard(bank);
+    }
+
+    public void start() {
+    }
+
+    public void config() {
 
     }
 
-
-
-    public void start(){
-    }
-    public void config(){
-
+    public Player getBank() {
+        return bank;
     }
 
-    public static Player getBank() {
-        return Bank;
-    }
-
-    public static Map<String, Player> getPlayerMap() {
+    public Map<String, Player> getPlayerMap() {
         return playerMap;
     }
 
-    public static void setPlayerMap(Map<String, Player> playermap) {
+    public void setPlayerMap(Map<String, Player> playermap) {
         playerMap = playermap;
     }
 
-    public static Map<String, Field> getFieldMap() {
-        return fieldMap;
+    public Board getBoard() {
+        return board;
     }
 
-    public static void setFieldMap(Map<String, Field> fieldmap) {
-        fieldMap = fieldmap;
-    }
-    public static ArrayList<Field> getFieldList() {
-        return fieldList;
+    public void setBoard(Board board) {
+        this.board = board;
     }
 
-    public static void setFieldList(ArrayList<Field> fieldList) {
-        Game.fieldList = fieldList;
+    public static Game getInstance() {
+        if (instance == null) {
+            instance = new Game();
+        }
+
+        return instance;
     }
 }
     /*

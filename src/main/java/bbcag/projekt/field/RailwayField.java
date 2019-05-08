@@ -1,4 +1,7 @@
-package bbcag.projekt;
+package bbcag.projekt.field;
+
+import bbcag.projekt.Player;
+import bbcag.projekt.field.Field;
 
 public class RailwayField extends Field {
 

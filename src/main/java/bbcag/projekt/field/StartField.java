@@ -1,12 +1,14 @@
-package bbcag.projekt;
+package bbcag.projekt.field;
+
+import bbcag.projekt.Player;
 
 public class StartField extends Field {
 
     private short StartMoney;
-    public StartField(short money){
+    public StartField(short money, Player bank){
         name = "Start";
         StartMoney = money;
-        Owner = Game.getBank();
+        Owner = bank;
     }
     @Override
     public void steppingOnIt(Player player) {

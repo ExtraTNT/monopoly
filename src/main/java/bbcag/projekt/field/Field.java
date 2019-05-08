@@ -1,9 +1,19 @@
-package bbcag.projekt;
+package bbcag.projekt.field;
 
+
+import bbcag.projekt.Player;
 
 public abstract class Field {
     protected Player Owner = null;
     protected String name;
+
+    public Field() {
+        this(null);
+    }
+
+    public Field(Player owner) {
+        Owner = owner;
+    }
 
     public abstract void steppingOnIt(Player player);
     public void passIt(Player player){
