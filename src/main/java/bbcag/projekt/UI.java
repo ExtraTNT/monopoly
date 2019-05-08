@@ -104,11 +104,9 @@ public class UI extends Application { //126 important
             turnButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    if(!Game.getInstance().currentPlayer.roll) {
                         Game.getInstance().nextPlayer(); // next player in the list, death player are not in this list.
                         playerMoneyField.setText(Game.getInstance().currentPlayer.Money + " €");
                         playerPlayerNameField.setText(Game.getInstance().currentPlayer.name);
-                    }
 
                 }
             });

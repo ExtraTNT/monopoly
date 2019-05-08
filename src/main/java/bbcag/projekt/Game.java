@@ -48,7 +48,6 @@ public class Game {
     }
 
     public void config() {
-        //while
 
     }
     public void playMove(int diceNbr) {
@@ -69,8 +68,10 @@ public class Game {
     }
 
     public void nextPlayer() {
-        currentPlayer.roll = true;
-        currentPlayer = allPlayer.get((allPlayer.indexOf(currentPlayer) + 1) % allPlayer.size());
+        if(!currentPlayer.roll) {
+            currentPlayer.roll = true;
+            currentPlayer = allPlayer.get((allPlayer.indexOf(currentPlayer) + 1) % allPlayer.size());
+        }
     }
 }
     /*
