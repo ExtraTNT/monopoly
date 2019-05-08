@@ -12,6 +12,11 @@ public class Player {
 
     public void playMove(){
     }
+
+    public Player(String name, Figure color){
+        this.name = name;
+        this.Color = color;
+    }
     public boolean isDeath(){
         if (Money < 0){
             return true;

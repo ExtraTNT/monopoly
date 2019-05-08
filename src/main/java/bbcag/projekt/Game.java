@@ -3,42 +3,34 @@ package bbcag.projekt;
 import bbcag.projekt.board.Board;
 import bbcag.projekt.board.BoardFactory;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
     private Game() {
         board = BoardFactory.getInstance().createBoard(bank);
     }
+    public Player currentPlayer = new Player("test", new Figure()); //test
 
     private static Game instance;
-
-    private Map<String, Player> playerMap = new HashMap<String, Player>();
-
+    private List<Player> allPlayer = new ArrayList<Player>();
     private Board board;
-
-    private Player bank = new Player();
-
+    private Player bank = new Player("bank", new Figure());
     public Player getBank() {
         return bank;
     }
-
-    public Map<String, Player> getPlayerMap() {
-        return playerMap;
+    public List<Player> getPlayerMap() {
+        return allPlayer;
     }
-
-    public void setPlayerMap(Map<String, Player> playermap) {
-        playerMap = playermap;
+    public void setPlayerMap(List<Player> playermap) {
+        allPlayer = playermap;
     }
-
     public Board getBoard() {
         return board;
     }
-
     public void setBoard(Board board) {
         this.board = board;
     }
-
     public static Game getInstance() {
         if (instance == null) {
             instance = new Game();

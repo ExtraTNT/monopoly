@@ -17,6 +17,15 @@ import java.util.Random;
 
 public class UI extends Application {
 
+    public static String getRollResult() {
+        return rollResult.getText();
+    }
+
+    public static void setRollResult(String rollResult) {
+        UI.rollResult.setText(rollResult);
+    }
+
+    private static Label rollResult = new Label("_ and _");
         @Override
         public void start(Stage primaryStage) throws Exception {
 
@@ -59,7 +68,6 @@ public class UI extends Application {
             TextField playerJailcardField = new TextField();
 
             ScrollPane playerAdditionalScroll = new ScrollPane();
-            Label rollResult = new Label("_ and _");
             playerAdditionalScroll.setContent(rollResult);
 
 
@@ -86,12 +94,9 @@ public class UI extends Application {
             rollButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    Random rand = new Random();
-                    int dice1 = rand.nextInt(6);
-                    dice1 += 1;
-                    int dice2 = rand.nextInt(6);
-                    dice2 += 1;
-                    rollResult.setText(dice1 + " and " + dice2);
+
+                    rollResult.setText(dice.dice());
+                    //dice.dice();
                 }
             });
 
