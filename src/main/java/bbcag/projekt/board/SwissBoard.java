@@ -60,7 +60,7 @@ class SwissBoard extends Board {
         fieldList.add(new ActionField("Chance", getBank()));
 
         fieldList.add(new NormalField("St Gallen, Marktplatz", (short) 220, new int[]{1, 2, 3, 4, 5, 6}));
-        fieldList.add(new NormalField("Bernbundesplatz", (short) 240, new int[]{1, 2, 3, 4, 5, 6}));
+        fieldList.add(new NormalField("Bern, bundesplatz", (short) 240, new int[]{1, 2, 3, 4, 5, 6}));
         fieldList.add(new RailwayField("Ueberlandbahnen"));
         fieldList.add(new NormalField("Luzern, Weggisgasse", (short) 260, new int[]{1, 2, 3, 4, 5, 6}));
         fieldList.add(new NormalField("Zuerich, Rennweg", (short) 260, new int[]{1, 2, 3, 4, 5, 6}));
