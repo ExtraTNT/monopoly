@@ -102,6 +102,7 @@ public class UI extends Application {
 
 
 
+
             mainArea.setCenter(gameBoard);
             mainArea.setBottom(buttonArea);
             mainArea.setRight(rightInfoArea);
@@ -114,9 +115,9 @@ public class UI extends Application {
 
             //Center area
             startCenterArea.setPadding(new Insets(20));
-            Label startTitleLabel = new Label("Player");
+            Label startTitlePlayer = new Label("Player");
             TextField startPlayerEntry = new TextField();
-            TextField startFigureEntry = new TextField();
+            Label startTitleFigure = new Label("Figures");
 
             ToggleGroup startRadioGroup = new ToggleGroup();
 
@@ -132,10 +133,17 @@ public class UI extends Application {
             RadioButton startFigurePink = new RadioButton("Pink");
             startFigurePink.setToggleGroup(startRadioGroup);
 
+            RadioButton startFigureYellow = new RadioButton("Yellow");
+            startFigureYellow.setToggleGroup(startRadioGroup);
+
+            RadioButton startFigurePurple = new RadioButton("Purple");
+            startFigurePurple.setToggleGroup(startRadioGroup);
+
             startCenterArea.getChildren().addAll(
-                    startTitleLabel,startPlayerEntry,
-                    startFigureEntry,startFigureRed,startFigureBlue,
-                    startFigureGreen,startFigurePink);
+                    startTitlePlayer,startPlayerEntry,
+                    startTitleFigure,startFigureRed,startFigureBlue,
+                    startFigureGreen,startFigurePink,startFigureYellow,
+                    startFigurePurple);
 
             //Bottom area
             HBox startBottomArea = new HBox(5);
@@ -159,6 +167,61 @@ public class UI extends Application {
                 }
             });
 
+
+            //Dealing scene
+            BorderPane dealScreen = new BorderPane();
+            HBox dealScreenHBox = new HBox();
+            Scene dealScene = new Scene(dealScreen, Color.WHITE);
+
+            //Left deal side
+            TextField dealer1MoneyText = new TextField();
+            ScrollPane dealer1PropertyScroll = new ScrollPane();
+            Label dealer1FullMoneyLabel = new Label();
+            TextField dealer1PropertyText = new TextField();
+            dealer1PropertyScroll.setContent(dealer1FullMoneyLabel);
+
+            VBox traderBox1 = new VBox(5);
+            traderBox1.setPadding(new Insets(20));
+            traderBox1.getChildren().addAll(dealer1MoneyText,dealer1PropertyScroll,dealer1FullMoneyLabel,dealer1PropertyText);
+
+            //Right deal side
+            TextField dealer2MoneyText = new TextField();
+            ScrollPane dealer2PropertyScroll = new ScrollPane();
+            Label dealer2FullMoneyLabel = new Label();
+            TextField dealer2PropertyText = new TextField();
+            dealer2PropertyScroll.setContent(dealer2FullMoneyLabel);
+
+            VBox traderBox2 = new VBox(5);
+            traderBox2.setPadding(new Insets(20));
+            traderBox2.getChildren().addAll(dealer2MoneyText,dealer2PropertyScroll,dealer2FullMoneyLabel,dealer2PropertyText);
+
+
+            //dealScreen bottom area
+            Button dealDealButton = new Button("Deal");
+            Button dealExitButton = new Button("Exit");
+
+            dealButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    primaryStage.setScene(dealScene);
+                }
+            });
+
+            dealExitButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    primaryStage.setScene(mainScene);
+                }
+            });
+
+            HBox dealBottomArea = new HBox(5);
+            dealBottomArea.setPadding(new Insets(10));
+
+
+            dealBottomArea.getChildren().addAll(dealDealButton,dealExitButton);
+            dealScreenHBox.getChildren().addAll(traderBox1,traderBox2);
+            dealScreen.setCenter(dealScreenHBox);
+            dealScreen.setBottom(dealBottomArea);
 
             primaryStage.setScene(startScene);
             primaryStage.show();
