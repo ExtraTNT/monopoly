@@ -11,7 +11,7 @@ public abstract class Board {
 
     private final Player bank;
 
-    protected Board(Player bank) {
+    protected Board(Player bank) { //Player Bank -> cant buy by a player
         this.bank = bank;
         fields = createFields();
     }
