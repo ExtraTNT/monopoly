@@ -1,5 +1,6 @@
 plugins {
-    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.7'
 }
 
 group 'bbcag.projekt'
@@ -13,4 +14,10 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+mainClassName = 'bbcag.projekt.App'
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
