@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.text.Normalizer;
 import java.util.Random;
 
-public class UI extends Application {
+public class UI extends Application { //126 important
 
     public static String getRollResult() {
         return rollResult.getText();
@@ -61,7 +61,7 @@ public class UI extends Application {
             VBox rightInfoArea = new VBox(3);
 
             TextField playerMoneyField = new TextField();
-            TextField playerColourField = new TextField();
+            TextField playerPlayerNameField = new TextField();
 
             ScrollPane playerPropertyScroll = new ScrollPane();
 
@@ -74,7 +74,7 @@ public class UI extends Application {
 
 
 
-            rightInfoArea.getChildren().addAll(playerMoneyField,playerColourField,playerPropertyScroll,playerJailcardField,playerAdditionalScroll);
+            rightInfoArea.getChildren().addAll(playerMoneyField,playerPlayerNameField,playerPropertyScroll,playerJailcardField,playerAdditionalScroll);
 
             rightInfoArea.setPadding(new Insets(20));
 
@@ -98,15 +98,16 @@ public class UI extends Application {
                 public void handle(ActionEvent event) {
 
                     //rollResult.setText(dice.dice());
-                    dice.dice();
+                    dice.dice(); // passes on 2 random numbers to draw, these numbers are displayed.
                 }
             });
             turnButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
+                    Game.getInstance().nextPlayer(); // next player in the list, death player are not in this list.
+                    playerMoneyField.setText(Game.getInstance().currentPlayer.Money + " €");
+                    playerPlayerNameField.setText(Game.getInstance().currentPlayer.name);
 
-                    //rollResult.setText(dice.dice());
-                    Game.getInstance().nextPlayer();
                 }
             });
 
@@ -123,7 +124,7 @@ public class UI extends Application {
             Scene startScene = new Scene(startScreen, Color.WHITE);
             VBox startCenterArea = new VBox(5);
 
-            //DEBUG ---------------------------------Debug but really very useful to understand that certain things don't work if only test players are created in the game (next player)
+            //DEBUG ---------------------------------Debug, but really very useful to understand that things don't work if only test players are created in the game (next player)
             //Game.getInstance().allPlayer.add(new Player("test", new Figure()));
             //Game.getInstance().currentPlayer = Game.getInstance().allPlayer.get(0);
             //DEBUG
@@ -179,6 +180,19 @@ public class UI extends Application {
                 @Override
                 public void handle(ActionEvent event) {
                     primaryStage.setScene(mainScene);
+                    playerMoneyField.setText(Game.getInstance().currentPlayer.Money + " €");
+                    playerPlayerNameField.setText(Game.getInstance().currentPlayer.name);
+                }
+            });
+            startCreateButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+
+                        Game.getInstance().allPlayer.add(new Player(startPlayerEntry.getText(), new Figure()));
+                        Game.getInstance().currentPlayer = Game.getInstance().allPlayer.get((Game.getInstance().allPlayer.size()-1));
+                        startPlayerEntry.setText("");
+                        startRadioGroup.getSelectedToggle().setSelected(false);
+                    //startRadioGroup.getSelectedToggle().getUserData().toString() / get text form selectet radiobutton
                 }
             });
 

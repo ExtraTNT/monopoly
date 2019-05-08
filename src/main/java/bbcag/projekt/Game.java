@@ -11,8 +11,8 @@ import java.util.List;
 public class Game {
     private Game() {
         board = BoardFactory.getInstance().createBoard(bank);
-        allPlayer.add(new Player("test", new Figure()));
-        Player currentPlayer = allPlayer.get(0);
+        //allPlayer.add(new Player("test", new Figure())); DEBUG
+        //Player currentPlayer = allPlayer.get(0); DEBUG
     }
     List<Player> allPlayer = new ArrayList<>();
     Player currentPlayer;
