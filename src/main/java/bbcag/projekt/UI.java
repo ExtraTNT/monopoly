@@ -7,10 +7,13 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.util.Random;
@@ -21,15 +24,16 @@ public class UI extends Application {
         public void start(Stage primaryStage) throws Exception {
 
             BorderPane mainArea = new BorderPane();
-            Scene scene = new Scene(mainArea, 1000,800, Color.WHITE);
+            Scene scene = new Scene(mainArea, Color.WHITE);
 
 
-
+            //Gameboard stuff
             ImageView gameBoard = new ImageView("FALLOUT.png");
-            gameBoard.setFitHeight(600);
-            gameBoard.setFitWidth(600);
+            gameBoard.setFitHeight(900);
+            gameBoard.setFitWidth(900);
 
 
+            //Button stuff at the bottom
             Button rollButton = new Button("Roll");
             Button dealButton = new Button("Deal");
             Button houseButton = new Button("Houses");
@@ -38,14 +42,45 @@ public class UI extends Application {
             HBox buttonArea = new HBox(20);
             buttonArea.getChildren().addAll(rollButton,dealButton,houseButton,turnButton);
 
+            rollButton.setPrefSize(250,50);
+            dealButton.setPrefSize(250,50);
+            houseButton.setPrefSize(250,50);
+            turnButton.setPrefSize(250,50);
+
+            buttonArea.setPadding(new Insets(20));
+            //Text and info stuff on the right
+
+            VBox rightInfoArea = new VBox(3);
+
+            TextField playerMoneyField = new TextField();
+            TextField playerColourField = new TextField();
+
+            ScrollPane playerPropertyScroll = new ScrollPane();
+
+
+
+            TextField playerJailcardField = new TextField();
+
+            ScrollPane playerAdditionalScroll = new ScrollPane();
             Label rollResult = new Label("_ and _");
+            playerAdditionalScroll.setContent(rollResult);
 
-            buttonArea.setPadding(new Insets(50));
 
-            rollButton.setPrefSize(250,100);
-            dealButton.setPrefSize(250,100);
-            houseButton.setPrefSize(250,100);
-            turnButton.setPrefSize(250,100);
+
+            rightInfoArea.getChildren().addAll(playerMoneyField,playerColourField,playerPropertyScroll,playerJailcardField,playerAdditionalScroll);
+
+            rightInfoArea.setPadding(new Insets(20));
+
+
+
+
+
+            //Left area space info
+            VBox leftInfoArea = new VBox(3);
+
+            ScrollPane spacePropertyScroll = new ScrollPane();
+
+
 
 
             rollResult.setPrefHeight(50);
@@ -67,6 +102,7 @@ public class UI extends Application {
 
             mainArea.setCenter(gameBoard);
             mainArea.setBottom(buttonArea);
+            mainArea.setRight(rightInfoArea);
 
 
             primaryStage.setScene(scene);
