@@ -5,10 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -24,7 +21,7 @@ public class UI extends Application {
         public void start(Stage primaryStage) throws Exception {
 
             BorderPane mainArea = new BorderPane();
-            Scene scene = new Scene(mainArea, Color.WHITE);
+            Scene mainScene = new Scene(mainArea, Color.WHITE);
 
 
             //Gameboard stuff
@@ -105,7 +102,30 @@ public class UI extends Application {
             mainArea.setRight(rightInfoArea);
 
 
-            primaryStage.setScene(scene);
+            //Start screen
+            BorderPane startScreen = new BorderPane();
+            Scene startScene = new Scene(mainArea, Color.WHITE);
+
+            Label startTitleLabel = new Label("Player");
+            TextField startPlayerEntry = new TextField();
+            TextField startFigureEntry = new TextField();
+
+
+            RadioButton startFigureRed = new RadioButton("Red");
+            RadioButton startFigureBlue = new RadioButton("Blue");
+            RadioButton startFigureGreen = new RadioButton("Green");
+            RadioButton startFigurePink = new RadioButton("Pink");
+
+            HBox startBottomArea = new HBox(5);
+            startBottomArea.setPadding(new Insets(20));
+            Button startCreateButton = new Button("Create");
+            Button startDoneButton = new Button("Done");
+            startBottomArea.getChildren().addAll(startCreateButton,startDoneButton);
+
+            ScrollPane startPlayerList = new ScrollPane();
+
+
+            primaryStage.setScene(mainScene);
             primaryStage.show();
         }
     }
