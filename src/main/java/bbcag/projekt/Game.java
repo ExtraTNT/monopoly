@@ -11,11 +11,14 @@ import java.util.List;
 public class Game {
     private Game() {
         board = BoardFactory.getInstance().createBoard(bank);
+        allPlayer.add(new Player("test", new Figure()));
+        Player currentPlayer = allPlayer.get(0);
     }
-    public Player currentPlayer = new Player("test", new Figure()); //test
+    List<Player> allPlayer = new ArrayList<>();
+    Player currentPlayer;
 
     private static Game instance;
-    private List<Player> allPlayer = new ArrayList<Player>();
+
     private Board board;
     private Player bank = new Player("bank", new Figure());
     public Player getBank() {
@@ -63,6 +66,11 @@ public class Game {
             }
         }
         currentPlayer.Position = (byte) ((currentPlayer.Position + diceNbr) % board.size());
+    }
+
+    public void nextPlayer() {
+        currentPlayer.roll = true;
+        currentPlayer = allPlayer.get((allPlayer.indexOf(currentPlayer) + 1) % allPlayer.size());
     }
 }
     /*

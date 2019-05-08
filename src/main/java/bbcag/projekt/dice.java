@@ -22,7 +22,7 @@ public class dice {
 
         }
         UI.setRollResult(dice1 + " and " + dice2);
-        return (dice1 + " and " + dice2);
+        return (dice1 + " and " + dice2);  //U can use this 4 debuging or using for a other use... XD
 
         }
     }

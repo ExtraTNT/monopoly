@@ -13,6 +13,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.text.Normalizer;
 import java.util.Random;
 
 public class UI extends Application {
@@ -99,6 +101,14 @@ public class UI extends Application {
                     dice.dice();
                 }
             });
+            turnButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+
+                    //rollResult.setText(dice.dice());
+                    Game.getInstance().nextPlayer();
+                }
+            });
 
 
 
@@ -112,6 +122,11 @@ public class UI extends Application {
             BorderPane startScreen = new BorderPane();
             Scene startScene = new Scene(startScreen, Color.WHITE);
             VBox startCenterArea = new VBox(5);
+
+            //DEBUG ---------------------------------Debug but really very useful to understand that certain things don't work if only test players are created in the game (next player)
+            //Game.getInstance().allPlayer.add(new Player("test", new Figure()));
+            //Game.getInstance().currentPlayer = Game.getInstance().allPlayer.get(0);
+            //DEBUG
 
             //Center area
             startCenterArea.setPadding(new Insets(20));
