@@ -108,6 +108,7 @@ public class UI extends Application { //126 important
                         playerMoneyField.setText(Game.getInstance().currentPlayer.Money + " €");
                         playerPlayerNameField.setText(Game.getInstance().currentPlayer.name);
 
+
                 }
             });
 
@@ -169,10 +170,13 @@ public class UI extends Application { //126 important
             startBottomArea.getChildren().addAll(startCreateButton,startDoneButton);
 
             //Right area
-            ScrollPane startPlayerListScroll = new ScrollPane();
+
+
+            TextArea startPlayerListText = new TextArea();
+            startPlayerListText.setEditable(false);
 
             startScreen.setCenter(startCenterArea);
-            startScreen.setRight(startPlayerListScroll);
+            startScreen.setRight(startPlayerListText);
             startScreen.setBottom(startBottomArea);
 
 
@@ -190,8 +194,10 @@ public class UI extends Application { //126 important
 
                         Game.getInstance().allPlayer.add(new Player(startPlayerEntry.getText(), new Figure()));
                         Game.getInstance().currentPlayer = Game.getInstance().allPlayer.get((Game.getInstance().allPlayer.size()-1));
-                        startPlayerEntry.setText("");
+
                         startRadioGroup.getSelectedToggle().setSelected(false);
+                        startPlayerListText.setText(startPlayerListText.getText() + startPlayerEntry.getText() + "\n");
+                        startPlayerEntry.setText("");
                     //startRadioGroup.getSelectedToggle().getUserData().toString() / get text form selectet radiobutton
                 }
             });

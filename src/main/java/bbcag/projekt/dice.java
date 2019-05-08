@@ -27,8 +27,7 @@ public class dice {
         }
     }
 
-
-        /*
+/*
         Random rand = new Random();
         int dice1 = 0;
         int dice2 = 0;
