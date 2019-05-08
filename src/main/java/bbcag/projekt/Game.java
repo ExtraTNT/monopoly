@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
+    private Game() {
+        board = BoardFactory.getInstance().createBoard(bank);
+    }
 
     private static Game instance;
 
@@ -15,17 +18,6 @@ public class Game {
     private Board board;
 
     private Player bank = new Player();
-
-    private Game() {
-        board = BoardFactory.getInstance().createBoard(bank);
-    }
-
-    public void start() {
-    }
-
-    public void config() {
-
-    }
 
     public Player getBank() {
         return bank;
@@ -53,6 +45,13 @@ public class Game {
         }
 
         return instance;
+    }
+
+    public void start() {
+    }
+
+    public void config() {
+        //while
     }
 }
     /*
