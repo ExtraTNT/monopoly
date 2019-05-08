@@ -3,12 +3,14 @@ import javafx.application.Application;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.util.Random;
@@ -19,15 +21,36 @@ public class UI extends Application {
         public void start(Stage primaryStage) throws Exception {
 
             BorderPane mainArea = new BorderPane();
-            Scene scene = new Scene(mainArea, 500,400, Color.WHITE);
+            Scene scene = new Scene(mainArea, 1000,800, Color.WHITE);
 
 
 
-            ImageView gameBoard = new ImageView();
+            ImageView gameBoard = new ImageView("FALLOUT.png");
+            gameBoard.setFitHeight(600);
+            gameBoard.setFitWidth(600);
 
 
             Button rollButton = new Button("Roll");
+            Button dealButton = new Button("Deal");
+            Button houseButton = new Button("Houses");
+            Button turnButton = new Button("End Turn");
+
+            HBox buttonArea = new HBox(20);
+            buttonArea.getChildren().addAll(rollButton,dealButton,houseButton,turnButton);
+
             Label rollResult = new Label("_ and _");
+
+            buttonArea.setPadding(new Insets(50));
+
+            rollButton.setPrefSize(250,100);
+            dealButton.setPrefSize(250,100);
+            houseButton.setPrefSize(250,100);
+            turnButton.setPrefSize(250,100);
+
+
+            rollResult.setPrefHeight(50);
+            rollResult.setPrefWidth(100);
+
             rollButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -39,15 +62,11 @@ public class UI extends Application {
                     rollResult.setText(dice1 + " and " + dice2);
                 }
             });
-            GridPane buttonArea = new GridPane();
 
-            buttonArea.addRow(1);
-            buttonArea.add(rollButton,0, 1);
-            buttonArea.add(rollResult, 1, 1);
 
 
             mainArea.setCenter(gameBoard);
-            mainArea.setRight(buttonArea);
+            mainArea.setBottom(buttonArea);
 
 
             primaryStage.setScene(scene);
