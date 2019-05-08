@@ -31,4 +31,8 @@ public abstract class Board {
     }
 
     protected abstract List<Field> createFields();
+
+    public int size() {
+        return fields.size();
+    }
 }

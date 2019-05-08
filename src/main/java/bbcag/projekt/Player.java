@@ -13,8 +13,6 @@ public class Player {
     public byte works;
     public byte railwayStations;
 
-    public void playMove(){
-    }
 
     public Player(String name, Figure color){
         this.name = name;

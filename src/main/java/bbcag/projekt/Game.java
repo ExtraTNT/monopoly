@@ -21,10 +21,10 @@ public class Game {
     public Player getBank() {
         return bank;
     }
-    public List<Player> getPlayerMap() {
+    public List<Player> getPlayerList() {
         return allPlayer;
     }
-    public void setPlayerMap(List<Player> playermap) {
+    public void setPlayerList(List<Player> playermap) {
         allPlayer = playermap;
     }
     public Board getBoard() {
@@ -47,6 +47,9 @@ public class Game {
     public void config() {
         //while
 
+    }
+    public void playMove(int diceNbr){
+        int newpos = currentPlayer.Position + diceNbr % board.size();
     }
 }
     /*
