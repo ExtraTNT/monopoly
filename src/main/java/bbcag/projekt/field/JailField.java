@@ -1,13 +1,10 @@
 package bbcag.projekt.field;
 
-import bbcag.projekt.Game;
 import bbcag.projekt.Player;
-import bbcag.projekt.field.Field;
 
 public class JailField extends Field {
 
-    public JailField(){
-        Owner = Game.getBank();
+    public JailField(Player bank) {
         name = "Gefängnis / Nur zu Besuch";
     }
 

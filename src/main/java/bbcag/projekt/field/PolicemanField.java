@@ -6,8 +6,7 @@ import bbcag.projekt.field.Field;
 
 public class PolicemanField extends Field {
 
-    public PolicemanField(){
-        Owner = Game.getBank();
+    public PolicemanField(Player bank){
         this.name = "Gehe ins Gefaengnis!";
     }
 
