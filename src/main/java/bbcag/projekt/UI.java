@@ -27,7 +27,7 @@ public class UI extends Application {
 
 
             Button rollButton = new Button("Roll");
-            Label rollResult = new Label("");
+            Label rollResult = new Label("_ and _");
             rollButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -39,10 +39,15 @@ public class UI extends Application {
                     rollResult.setText(dice1 + " and " + dice2);
                 }
             });
+            GridPane buttonArea = new GridPane();
+
+            buttonArea.addRow(1);
+            buttonArea.add(rollButton,0, 1);
+            buttonArea.add(rollResult, 1, 1);
+
 
             mainArea.setCenter(gameBoard);
-            mainArea.setRight(rollButton);
-            mainArea.setRight(rollResult);
+            mainArea.setRight(buttonArea);
 
 
             primaryStage.setScene(scene);
