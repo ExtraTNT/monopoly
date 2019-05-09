@@ -13,10 +13,11 @@ public class RailwayField extends Field {
     }
     @Override
     public void steppingOnIt(Player player) {
-        if(this.Owner == null){
-            if(this.Worth < player.Money) {
-                if (true)//UI.askBuy {
+        if(this.Owner == null) {
+            if (this.Worth < player.Money) {
+                if (true) {
                     this.buy(player);
+                }
             }
         }
         else {

@@ -13,8 +13,9 @@ public class WorkField extends Field {
     public void steppingOnIt(Player player) {
         if(this.Owner == null){
             if(this.Worth < player.Money) {
-                if (true)//UI.askBuy {
+                if (true) {
                     this.buy(player);
+                }
             }
         }
         else {
