@@ -22,7 +22,7 @@ public class Game {
     private boolean currentPlayerHasRolledDice;
 
     private Board board;
-    private Player bank = new Player("bank", new Figure("#FFFFFF"));
+    private Player bank = new Player("bank", "#FFFFFF");
 
     private Game() {
         listeners = new HashSet<>();
@@ -35,7 +35,7 @@ public class Game {
     }
 
     public void addPlayer(String name, String color) {
-        Player player = new Player(name, new Figure(color));
+        Player player = new Player(name, color);
 
         allPlayers.add(player);
         currentPlayer = player;

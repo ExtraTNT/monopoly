@@ -2,6 +2,7 @@ package bbcag.projekt.field;
 
 
 import bbcag.projekt.Player;
+import javafx.scene.canvas.GraphicsContext;
 
 public abstract class Field {
     protected Player owner = null;

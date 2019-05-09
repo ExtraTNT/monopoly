@@ -16,10 +16,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 
+import java.util.ArrayList;
+
 public class MainUI extends BorderPane {
 
     private static Label rollResult = new Label("_ and _");
-
+    private Canvas centerAreaCanvas = new Canvas(900,900);
+    private GraphicsContext gc = centerAreaCanvas.getGraphicsContext2D();
     public MainUI() {
 
 
@@ -28,9 +31,10 @@ public class MainUI extends BorderPane {
 
         gameBoard.setFitHeight(900);
         gameBoard.setFitWidth(900);
-        Canvas centerAreaCanvas = new Canvas(900,900);
 
-        GraphicsContext gc = centerAreaCanvas.getGraphicsContext2D();
+
+
+
         gc.setFill(Paint.valueOf("#ff0000"));
         gc.fillOval(500,810,40,40);
         StackPane centralStack = new StackPane();
@@ -93,23 +97,26 @@ public class MainUI extends BorderPane {
         Game.getInstance().addListener(new GameListener() {
             @Override
             public void onStart() {
-
+                updatePlayerPositions();
             }
 
             @Override
             public void onPlayerAdded(Player player) {
-
+                updatePlayerPositions();
             }
 
             @Override
             public void onCurrentPlayerChange(Player player) {
                 playerAccountBalanceField.setText(player.getAccountBalance() + " €");
                 playerPlayerNameField.setText(player.getName());
+                updatePlayerPositions();
+                rollResult.setText(Game.getInstance().getPlayerList().get(1).getPosition() + " " + Game.getInstance().getPlayerList().get(1).getName());
             }
 
             @Override
             public void onDicesRolled(int dice1, int dice2) {
-                rollResult.setText(dice1 + " and " + dice2);
+                rollResult.setText(dice1 + " and " + dice2 + " " + Game.getInstance().getPlayerList().get(1).getPosition() + " " + Game.getInstance().getPlayerList().get(1).getName());
+                updatePlayerPositions();
             }
 
             @Override
@@ -126,4 +133,47 @@ public class MainUI extends BorderPane {
     public void setRollResult(String rollResult) {
         this.rollResult.setText(rollResult);
     }
+
+    public void updatePlayerPositions (){
+        int x;
+        int y;
+        gc.clearRect(0,0, 900, 900);
+        for(Player p : Game.getInstance().getPlayerList()){
+            gc.setFill(Paint.valueOf(p.getColor()));
+            x = getPlayerX(p);
+            y = getPlayerY(p);
+            gc.fillOval(x, y, 40, 40);
+        }
+    }
+    private int getPlayerX(Player player){
+        if(player.getPosition() >= 30 && player.getPosition() <= 39 || player.getPosition() == 0){
+            return 810;
+        }
+        if(player.getPosition() >= 10 && player.getPosition() <= 20){
+            return 50;
+        }
+        if(player.getPosition() >20 && player.getPosition() < 30){
+            return((player.getPosition()-21)*72 + 140);
+        }
+        else{
+            return (720- (player.getPosition()-1)*72);
+        }
+    }
+    private int getPlayerY(Player player){
+        if(player.getPosition() >= 0 && player.getPosition() <= 10){
+            return 810;
+        }
+        if(player.getPosition() >= 20 && player.getPosition() <= 30){
+            return 50;
+        }
+        if(player.getPosition() > 10 && player.getPosition() < 20){
+            return (720- (player.getPosition()-11)*72);
+
+        }
+        else{
+            return((player.getPosition()-31)*72 + 140);
+        }
+
+    }
+
 }

@@ -3,7 +3,7 @@ package bbcag.projekt;
 public class Player {
     private String name;
     private int accountBalance = 1500;
-    private Figure figure;
+    private String color;
     private byte position = 0;
     private byte remainingDaysInPrison;
 
@@ -12,9 +12,9 @@ public class Player {
     private byte freeCards;
 
 
-    public Player(String name, Figure figure) {
+    public Player(String name, String color) {
         this.name = name;
-        this.figure = figure;
+        this.color = color;
     }
 
     public boolean isDeath() {
@@ -55,5 +55,9 @@ public class Player {
 
     public void setRemainingDaysInPrison(byte remainingDaysInPrison) {
         this.remainingDaysInPrison = remainingDaysInPrison;
+    }
+
+    public String getColor() {
+        return color;
     }
 }
