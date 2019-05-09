@@ -106,6 +106,10 @@ public class Game {
         int dice1 = Dice.rollDice();
         int dice2 = Dice.rollDice();
 
+        if(dice1 == dice2){
+            currentPlayer.setRemainingDaysInPrison((byte)0);
+        }
+
         for (GameListener listener : listeners) {
             listener.onDicesRolled(dice1, dice2);
         }
@@ -122,14 +126,22 @@ public class Game {
             allPlayers.remove(currentPlayer);
 
         }
-        byte oldPos = currentPlayer.getPosition();
-        currentPlayer.setPosition((byte) ((currentPlayer.getPosition() + diceNbr) % board.size()));
-        for (int i = 1; i <= diceNbr; i++) {
-            if (i < diceNbr) {
-                board.getFieldByIndex((oldPos + i) % board.size()).passIt(currentPlayer);
+        if(!(currentPlayer.getRemainingDaysInPrison() > 0)) {
+            byte oldPos = currentPlayer.getPosition();
+            currentPlayer.setPosition((byte) ((currentPlayer.getPosition() + diceNbr) % board.size()));
+            for (int i = 1; i <= diceNbr; i++) {
+                if (i < diceNbr) {
+                    board.getFieldByIndex((oldPos + i) % board.size()).passIt(currentPlayer);
+                }
+                if (i == diceNbr) {
+                    board.getFieldByIndex((oldPos + i) % board.size()).steppingOnIt(currentPlayer, diceNbr);
+                }
             }
-            if (i == diceNbr) {
-                board.getFieldByIndex((oldPos + i) % board.size()).steppingOnIt(currentPlayer, diceNbr);
+        }
+        else {
+            currentPlayer.setRemainingDaysInPrison((byte)(currentPlayer.getRemainingDaysInPrison()-1));
+            if(currentPlayer.getRemainingDaysInPrison() == 0){
+                currentPlayer.setAccountBalance(currentPlayer.getAccountBalance()-100);
             }
         }
 
