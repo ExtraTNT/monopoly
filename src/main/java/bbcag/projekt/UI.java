@@ -28,7 +28,11 @@ public class UI extends Application { //126 important
     }
 
     private static Label rollResult = new Label("_ and _");
-        @Override
+
+
+
+
+    @Override
         public void start(Stage primaryStage) throws Exception {
 
             BorderPane mainArea = new BorderPane();
@@ -99,6 +103,7 @@ public class UI extends Application { //126 important
 
                     //rollResult.setText(dice.dice());
                     dice.dice(); // passes on 2 random numbers to draw, these numbers are displayed.
+                    playerMoneyField.setText(Game.getInstance().currentPlayer.Money + " €");
                 }
             });
             turnButton.setOnAction(new EventHandler<ActionEvent>() {
