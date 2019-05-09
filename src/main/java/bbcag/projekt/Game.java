@@ -111,6 +111,9 @@ public class Game {
         }
 
         playMove(dice1 + dice2);
+        for (GameListener listener : listeners) {
+            listener.onDicesRolled(dice1, dice2);
+        }
     }
 
     public void playMove(int diceNbr) {
@@ -118,16 +121,18 @@ public class Game {
             allPlayers.remove(currentPlayer);
 
         }
-
+        byte oldPos = currentPlayer.getPosition();
+        currentPlayer.setPosition((byte) ((currentPlayer.getPosition() + diceNbr) % board.size()));
         for (int i = 1; i <= diceNbr; i++) {
             if (i < diceNbr) {
-                board.getFieldByIndex((currentPlayer.getPosition() + i) % board.size()).passIt(currentPlayer);
+                board.getFieldByIndex((oldPos + i) % board.size()).passIt(currentPlayer);
             }
             if (i == diceNbr) {
-                board.getFieldByIndex((currentPlayer.getPosition() + i) % board.size()).steppingOnIt(currentPlayer, diceNbr);
+                board.getFieldByIndex((oldPos + i) % board.size()).steppingOnIt(currentPlayer, diceNbr);
             }
         }
-        currentPlayer.setPosition((byte) ((currentPlayer.getPosition() + diceNbr) % board.size()));
+
+
     }
 
     public void startDealing() {

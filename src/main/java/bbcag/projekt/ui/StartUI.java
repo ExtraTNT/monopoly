@@ -79,8 +79,7 @@ public class StartUI extends BorderPane {
             try {
                 Game.getInstance().start();
             } catch (NotEnoughPlayersException e) {
-                System.out.println("NOT ENOUGH PLAYERS");
-                // TODO Show dialog or error message
+                startPlayerListText.appendText("\nERROR NOT ENOUGH PLAYERS\n\n");
             }
         });
 

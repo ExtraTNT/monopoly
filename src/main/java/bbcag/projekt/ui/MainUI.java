@@ -110,12 +110,12 @@ public class MainUI extends BorderPane {
                 playerAccountBalanceField.setText(player.getAccountBalance() + " €");
                 playerPlayerNameField.setText(player.getName());
                 updatePlayerPositions();
-                rollResult.setText(Game.getInstance().getPlayerList().get(1).getPosition() + " " + Game.getInstance().getPlayerList().get(1).getName());
+                //rollResult.setText(Game.getInstance().getPlayerList().get(1).getPosition() + " " + Game.getInstance().getPlayerList().get(1).getName());
             }
 
             @Override
             public void onDicesRolled(int dice1, int dice2) {
-                rollResult.setText(dice1 + " and " + dice2 + " " + Game.getInstance().getPlayerList().get(1).getPosition() + " " + Game.getInstance().getPlayerList().get(1).getName());
+                rollResult.setText(dice1 + " and " + dice2);
                 updatePlayerPositions();
             }
 
