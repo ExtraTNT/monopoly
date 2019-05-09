@@ -10,13 +10,13 @@ public class RailwayField extends Field {
     public RailwayField(String name) {
         this.name = name;
     }
-
     @Override
     public void steppingOnIt(Player player) {
         if (this.owner == null) {
             if (this.worth < player.getAccountBalance()) {
-                if (true)//UI.askBuy {
+                if (true) {
                     this.buy(player);
+                }
             }
         } else {
             player.setAccountBalance(player.getAccountBalance() - getRent());

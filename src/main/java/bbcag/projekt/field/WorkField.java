@@ -13,11 +13,19 @@ public class WorkField extends Field {
     public void steppingOnIt(Player player) {
         if (this.owner == null) {
             if (this.worth < player.getAccountBalance()) {
-                if (true)//UI.askBuy {
+                if (true) {
                     this.buy(player);
+                }
             }
-        } else {
-            //player 1 work 4x, 2 = 11x
+        }  else {
+            if(owner.getWorkFieldsCount() == 2){
+                player.setAccountBalance(player.getAccountBalance() - (rolled * 11));
+                owner.setAccountBalance(owner.getAccountBalance() + (rolled * 11));
+            }
+            if(owner.getWorkFieldsCount() == 1){
+                player.setAccountBalance(player.getAccountBalance() - (rolled * 4));
+                owner.setAccountBalance(owner.getAccountBalance() + (rolled * 4));
+            }
         }
 
     }

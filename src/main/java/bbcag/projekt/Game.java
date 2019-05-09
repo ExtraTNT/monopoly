@@ -116,6 +116,7 @@ public class Game {
             allPlayers.remove(currentPlayer);
 
         }
+        currentPlayer.rolled = diceNbr;
 
         for (int i = 1; i <= diceNbr; i++) {
             if (i < diceNbr) {
