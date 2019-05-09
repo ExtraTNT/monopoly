@@ -28,23 +28,23 @@ public class StartUI extends BorderPane {
         startFigureRed.setToggleGroup(startRadioGroup);
 
         RadioButton startFigureBlue = new RadioButton("Blue");
-        startFigureBlue.setUserData("#FF0000");
+        startFigureBlue.setUserData("#0000FF");
         startFigureBlue.setToggleGroup(startRadioGroup);
 
         RadioButton startFigureGreen = new RadioButton("Green");
-        startFigureGreen.setUserData("#FF0000");
+        startFigureGreen.setUserData("#008000");
         startFigureGreen.setToggleGroup(startRadioGroup);
 
         RadioButton startFigurePink = new RadioButton("Pink");
-        startFigurePink.setUserData("#FF0000");
+        startFigurePink.setUserData("#FFC0CB");
         startFigurePink.setToggleGroup(startRadioGroup);
 
         RadioButton startFigureYellow = new RadioButton("Yellow");
-        startFigureYellow.setUserData("#FF0000");
+        startFigureYellow.setUserData("#FFFF00");
         startFigureYellow.setToggleGroup(startRadioGroup);
 
         RadioButton startFigurePurple = new RadioButton("Purple");
-        startFigurePurple.setUserData("#FF0000");
+        startFigurePurple.setUserData("#800080");
         startFigurePurple.setToggleGroup(startRadioGroup);
 
         startCenterArea.getChildren().addAll(
@@ -93,6 +93,7 @@ public class StartUI extends BorderPane {
             @Override
             public void onPlayerAdded(Player player) {
                 startPlayerListText.appendText(player.getName() + "\n");
+
             }
 
             @Override

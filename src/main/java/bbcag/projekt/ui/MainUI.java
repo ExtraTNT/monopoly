@@ -4,14 +4,17 @@ import bbcag.projekt.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 
 public class MainUI extends BorderPane {
 
@@ -22,9 +25,16 @@ public class MainUI extends BorderPane {
 
         //Gameboard stuff
         ImageView gameBoard = new ImageView("SWISS.png");
+
         gameBoard.setFitHeight(900);
         gameBoard.setFitWidth(900);
+        Canvas centerAreaCanvas = new Canvas(900,900);
 
+        GraphicsContext gc = centerAreaCanvas.getGraphicsContext2D();
+        gc.setFill(Paint.valueOf("#ff0000"));
+        gc.fillOval(500,810,40,40);
+        StackPane centralStack = new StackPane();
+        centralStack.getChildren().addAll(gameBoard,centerAreaCanvas);
 
         //Button stuff at the bottom
         Button rollButton = new Button("Roll");
@@ -75,13 +85,15 @@ public class MainUI extends BorderPane {
         turnButton.setOnAction(event -> Game.getInstance().nextPlayer());
         dealButton.setOnAction(event -> Game.getInstance().startDealing());
 
-        setCenter(gameBoard);
+        setCenter(centralStack);
+        centerAreaCanvas.toFront();
         setBottom(buttonArea);
         setRight(rightInfoArea);
 
         Game.getInstance().addListener(new GameListener() {
             @Override
             public void onStart() {
+
             }
 
             @Override

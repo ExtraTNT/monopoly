@@ -11,4 +11,5 @@ public interface GameListener {
     void onDicesRolled(int dice1, int dice2);
 
     void onStartDealing(Player currentPlayer);
+
 }

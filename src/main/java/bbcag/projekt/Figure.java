@@ -1,5 +1,7 @@
 package bbcag.projekt;
 
+import bbcag.projekt.ui.StartUI;
+
 public class Figure {
     public String Typ;
     //GUI Circles
@@ -7,6 +9,7 @@ public class Figure {
     private String color;
 
     public Figure(String color) {
+
         this.color = color;
     }
 
