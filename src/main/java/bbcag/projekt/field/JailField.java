@@ -9,6 +9,6 @@ public class JailField extends Field {
     }
 
     @Override
-    public void steppingOnIt(Player player) {
+    public void steppingOnIt(Player player, int rolledSum) {
     }
 }

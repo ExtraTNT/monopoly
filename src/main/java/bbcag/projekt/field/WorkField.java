@@ -10,7 +10,7 @@ public class WorkField extends Field {
     }
 
     @Override
-    public void steppingOnIt(Player player) {
+    public void steppingOnIt(Player player, int rolledSum) {
         if (this.owner == null) {
             if (this.worth < player.getAccountBalance()) {
                 if (true) {
@@ -19,12 +19,12 @@ public class WorkField extends Field {
             }
         }  else {
             if(owner.getWorkFieldsCount() == 2){
-                player.setAccountBalance(player.getAccountBalance() - (rolled * 11));
-                owner.setAccountBalance(owner.getAccountBalance() + (rolled * 11));
+                player.setAccountBalance(player.getAccountBalance() - (rolledSum * 11));
+                owner.setAccountBalance(owner.getAccountBalance() + (rolledSum * 11));
             }
             if(owner.getWorkFieldsCount() == 1){
-                player.setAccountBalance(player.getAccountBalance() - (rolled * 4));
-                owner.setAccountBalance(owner.getAccountBalance() + (rolled * 4));
+                player.setAccountBalance(player.getAccountBalance() - (rolledSum * 4));
+                owner.setAccountBalance(owner.getAccountBalance() + (rolledSum * 4));
             }
         }
 

@@ -15,7 +15,7 @@ public abstract class Field {
         this.owner = owner;
     }
 
-    public abstract void steppingOnIt(Player player);
+    public abstract void steppingOnIt(Player player, int rolledSum);
     public void passIt(Player player){
     }
 

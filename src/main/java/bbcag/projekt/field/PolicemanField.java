@@ -9,7 +9,7 @@ public class PolicemanField extends Field {
     }
 
     @Override
-    public void steppingOnIt(Player player) {
+    public void steppingOnIt(Player player, int rolledSum) {
         player.setPosition((byte) 10);
         player.setRemainingDaysInPrison((byte) 3);
     }

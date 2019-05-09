@@ -13,7 +13,7 @@ public class StartField extends Field {
     }
 
     @Override
-    public void steppingOnIt(Player player) {
+    public void steppingOnIt(Player player, int rolledSum) {
         player.setAccountBalance(player.getAccountBalance() + (2 * startMoney));
     }
 

@@ -11,7 +11,7 @@ public class RailwayField extends Field {
         this.name = name;
     }
     @Override
-    public void steppingOnIt(Player player) {
+    public void steppingOnIt(Player player, int rolledSum) {
         if (this.owner == null) {
             if (this.worth < player.getAccountBalance()) {
                 if (true) {

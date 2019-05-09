@@ -9,7 +9,7 @@ public class ActionField extends Field {
         this.name = name;
     }
     @Override
-    public void steppingOnIt(Player player) {
+    public void steppingOnIt(Player player, int rolledSum) {
         //Random events (pay 50, go 5 backwards ect.)
     }
 

@@ -116,14 +116,13 @@ public class Game {
             allPlayers.remove(currentPlayer);
 
         }
-        currentPlayer.rolled = diceNbr;
 
         for (int i = 1; i <= diceNbr; i++) {
             if (i < diceNbr) {
                 board.getFieldByIndex((currentPlayer.getPosition() + i) % board.size()).passIt(currentPlayer);
             }
             if (i == diceNbr) {
-                board.getFieldByIndex((currentPlayer.getPosition() + i) % board.size()).steppingOnIt(currentPlayer);
+                board.getFieldByIndex((currentPlayer.getPosition() + i) % board.size()).steppingOnIt(currentPlayer, diceNbr);
             }
         }
         currentPlayer.setPosition((byte) ((currentPlayer.getPosition() + diceNbr) % board.size()));
