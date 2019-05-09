@@ -18,6 +18,9 @@ public class Game {
     private Set<GameListener> listeners;
 
     private List<Player> allPlayers = new ArrayList<>();
+
+
+
     private Player currentPlayer;
     private boolean currentPlayerHasRolledDice;
 
@@ -45,7 +48,9 @@ public class Game {
         }
     }
 
-
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
     public Player getBank() {
         return bank;
     }

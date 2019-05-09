@@ -68,13 +68,14 @@ public class MainUI extends BorderPane {
         ScrollPane playerPropertyScroll = new ScrollPane();
 
 
-        TextField playerJailcardField = new TextField();
+        TextField playerPlaceField = new TextField();
+        playerPlaceField.setPrefWidth(200);
 
         ScrollPane playerAdditionalScroll = new ScrollPane();
         playerAdditionalScroll.setContent(rollResult);
 
 
-        rightInfoArea.getChildren().addAll(playerAccountBalanceField, playerPlayerNameField, playerPropertyScroll, playerJailcardField, playerAdditionalScroll);
+        rightInfoArea.getChildren().addAll(playerAccountBalanceField, playerPlayerNameField, playerPropertyScroll, playerPlaceField, playerAdditionalScroll);
 
         rightInfoArea.setPadding(new Insets(20));
 
@@ -113,6 +114,7 @@ public class MainUI extends BorderPane {
                 playerAccountBalanceField.setText(player.getAccountBalance() + " €");
                 playerPlayerNameField.setText(player.getName());
                 updatePlayerPositions();
+                playerPlaceField.setText(Game.getInstance().getBoard().getFieldByIndex(player.getPosition()).getName());
                 //rollResult.setText(Game.getInstance().getPlayerList().get(1).getPosition() + " " + Game.getInstance().getPlayerList().get(1).getName());
             }
 
@@ -120,6 +122,8 @@ public class MainUI extends BorderPane {
             public void onDicesRolled(int dice1, int dice2) {
                 rollResult.setText(dice1 + " and " + dice2);
                 updatePlayerPositions();
+                playerPlaceField.setText(Game.getInstance().getBoard().getFieldByIndex(Game.getInstance().getCurrentPlayer().getPosition()).getName());
+
             }
 
             @Override
