@@ -6,8 +6,6 @@ public class Player {
     private Figure figure;
     private byte position = 0;
     private byte remainingDaysInPrison;
-    private byte railwayStationCount; // TODO REMOVE
-    private byte workFieldsCount; // TODO REMOVE
 
     private int pach = 0;
     private int rolled = 0;
@@ -58,21 +56,4 @@ public class Player {
     public void setRemainingDaysInPrison(byte remainingDaysInPrison) {
         this.remainingDaysInPrison = remainingDaysInPrison;
     }
-
-    public byte getRailwayStationCount() {
-        return railwayStationCount;
-    }
-
-    public void setRailwayStationCount(byte railwayStationCount) {
-        this.railwayStationCount = railwayStationCount;
-    }
-
-    public byte getWorkFieldsCount() {
-        return workFieldsCount;
-    }
-
-    public void setWorkFieldsCount(byte workFieldsCount) {
-        this.workFieldsCount = workFieldsCount;
-    }
-
 }

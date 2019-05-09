@@ -31,7 +31,8 @@ public class NormalField extends Field {
                     this.buy(player);
                 }
             }
-        } else {
+        }
+        else {
             player.setAccountBalance(player.getAccountBalance() - getRent());
             owner.setAccountBalance(owner.getAccountBalance() + getRent());
         }

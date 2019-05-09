@@ -1,6 +1,10 @@
 package bbcag.projekt.field;
 
+import bbcag.projekt.Game;
 import bbcag.projekt.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RailwayField extends Field {
 
@@ -24,13 +28,21 @@ public class RailwayField extends Field {
         }
     }
 
-    public int getRent() {
-        return Rent[owner.getRailwayStationCount() - 1];
+    public int getRent(){
+        List<Field> listToCount = new ArrayList<>();
+        for(Field f : Game.getInstance().getBoard().getFieldsByOwner(owner)){
+            if(f instanceof RailwayField){
+                listToCount.add(f);
+            }
+        }
+
+        return Rent[listToCount.size()-1];
     }
+
+
 
     private void buy(Player player) {
         player.setAccountBalance(player.getAccountBalance() - worth);
         this.owner = player;
-        player.setRailwayStationCount((byte) (player.getRailwayStationCount() + 1));
     }
 }

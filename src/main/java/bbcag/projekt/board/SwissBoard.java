@@ -21,7 +21,7 @@ class SwissBoard extends Board {
 
         //Free to reconfigure
 
-        fieldList.add(new StartField((short) 400, getBank())); //start extension... (opt)
+        fieldList.add(new StartField((short) 400, getBank()));
 
         fieldList.add(new NormalField("Chur, Kornplatz", (short) 60, new int[]{2, 10, 30, 90, 160, 250}, 50));
 
