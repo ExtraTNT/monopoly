@@ -4,7 +4,7 @@ package bbcag.projekt.field;
 import bbcag.projekt.Player;
 
 public abstract class Field {
-    protected Player Owner = null;
+    protected Player owner = null;
     protected String name;
 
     public Field() {
@@ -12,7 +12,7 @@ public abstract class Field {
     }
 
     public Field(Player owner) {
-        Owner = owner;
+        this.owner = owner;
     }
 
     public abstract void steppingOnIt(Player player);
@@ -20,7 +20,7 @@ public abstract class Field {
     }
 
     public Player getOwner() {
-        return Owner;
+        return owner;
     }
 
 

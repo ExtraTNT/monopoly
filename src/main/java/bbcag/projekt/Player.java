@@ -1,29 +1,78 @@
 package bbcag.projekt;
 
 public class Player {
-    public int pach = 0;
-    public boolean roll = true;
-    public int rolled = 0;
-    public byte Position = 0;
-    public int Money = 1500;
-    public byte Days;
-    public byte FreeCards;
-    public Figure Color;
-    public String name;
-    public byte works;
-    public byte railwayStations;
+    private String name;
+    private int accountBalance = 1500;
+    private Figure figure;
+    private byte position = 0;
+    private byte remainingDaysInPrison;
+    private byte railwayStationCount; // TODO REMOVE
+    private byte workFieldsCount; // TODO REMOVE
+
+    private int pach = 0;
+    private int rolled = 0;
+    private byte freeCards;
 
 
-    public Player(String name, Figure color){
+    public Player(String name, Figure figure) {
         this.name = name;
-        this.Color = color;
+        this.figure = figure;
     }
-    public boolean isDeath(){
-        if (Money < 0){
+
+    public boolean isDeath() {
+        if (accountBalance < 0) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAccountBalance() {
+        return accountBalance;
+    }
+
+    public void setAccountBalance(int accountBalance) {
+        this.accountBalance = accountBalance;
+    }
+
+    public byte getPosition() {
+        return position;
+    }
+
+    public void setPosition(byte position) {
+        this.position = position;
+    }
+
+    public byte getRemainingDaysInPrison() {
+        return remainingDaysInPrison;
+    }
+
+    public void setRemainingDaysInPrison(byte remainingDaysInPrison) {
+        this.remainingDaysInPrison = remainingDaysInPrison;
+    }
+
+    public byte getRailwayStationCount() {
+        return railwayStationCount;
+    }
+
+    public void setRailwayStationCount(byte railwayStationCount) {
+        this.railwayStationCount = railwayStationCount;
+    }
+
+    public byte getWorkFieldsCount() {
+        return workFieldsCount;
+    }
+
+    public void setWorkFieldsCount(byte workFieldsCount) {
+        this.workFieldsCount = workFieldsCount;
+    }
+
 }

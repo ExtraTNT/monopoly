@@ -2,40 +2,138 @@ package bbcag.projekt;
 
 import bbcag.projekt.board.Board;
 import bbcag.projekt.board.BoardFactory;
-import bbcag.projekt.UI;
-
+import bbcag.projekt.exception.NotEnoughPlayersException;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Game {
-    private Game() {
-        board = BoardFactory.getInstance().createBoard(bank);
-        //allPlayer.add(new Player("test", new Figure())); DEBUG
-        //Player currentPlayer = allPlayer.get(0); DEBUG
-    }
-    List<Player> allPlayer = new ArrayList<>();
-    Player currentPlayer;
 
     private static Game instance;
 
+    private Set<GameListener> listeners;
+
+    private List<Player> allPlayers = new ArrayList<>();
+    private Player currentPlayer;
+    private boolean currentPlayerHasRolledDice;
+
     private Board board;
-    private Player bank = new Player("bank", new Figure());
+    private Player bank = new Player("bank", new Figure("#FFFFFF"));
+
+    private Game() {
+        listeners = new HashSet<>();
+
+        board = BoardFactory.getInstance().createBoard(bank);
+    }
+
+    public void addListener(GameListener listener) {
+        listeners.add(listener);
+    }
+
+    public void addPlayer(String name, String color) {
+        Player player = new Player(name, new Figure(color));
+
+        allPlayers.add(player);
+        currentPlayer = player;
+
+        for (GameListener listener : listeners) {
+            listener.onPlayerAdded(player);
+        }
+    }
+
+
     public Player getBank() {
         return bank;
     }
+
     public List<Player> getPlayerList() {
-        return allPlayer;
+        return allPlayers;
     }
+
     public void setPlayerList(List<Player> playermap) {
-        allPlayer = playermap;
+        allPlayers = playermap;
     }
+
     public Board getBoard() {
         return board;
     }
+
     public void setBoard(Board board) {
         this.board = board;
     }
+
+    public void start() throws NotEnoughPlayersException {
+        if (allPlayers.size() < 2) {
+            throw new NotEnoughPlayersException();
+        }
+
+        for (GameListener listener : listeners) {
+            listener.onStart();
+        }
+
+        for (GameListener listener : listeners) {
+            listener.onCurrentPlayerChange(currentPlayer);
+        }
+    }
+
+    public void config() {
+
+    }
+
+    public void nextPlayer() {
+        if (!currentPlayerHasRolledDice) {
+            return;
+        }
+
+        currentPlayer = allPlayers.get((allPlayers.indexOf(currentPlayer) + 1) % allPlayers.size());
+        currentPlayerHasRolledDice = false;
+
+        for (GameListener listener : listeners) {
+            listener.onCurrentPlayerChange(currentPlayer);
+        }
+    }
+
+    public void rollDiceForCurrentPlayer() {
+        if(currentPlayerHasRolledDice){
+            return;
+        }
+        currentPlayerHasRolledDice = true;
+
+        int dice1 = Dice.rollDice();
+        int dice2 = Dice.rollDice();
+
+        for (GameListener listener : listeners) {
+            listener.onDicesRolled(dice1, dice2);
+        }
+
+        playMove(dice1 + dice2);
+    }
+
+    private void playMove(int diceNbr) {
+        if (currentPlayer.isDeath()) {
+            allPlayers.remove(currentPlayer);
+
+        }
+
+        for (int i = 1; i <= diceNbr; i++) {
+            if (i < diceNbr) {
+                board.getFieldByIndex((currentPlayer.getPosition() + i) % board.size()).passIt(currentPlayer);
+            }
+            if (i == diceNbr) {
+                board.getFieldByIndex((currentPlayer.getPosition() + i) % board.size()).steppingOnIt(currentPlayer);
+            }
+        }
+        currentPlayer.setPosition((byte) ((currentPlayer.getPosition() + diceNbr) % board.size()));
+    }
+
+    public void startDealing() {
+        for (GameListener listener : listeners) {
+            listener.onStartDealing(currentPlayer);
+        }
+    }
+
     public static Game getInstance() {
         if (instance == null) {
             instance = new Game();
@@ -44,35 +142,6 @@ public class Game {
         return instance;
     }
 
-    public void start() {
-    }
-
-    public void config() {
-
-    }
-    public void playMove(int diceNbr) {
-        if (currentPlayer.isDeath()){
-            allPlayer.remove(currentPlayer);
-
-        }
-
-        for (int i = 1; i <= diceNbr; i++) {
-            if(i < diceNbr) {
-                board.getFieldByIndex((currentPlayer.Position + i) % board.size()).passIt(currentPlayer);
-            }
-            if (i == diceNbr){
-                board.getFieldByIndex((currentPlayer.Position + i) % board.size()).steppingOnIt(currentPlayer);
-            }
-        }
-        currentPlayer.Position = (byte) ((currentPlayer.Position + diceNbr) % board.size());
-    }
-
-    public void nextPlayer() {
-        if(!currentPlayer.roll) {
-            currentPlayer.roll = true;
-            currentPlayer = allPlayer.get((allPlayer.indexOf(currentPlayer) + 1) % allPlayer.size());
-        }
-    }
 }
     /*
        __

@@ -2,30 +2,17 @@ package bbcag.projekt;
 
 import java.util.Random;
 
-public class dice {
-    public static String dice() {
-        int dice1 = 0;
-        int dice2 = 0;
-        int total = 0;
-        if (Game.getInstance().currentPlayer.roll) {
+public class Dice {
 
-            Random rand = new Random();
-            dice1 = rand.nextInt(6) + 1;
-            dice2 = rand.nextInt(6) + 1;
+    private static Random rand = new Random();
 
-
-            Game.getInstance().currentPlayer.roll = false;
-            Game.getInstance().currentPlayer.rolled = dice1 + dice2;
-
-            total = dice1 + dice2;
-            Game.getInstance().playMove(dice1 + dice2);
-
-        }
-        UI.setRollResult(dice1 + " and " + dice2);
-        return (dice1 + " and " + dice2);  //U can use this 4 debuging or using for a other use... XD
-
-        }
+    private Dice() {
     }
+
+    public static int rollDice() {
+        return rand.nextInt(6) + 1;
+    }
+}
 
 /*
         Random rand = new Random();

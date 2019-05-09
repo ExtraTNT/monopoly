@@ -1,37 +1,36 @@
 package bbcag.projekt.field;
 
 import bbcag.projekt.Player;
-import bbcag.projekt.field.Field;
 
 public class RailwayField extends Field {
 
-    private short Worth = 200;
+    private short worth = 200;
     private int[] Rent = new int[]{25, 50, 100, 200};
 
-    public RailwayField(String name){
+    public RailwayField(String name) {
         this.name = name;
     }
+
     @Override
     public void steppingOnIt(Player player) {
-        if(this.Owner == null){
-            if(this.Worth < player.Money) {
+        if (this.owner == null) {
+            if (this.worth < player.getAccountBalance()) {
                 if (true)//UI.askBuy {
                     this.buy(player);
             }
-        }
-        else {
-            player.Money -= this.getRent();
-            Owner.Money += this.getRent();
+        } else {
+            player.setAccountBalance(player.getAccountBalance() - getRent());
+            owner.setAccountBalance(owner.getAccountBalance() + getRent());
         }
     }
 
     public int getRent() {
-        return Rent[Owner.railwayStations - 1];
+        return Rent[owner.getRailwayStationCount() - 1];
     }
 
-    private void buy (Player player){
-        player.Money = player.Money - this.Worth;
-        this.Owner = player;
-        player.railwayStations += 1;
+    private void buy(Player player) {
+        player.setAccountBalance(player.getAccountBalance() - worth);
+        this.owner = player;
+        player.setRailwayStationCount((byte) (player.getRailwayStationCount() + 1));
     }
 }

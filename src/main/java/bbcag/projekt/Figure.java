@@ -4,7 +4,13 @@ public class Figure {
     public String Typ;
     //GUI Circles
 
-    public void setColor(String color){
-        //?
+    private String color;
+
+    public Figure(String color) {
+        this.color = color;
+    }
+
+    public String getColor() {
+        return color;
     }
 }

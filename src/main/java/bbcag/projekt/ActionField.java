@@ -5,7 +5,7 @@ import bbcag.projekt.field.Field;
 public class ActionField extends Field {
 
     public ActionField(String name, Player bank){
-        Owner = bank;
+        owner = bank;
         this.name = name;
     }
     @Override

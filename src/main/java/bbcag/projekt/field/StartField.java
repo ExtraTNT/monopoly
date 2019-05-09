@@ -4,20 +4,24 @@ import bbcag.projekt.Player;
 
 public class StartField extends Field {
 
-    private short StartMoney;
-    public StartField(short money, Player bank){
+    private short startMoney;
+
+    public StartField(short money, Player bank) {
         name = "Start";
-        StartMoney = money;
-        Owner = bank;
+        startMoney = money;
+        owner = bank;
     }
+
     @Override
     public void steppingOnIt(Player player) {
-        player.Money += (2*StartMoney);
+        player.setAccountBalance(player.getAccountBalance() + (2 * startMoney));
     }
-    public void passIt(Player player){
-        player.Money += StartMoney;
+
+    public void passIt(Player player) {
+        player.setAccountBalance(player.getAccountBalance() + startMoney);
     }
+
     public void setStartMoney(short startMoney) {
-        StartMoney = startMoney;
+        this.startMoney = startMoney;
     }
 }

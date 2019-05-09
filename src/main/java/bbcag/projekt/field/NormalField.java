@@ -1,10 +1,9 @@
 package bbcag.projekt.field;
 
 import bbcag.projekt.Player;
-import bbcag.projekt.field.Field;
 
 public class NormalField extends Field {
-    private short Worth;
+    private short worth;
     private byte Hotel = 0;
     private int[] Rent;
 
@@ -15,21 +14,21 @@ public class NormalField extends Field {
     public NormalField(String name, short worth, int[] rent, Player owner) {
         super(owner);
         this.name = name;
-        this.Worth = worth;
+        this.worth = worth;
         this.Rent = rent;
     }
 
     @Override
     public void steppingOnIt(Player player) {
-        if (this.Owner == null) {
-            if (this.Worth < player.Money) {
-                if (true)//UI.askBuy {
+        if (this.owner == null) {
+            if (this.worth < player.getAccountBalance()) {
+                if (true) {
                     this.buy(player);
+                }
             }
-        }
-        else {
-            player.Money -= this.getRent();
-            Owner.Money += this.getRent();
+        } else {
+            player.setAccountBalance(player.getAccountBalance() - getRent());
+            owner.setAccountBalance(owner.getAccountBalance() + getRent());
         }
     }
 
@@ -38,8 +37,8 @@ public class NormalField extends Field {
     }
 
     private void buy(Player player) {
-        player.Money = player.Money - this.Worth;
-        this.Owner = player;
+        player.setAccountBalance(player.getAccountBalance() - worth);
+        this.owner = player;
     }
 
     public byte getHotel() {
