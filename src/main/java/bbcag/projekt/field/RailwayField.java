@@ -6,6 +6,7 @@ import bbcag.projekt.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class RailwayField extends Field {
 
     private short worth = 200;
