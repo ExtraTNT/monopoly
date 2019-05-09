@@ -7,15 +7,20 @@ public class NormalField extends Field {
     private byte Hotel = 0;
     private int[] Rent;
 
-    public NormalField(String name, short worth, int[] rent) {
-        this(name, worth, rent, null);
+
+    private int worthHotel;
+
+
+    public NormalField(String name, short worth, int[] rent, int worthHotel) {
+        this(name, worth, rent, worthHotel, null);
     }
 
-    public NormalField(String name, short worth, int[] rent, Player owner) {
+    public NormalField(String name, short worth, int[] rent, int worthHotel, Player owner) {
         super(owner);
         this.name = name;
         this.worth = worth;
         this.Rent = rent;
+        this.worthHotel = worthHotel;
     }
 
     @Override
@@ -48,4 +53,9 @@ public class NormalField extends Field {
     public void setHotel(byte hotel) {
         Hotel = hotel;
     }
+
+    public int getWorthHotel() {
+        return worthHotel;
+    }
 }
+

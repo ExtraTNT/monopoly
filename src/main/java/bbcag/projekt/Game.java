@@ -3,6 +3,8 @@ package bbcag.projekt;
 import bbcag.projekt.board.Board;
 import bbcag.projekt.board.BoardFactory;
 import bbcag.projekt.exception.NotEnoughPlayersException;
+import bbcag.projekt.field.Field;
+import bbcag.projekt.field.NormalField;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -111,7 +113,7 @@ public class Game {
         playMove(dice1 + dice2);
     }
 
-    private void playMove(int diceNbr) {
+    public void playMove(int diceNbr) {
         if (currentPlayer.isDeath()) {
             allPlayers.remove(currentPlayer);
 
@@ -132,6 +134,33 @@ public class Game {
         for (GameListener listener : listeners) {
             listener.onStartDealing(currentPlayer);
         }
+    }
+
+    public List<NormalField> getListOfMyHousableFields(){
+
+        List<NormalField> normalFields = new ArrayList<>();
+        for(int i = 0; i < board.getFieldsByOwner(currentPlayer).size(); i++){
+            if(board.getFieldsByOwner(currentPlayer).get(i) instanceof NormalField) {
+                normalFields.add((NormalField) board.getFieldsByOwner(currentPlayer).get(i));
+            }
+        }
+        return normalFields;
+    }
+
+    public void buildHouse(NormalField field){
+        if(field.getHotel() >= 5){
+            return;
+        }
+        field.setHotel((byte)(field.getHotel() + 1));
+        currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() - field.getWorthHotel());
+    }
+
+    public void removeHotel(NormalField field){
+        if(field.getHotel() <= 0){
+            return;
+        }
+        field.setHotel((byte)(field.getHotel() - 1));
+        currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() + field.getWorthHotel()/2);
     }
 
     public static Game getInstance() {

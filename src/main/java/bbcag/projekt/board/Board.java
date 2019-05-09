@@ -2,7 +2,9 @@ package bbcag.projekt.board;
 
 import bbcag.projekt.Player;
 import bbcag.projekt.field.Field;
+import bbcag.projekt.field.NormalField;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Board {
@@ -29,9 +31,21 @@ public abstract class Board {
 
         return null;
     }
+
+    public List<Field> getFieldsByOwner(Player owner){
+        List fieldshousable = new ArrayList<>();
+        for (Field candidate : fields) {
+            if(candidate.getOwner().equals(owner)){
+                fieldshousable.add(candidate);
+            }
+        }
+    return fieldshousable;
+    }
+
     public Field getFieldByIndex(int index){
         return fields.get(index);
     }
+
 
     protected abstract List<Field> createFields();
 
