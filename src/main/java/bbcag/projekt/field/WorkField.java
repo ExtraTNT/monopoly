@@ -19,7 +19,14 @@ public class WorkField extends Field {
             }
         }
         else {
-            //player 1 work 4x, 2 = 11x
+            if(Owner.works == 2){
+                player.Money -= (player.rolled*11);
+                Owner.Money += (player.rolled * 11);
+            }
+            if(Owner.works == 1){
+                player.Money -= (player.rolled*4);
+                Owner.Money += (player.rolled * 4);
+            }
         }
 
     }
