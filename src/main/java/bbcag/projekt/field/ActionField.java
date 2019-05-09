@@ -12,10 +12,11 @@ public class ActionField extends Field {
     }
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
-        int event = (int) Math.random()*6;
+        int event = (int) (Math.random()*6);
+        System.out.println(event);
         switch (event){
             case 1:
-                Game.getInstance().playMove(-3);
+                player.setAccountBalance(player.getAccountBalance() + rolledSum * 3 + 10);
                 break;
             case 2:
                 player.setAccountBalance(player.getAccountBalance()-50);
@@ -28,11 +29,11 @@ public class ActionField extends Field {
                 player.setRemainingDaysInPrison((byte)3);
                 break;
             case 5:
-                Game.getInstance().playMove(40 - player.getPosition());
+                player.setAccountBalance((int)(player.getAccountBalance()-player.getAccountBalance()/10));
                 break;
             default:
+                player.setAccountBalance(player.getAccountBalance() + rolledSum * 5);
                 break;
-
         }
     }
 

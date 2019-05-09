@@ -111,6 +111,7 @@ public class Game {
         }
 
         playMove(dice1 + dice2);
+
         for (GameListener listener : listeners) {
             listener.onDicesRolled(dice1, dice2);
         }

@@ -67,7 +67,7 @@ class SwissBoard extends Board {
         fieldList.add(new WorkField("Wasserwerk"));
         fieldList.add(new NormalField("Lausanne, Rue de Bourg", (short) 280, new int[]{24, 120, 360, 850, 1025, 1200},150));
 
-        fieldList.add(new JailField(getBank()));
+        fieldList.add(new PolicemanField(getBank()));
 
         fieldList.add(new NormalField("Basel, Freie Strasse", (short) 300, new int[]{26, 130, 390, 900, 1100, 1275},200));
         fieldList.add(new NormalField("Genf, Rue de la Croix-d'or", (short) 300, new int[]{26, 130, 390, 900, 1100, 1275},200));

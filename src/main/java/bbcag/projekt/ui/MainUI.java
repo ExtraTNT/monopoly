@@ -62,6 +62,9 @@ public class MainUI extends BorderPane {
         TextField playerAccountBalanceField = new TextField();
         TextField playerPlayerNameField = new TextField();
 
+        playerAccountBalanceField.setEditable(false);
+        playerPlayerNameField.setEditable(false);
+
         ScrollPane playerPropertyScroll = new ScrollPane();
 
 
