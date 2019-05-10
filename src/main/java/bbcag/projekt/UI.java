@@ -1,10 +1,7 @@
 package bbcag.projekt;
 
 
-import bbcag.projekt.ui.DealUI;
-import bbcag.projekt.ui.HotelUI;
-import bbcag.projekt.ui.MainUI;
-import bbcag.projekt.ui.StartUI;
+import bbcag.projekt.ui.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -19,6 +16,7 @@ public class UI extends Application {
         Scene startScene = new Scene(new StartUI(), Color.WHITE);
         Scene dealScene = new Scene(new DealUI(), Color.WHITE);
         Scene hotelScene = new Scene(new HotelUI(), Color.WHITE);
+        Scene winScene = new Scene(new WinnerUI(), Color.BLACK);
 
         primaryStage.setScene(startScene);
 
@@ -51,7 +49,7 @@ public class UI extends Application {
 
             @Override
             public void onWin(Player winer) {
-
+                primaryStage.setScene(winScene);
             }
 
             @Override

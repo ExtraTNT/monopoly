@@ -12,6 +12,10 @@ import javafx.scene.layout.VBox;
 
 public class HotelUI  extends HBox {
     public HotelUI() {
+
+        setHeight(500);
+        setWidth(500);
+
         //Different fields
         ScrollPane buildableFields = new ScrollPane();
         TextField chosenField = new TextField();
