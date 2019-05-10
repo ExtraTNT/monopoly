@@ -2,7 +2,7 @@ package bbcag.projekt.field;
 
 import bbcag.projekt.Player;
 
-public class NormalField extends Field {
+public class NormalField extends BuyableField {
     private short worth;
     private byte Hotel = 0;
     private int[] Rent;

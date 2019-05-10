@@ -6,7 +6,7 @@ import bbcag.projekt.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkField extends Field {
+public class WorkField extends BuyableField  {
     private short worth = 150;
 
     public WorkField(String name) {

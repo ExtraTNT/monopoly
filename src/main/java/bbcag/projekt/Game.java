@@ -3,8 +3,7 @@ package bbcag.projekt;
 import bbcag.projekt.board.Board;
 import bbcag.projekt.board.BoardFactory;
 import bbcag.projekt.exception.NotEnoughPlayersException;
-import bbcag.projekt.field.Field;
-import bbcag.projekt.field.NormalField;
+import bbcag.projekt.field.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -123,6 +122,13 @@ public class Game {
 
         for (GameListener listener : listeners) {
             listener.onDicesRolled(dice1, dice2);
+        }
+    }
+    public void buyField(){
+        if(board.getFieldByIndex(currentPlayer.getPosition()).canBuy()){
+            if(board.getFieldByIndex(currentPlayer.getPosition()) instanceof NormalField || board.getFieldByIndex(currentPlayer.getPosition()) instanceof RailwayField || board.getFieldByIndex(currentPlayer.getPosition()) instanceof WorkField) {
+                ((BuyableField) board.getFieldByIndex(currentPlayer.getPosition())).buy(currentPlayer);
+            }
         }
     }
 

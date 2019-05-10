@@ -8,7 +8,7 @@ public abstract class Field {
     protected Player owner = null;
     protected String name;
 
-    public boolean isCanBuy() {
+    public boolean canBuy() {
         return canBuy;
     }
 

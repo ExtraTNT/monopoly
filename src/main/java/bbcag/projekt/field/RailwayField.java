@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RailwayField extends Field {
+public class RailwayField extends BuyableField  {
 
     private short worth = 200;
     private int[] Rent = new int[]{25, 50, 100, 200};
