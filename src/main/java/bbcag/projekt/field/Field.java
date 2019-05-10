@@ -7,12 +7,12 @@ import javafx.scene.canvas.GraphicsContext;
 public abstract class Field {
     protected Player owner = null;
     protected String name;
+    protected boolean canBuy = false;
 
     public boolean canBuy() {
         return canBuy;
     }
 
-    protected boolean canBuy = false;
 
     public Field() {
         this(null);
@@ -23,6 +23,7 @@ public abstract class Field {
     }
 
     public abstract void steppingOnIt(Player player, int rolledSum);
+
     public void passIt(Player player){
     }
 
