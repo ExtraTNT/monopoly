@@ -58,6 +58,11 @@ public class UI extends Application {
             public void onBuy(Player player) {
 
             }
+
+            @Override
+            public void onHotel() {
+                primaryStage.setScene(hotelScene);
+            }
         });
 
 

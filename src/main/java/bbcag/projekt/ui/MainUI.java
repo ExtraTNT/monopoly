@@ -96,6 +96,7 @@ public class MainUI extends BorderPane {
         rollButton.setOnAction(event -> Game.getInstance().rollDiceForCurrentPlayer());
         turnButton.setOnAction(event -> Game.getInstance().nextPlayer());
         dealButton.setOnAction(event -> Game.getInstance().startDealing());
+        houseButton.setOnAction(event ->);
         buyButton.setOnAction(event -> Game.getInstance().buyField());
 
         setCenter(centralStack);
@@ -155,6 +156,11 @@ public class MainUI extends BorderPane {
                 for(Field field : Game.getInstance().getBoard().getFieldsByOwner(player)){
                     playerPlaces.appendText(field.getName() + "\n");
                 }
+            }
+
+            @Override
+            public void onHotel() {
+
             }
         });
     }
