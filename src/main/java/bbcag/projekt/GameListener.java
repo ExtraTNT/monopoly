@@ -12,4 +12,6 @@ public interface GameListener {
 
     void onStartDealing(Player currentPlayer);
 
+    void onWin(Player winer);
+
 }

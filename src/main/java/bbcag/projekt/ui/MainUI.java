@@ -35,8 +35,8 @@ public class MainUI extends BorderPane {
 
 
 
-        gc.setFill(Paint.valueOf("#ff0000"));
-        gc.fillOval(500,810,40,40);
+        //gc.setFill(Paint.valueOf("#ff0000"));
+        //gc.fillOval(500,810,40,40);
         StackPane centralStack = new StackPane();
         centralStack.getChildren().addAll(gameBoard,centerAreaCanvas);
 
@@ -129,6 +129,12 @@ public class MainUI extends BorderPane {
             @Override
             public void onStartDealing(Player currentPlayer) {
 
+            }
+
+            @Override
+            public void onWin(Player winer) {
+                gc.setFill(Paint.valueOf("#ff0000"));
+                gc.fillText((winer + " WINS!"), 400, 200);
             }
         });
     }

@@ -46,6 +46,11 @@ public class UI extends Application {
             public void onStartDealing(Player currentPlayer) {
                 // TODO Show dealing window
             }
+
+            @Override
+            public void onWin(Player winer) {
+
+            }
         });
 
 

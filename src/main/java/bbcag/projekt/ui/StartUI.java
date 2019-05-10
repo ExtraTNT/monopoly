@@ -109,6 +109,11 @@ public class StartUI extends BorderPane {
             public void onStartDealing(Player currentPlayer) {
 
             }
+
+            @Override
+            public void onWin(Player winer) {
+
+            }
         });
     }
 }

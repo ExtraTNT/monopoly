@@ -129,7 +129,12 @@ public class Game {
     public void playMove(int diceNbr) {
         if (currentPlayer.isDeath()) {
             allPlayers.remove(currentPlayer);
+            if(allPlayers.size() == 1){
+                for (GameListener listener : listeners) {
+                    listener.onWin(allPlayers.get(0));
+                }
 
+            }
         }
         if(currentPlayer.getRemainingDaysInPrison() == 0) {
             byte oldPos = currentPlayer.getPosition();
