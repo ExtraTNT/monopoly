@@ -1,5 +1,6 @@
 package bbcag.projekt.field;
 
+import bbcag.projekt.Game;
 import bbcag.projekt.Player;
 
 public class StartField extends Field {
@@ -15,6 +16,7 @@ public class StartField extends Field {
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
         player.setAccountBalance(player.getAccountBalance() + (2 * startMoney));
+        Game.getInstance().littleUpdateGUI();
     }
 
     public void passIt(Player player) {

@@ -1,6 +1,7 @@
 package bbcag.projekt.field;
 
 import bbcag.projekt.Game;
+import bbcag.projekt.GameListener;
 import bbcag.projekt.Player;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class WorkField extends BuyableField  {
                 player.setAccountBalance(player.getAccountBalance() - (rolledSum * 4));
                 owner.setAccountBalance(owner.getAccountBalance() + (rolledSum * 4));
             }
+            Game.getInstance().littleUpdateGUI();
         }
 
     }

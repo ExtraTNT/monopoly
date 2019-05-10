@@ -1,5 +1,6 @@
 package bbcag.projekt.field;
 
+import bbcag.projekt.Game;
 import bbcag.projekt.Player;
 
 public class NormalField extends BuyableField {
@@ -36,6 +37,7 @@ public class NormalField extends BuyableField {
             player.setAccountBalance(player.getAccountBalance() - getRent());
             owner.setAccountBalance(owner.getAccountBalance() + getRent());
         }
+        Game.getInstance().littleUpdateGUI();
     }
 
     public int getRent() {
