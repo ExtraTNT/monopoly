@@ -205,7 +205,5 @@ public class MainUI extends BorderPane {
         else{
             return((player.getPosition()-31)*72 + 140);
         }
-
     }
-
 }
