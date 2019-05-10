@@ -200,12 +200,26 @@ public class Game {
         return normalFields;
     }
 
+    public List<NormalField> getListHousableFields(){
+        List<NormalField> normalFields = new ArrayList<>();
+        for(int i = 0; i < board.getFields().size(); i++){
+            if(board.getFields().get(i) instanceof NormalField) {
+                normalFields.add((NormalField)(board.getFields().get(i)));
+            }
+        }
+        return normalFields;
+
+    }
+
     public void buildHouse(NormalField field){
         if(field.getHotel() >= 5){
             return;
         }
         field.setHotel((byte)(field.getHotel() + 1));
         currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() - field.getWorthHotel());
+        for (GameListener listener : listeners) {
+            listener.onHotel();
+        }
     }
 
     public void removeHotel(NormalField field){
@@ -214,6 +228,9 @@ public class Game {
         }
         field.setHotel((byte)(field.getHotel() - 1));
         currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() + field.getWorthHotel()/2);
+        for (GameListener listener : listeners) {
+            listener.onHotel();
+        }
     }
 
     public static Game getInstance() {

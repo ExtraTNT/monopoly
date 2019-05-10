@@ -9,6 +9,10 @@ import java.util.List;
 
 public abstract class Board {
 
+    public List<Field> getFields() {
+        return fields;
+    }
+
     private final List<Field> fields;
 
     private final Player bank;

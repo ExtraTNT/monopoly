@@ -160,7 +160,7 @@ public class MainUI extends BorderPane {
 
             @Override
             public void onHotel() {
-
+                updatePlayerPositions();
             }
 
             @Override
@@ -184,6 +184,7 @@ public class MainUI extends BorderPane {
             gc.setFill(Paint.valueOf(p.getColor()));
             gc.fillOval(getPlayerX(p), getPlayerY(p), 40, 40);
         }
+        updateHotels();
     }
     //Something Hugi made, function to find out the X position for a player
     private int getPlayerX(Player player){
@@ -221,15 +222,20 @@ public class MainUI extends BorderPane {
 
 
     public void updateHotels (){
-
+        gc.setFill(Paint.valueOf("#000000"));
+        for(NormalField field : Game.getInstance().getListHousableFields()){
+            if(field.getOwner() != Game.getInstance().getBank()) {
+                gc.fillText(field.getHotel() + "", getHotelX(field), getHotelY(field));
+            }
+        }
     }
 
     private int getHotelY(Field field){
         if(Game.getInstance().getBoard().getIndexFromField(field) >= 0 && Game.getInstance().getBoard().getIndexFromField(field) <= 10){
-            return 780;
+            return 790;
         }
         if(Game.getInstance().getBoard().getIndexFromField(field) >= 20 && Game.getInstance().getBoard().getIndexFromField(field) <= 30){
-            return 80;
+            return 120;
         }
         if(Game.getInstance().getBoard().getIndexFromField(field) > 10 && Game.getInstance().getBoard().getIndexFromField(field) < 20){
             return (720- (Game.getInstance().getBoard().getIndexFromField(field)-11)*72);
@@ -244,7 +250,7 @@ public class MainUI extends BorderPane {
             return 780;
         }
         if(Game.getInstance().getBoard().getIndexFromField(field) >= 10 && Game.getInstance().getBoard().getIndexFromField(field) <= 20){
-            return 80;
+            return 105;
         }
         if(Game.getInstance().getBoard().getIndexFromField(field) >20 && Game.getInstance().getBoard().getIndexFromField(field) < 30){
             return((Game.getInstance().getBoard().getIndexFromField(field)-21)*72 + 140);
