@@ -9,8 +9,7 @@ import javafx.scene.layout.VBox;
 public class WinnerUI extends VBox {
     public WinnerUI() {
 
-        setHeight(500);
-        setWidth(500);
+        this.setMinSize(300,200);
 
 
         Label winLabel = new Label(Game.getInstance().getCurrentPlayer() + " WINS!");
@@ -19,6 +18,7 @@ public class WinnerUI extends VBox {
         setPadding(new Insets(20));
         getChildren().addAll(winLabel,winButton);
 
+        //Clicking this button makes you exit
         winButton.setOnAction(event -> System.exit(0));
 
     }

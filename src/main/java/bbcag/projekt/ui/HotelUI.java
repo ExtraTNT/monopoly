@@ -13,8 +13,7 @@ import javafx.scene.layout.VBox;
 public class HotelUI  extends HBox {
     public HotelUI() {
 
-        setHeight(500);
-        setWidth(500);
+
 
         //Different fields
         ScrollPane buildableFields = new ScrollPane();
@@ -31,6 +30,10 @@ public class HotelUI  extends HBox {
 
         setPadding(new Insets(20));
         getChildren().addAll(buildableFields,leftArea);
+
+        this.setMinSize(800,300);
+        buildableFields.setMinSize(300,300);
+
 
 
         Game.getInstance().addListener(new GameListener(){
