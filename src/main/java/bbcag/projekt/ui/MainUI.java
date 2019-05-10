@@ -119,7 +119,7 @@ public class MainUI extends BorderPane {
 
             @Override
             public void onCurrentPlayerChange(Player player) {
-                playerAccountBalanceField.setText(player.getAccountBalance() + " €");
+                playerAccountBalanceField.setText(player.getAccountBalance() + ".-");
                 playerPlayerNameField.setText(player.getName());
                 updatePlayerPositions();
                 playerPlaceField.setText(Game.getInstance().getBoard().getFieldByIndex(player.getPosition()).getName());
@@ -151,7 +151,7 @@ public class MainUI extends BorderPane {
 
             @Override
             public void onBuy(Player player) {
-                playerAccountBalanceField.setText(player.getAccountBalance() + " €");
+                playerAccountBalanceField.setText(player.getAccountBalance() + ".-");
                 playerPlaces.setText("");
                 for(Field field : Game.getInstance().getBoard().getFieldsByOwner(player)){
                     playerPlaces.appendText(field.getName() + "\n");
