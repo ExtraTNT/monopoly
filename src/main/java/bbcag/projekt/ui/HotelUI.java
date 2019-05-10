@@ -94,7 +94,7 @@ public class HotelUI  extends HBox {
             public void onHotel() {
                 scrollText.setText("");
                 for(NormalField nf: Game.getInstance().getListOfMyHousableFields()) {
-                    scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + "\n");
+                    scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + " -Cost: " + nf.getWorthHotel() + "\n" );
                     buildableFields.setContent(scrollText);
                 }
             }
