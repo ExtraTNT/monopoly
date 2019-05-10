@@ -35,7 +35,10 @@ public abstract class Board {
     public List<Field> getFieldsByOwner(Player owner){
         List fieldshousable = new ArrayList<>();
         for (Field candidate : fields) {
-            if(candidate.getOwner().equals(owner)){
+            if(candidate.getOwner() == null){
+
+            }
+            else if (candidate.getOwner().equals(owner)){
                 fieldshousable.add(candidate);
             }
         }

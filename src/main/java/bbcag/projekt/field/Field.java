@@ -21,9 +21,6 @@ public abstract class Field {
     }
 
     public Player getOwner() {
-        if (owner == null){
-            return new Player("debugNotOwner","#000000");
-        }
         return owner;
     }
 

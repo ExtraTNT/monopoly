@@ -13,7 +13,6 @@ public class ActionField extends Field {
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
         int event = (int) (Math.random()*6);
-        System.out.println(event);
         switch (event){
             case 1:
                 player.setAccountBalance(player.getAccountBalance() + rolledSum * 3 + 10);

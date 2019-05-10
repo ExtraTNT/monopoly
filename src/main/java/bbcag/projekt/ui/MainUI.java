@@ -1,6 +1,7 @@
 package bbcag.projekt.ui;
 
 import bbcag.projekt.*;
+import bbcag.projekt.field.Field;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -68,6 +69,7 @@ public class MainUI extends BorderPane {
         ScrollPane playerPropertyScroll = new ScrollPane();
 
 
+
         TextField playerPlaceField = new TextField();
         playerPlaceField.setPrefWidth(200);
 
@@ -115,6 +117,9 @@ public class MainUI extends BorderPane {
                 playerPlayerNameField.setText(player.getName());
                 updatePlayerPositions();
                 playerPlaceField.setText(Game.getInstance().getBoard().getFieldByIndex(player.getPosition()).getName());
+                //for(Field field : Game.getInstance().getBoard().getFieldsByOwner(player)){
+
+                //}
                 //rollResult.setText(Game.getInstance().getPlayerList().get(1).getPosition() + " " + Game.getInstance().getPlayerList().get(1).getName());
             }
 
