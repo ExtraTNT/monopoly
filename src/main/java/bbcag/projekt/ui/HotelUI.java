@@ -1,5 +1,6 @@
 package bbcag.projekt.ui;
 
+import bbcag.projekt.Game;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,6 +25,9 @@ public class HotelUI  extends HBox {
 
         setPadding(new Insets(20));
         getChildren().addAll(buildableFields,leftArea);
+
+
+        hotelUIPlusButton.setOnAction(event -> Game.getInstance().buildHouse());
 
     }
 }
