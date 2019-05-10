@@ -137,6 +137,11 @@ public class Game {
             }
         }
     }
+    public void setOnHotel(){
+        for(GameListener listener : listeners){
+            listener.onHotel();
+        }
+    }
 
     //Function Hugi made to move or check where the Player is using the dice result from rollDiceForCurrentPlayer()
     public void playMove(int diceNbr) {

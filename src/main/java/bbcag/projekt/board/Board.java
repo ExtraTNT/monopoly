@@ -45,6 +45,10 @@ public abstract class Board {
     return fieldshousable;
     }
 
+    public int getIndexFromField(Field field){
+        return fields.indexOf(field);
+    }
+
     public Field getFieldByIndex(int index){
         return fields.get(index);
     }

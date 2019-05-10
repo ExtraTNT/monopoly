@@ -216,4 +216,41 @@ public class MainUI extends BorderPane {
             return((player.getPosition()-31)*72 + 140);
         }
     }
+
+
+
+
+    public void updateHotels (){
+
+    }
+
+    private int getHotelY(Field field){
+        if(Game.getInstance().getBoard().getIndexFromField(field) >= 0 && Game.getInstance().getBoard().getIndexFromField(field) <= 10){
+            return 780;
+        }
+        if(Game.getInstance().getBoard().getIndexFromField(field) >= 20 && Game.getInstance().getBoard().getIndexFromField(field) <= 30){
+            return 80;
+        }
+        if(Game.getInstance().getBoard().getIndexFromField(field) > 10 && Game.getInstance().getBoard().getIndexFromField(field) < 20){
+            return (720- (Game.getInstance().getBoard().getIndexFromField(field)-11)*72);
+
+        }
+        else{
+            return((Game.getInstance().getBoard().getIndexFromField(field)-31)*72 + 140);
+        }
+    }
+    private int getHotelX(Field field){
+        if(Game.getInstance().getBoard().getIndexFromField(field) >= 30 && Game.getInstance().getBoard().getIndexFromField(field) <= 39 || Game.getInstance().getBoard().getIndexFromField(field) == 0){
+            return 780;
+        }
+        if(Game.getInstance().getBoard().getIndexFromField(field) >= 10 && Game.getInstance().getBoard().getIndexFromField(field) <= 20){
+            return 80;
+        }
+        if(Game.getInstance().getBoard().getIndexFromField(field) >20 && Game.getInstance().getBoard().getIndexFromField(field) < 30){
+            return((Game.getInstance().getBoard().getIndexFromField(field)-21)*72 + 140);
+        }
+        else{
+            return (720- (Game.getInstance().getBoard().getIndexFromField(field)-1)*72);
+        }
+    }
 }

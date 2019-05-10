@@ -84,8 +84,22 @@ public class HotelUI  extends HBox {
 
 
 
-        hotelUIPlusButton.setOnAction(event -> Game.getInstance().buildHouse((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText())));
-        hotelUIMinusButton.setOnAction(event -> Game.getInstance().removeHotel((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText())));
+        hotelUIPlusButton.setOnAction(event -> {
+            Game.getInstance().buildHouse((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText()));
+            scrollText.setText("");
+            for(NormalField nf: Game.getInstance().getListOfMyHousableFields()) {
+                scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + "\n");
+                buildableFields.setContent(scrollText);
+            }
+        });
+        hotelUIMinusButton.setOnAction(event -> {
+            Game.getInstance().removeHotel((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText()));
+            scrollText.setText("");
+            for(NormalField nf: Game.getInstance().getListOfMyHousableFields()) {
+                scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + "\n");
+                buildableFields.setContent(scrollText);
+            }
+        });
         hotelUIDone.setOnAction(event -> Game.getInstance().onDone());
 
 
