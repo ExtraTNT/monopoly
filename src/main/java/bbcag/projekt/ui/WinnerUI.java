@@ -12,7 +12,7 @@ public class WinnerUI extends VBox {
         this.setMinSize(300,200);
 
 
-        Label winLabel = new Label(Game.getInstance().getCurrentPlayer() + " WINS!");
+        Label winLabel = new Label(" You Win!");
         Button winButton = new Button("Exit");
 
         setPadding(new Insets(20));
