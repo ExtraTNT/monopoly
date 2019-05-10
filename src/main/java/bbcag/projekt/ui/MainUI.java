@@ -148,6 +148,15 @@ public class MainUI extends BorderPane {
                 gc.setFill(Paint.valueOf("#ff0000"));
                 gc.fillText((winer + " WINS!"), 400, 200);
             }
+
+            @Override
+            public void onBuy(Player player) {
+                playerAccountBalanceField.setText(player.getAccountBalance() + " €");
+                playerPlaces.setText("");
+                for(Field field : Game.getInstance().getBoard().getFieldsByOwner(player)){
+                    playerPlaces.appendText(field.getName() + "\n");
+                }
+            }
         });
     }
 

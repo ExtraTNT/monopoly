@@ -52,6 +52,11 @@ public class UI extends Application {
             public void onWin(Player winer) {
 
             }
+
+            @Override
+            public void onBuy(Player player) {
+
+            }
         });
 
 

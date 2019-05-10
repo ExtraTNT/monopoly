@@ -114,6 +114,12 @@ public class StartUI extends BorderPane {
             public void onWin(Player winer) {
 
             }
+
+            @Override
+            public void onBuy(Player player) {
+
+            }
+
         });
     }
 }

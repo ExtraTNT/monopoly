@@ -128,9 +128,10 @@ public class Game {
     }
     public void buyField(){
         if(board.getFieldByIndex(currentPlayer.getPosition()).canBuy()){
-
-            System.out.println("buy");
-                ((BuyableField) board.getFieldByIndex(currentPlayer.getPosition())).buy(currentPlayer);
+            ((BuyableField) board.getFieldByIndex(currentPlayer.getPosition())).buy(currentPlayer);
+            for (GameListener listener : listeners) {
+                listener.onBuy(currentPlayer);
+            }
         }
     }
 

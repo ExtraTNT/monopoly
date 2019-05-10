@@ -14,4 +14,6 @@ public interface GameListener {
 
     void onWin(Player winer);
 
+    void onBuy(Player player);
+
 }
