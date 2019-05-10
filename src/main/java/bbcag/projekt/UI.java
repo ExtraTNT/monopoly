@@ -2,6 +2,7 @@ package bbcag.projekt;
 
 
 import bbcag.projekt.ui.DealUI;
+import bbcag.projekt.ui.HotelUI;
 import bbcag.projekt.ui.MainUI;
 import bbcag.projekt.ui.StartUI;
 import javafx.application.Application;
@@ -17,7 +18,7 @@ public class UI extends Application {
         Scene mainScene = new Scene(new MainUI(), Color.WHITE);
         Scene startScene = new Scene(new StartUI(), Color.WHITE);
         Scene dealScene = new Scene(new DealUI(), Color.WHITE);
-
+        Scene hotelScene = new Scene(new HotelUI(), Color.WHITE);
 
         primaryStage.setScene(startScene);
 

@@ -27,17 +27,15 @@ public class MainUI extends BorderPane {
 
         //Gameboard stuff
         ImageView gameBoard = new ImageView("SWISS.png");
-
         gameBoard.setFitHeight(900);
         gameBoard.setFitWidth(900);
-
+        StackPane centralStack = new StackPane(); //Stackpane to stack both the gameBoard and Canvas on top of each other
+        centralStack.getChildren().addAll(gameBoard,centerAreaCanvas);
 
 
 
         //gc.setFill(Paint.valueOf("#ff0000"));
         //gc.fillOval(500,810,40,40);
-        StackPane centralStack = new StackPane();
-        centralStack.getChildren().addAll(gameBoard,centerAreaCanvas);
 
         //Button stuff at the bottom
         Button rollButton = new Button("Roll");
@@ -48,6 +46,7 @@ public class MainUI extends BorderPane {
 
         HBox buttonArea = new HBox(20);
         buttonArea.getChildren().addAll(rollButton, dealButton, buyButton, houseButton, turnButton);
+
 
         rollButton.setPrefSize(180, 50);
         dealButton.setPrefSize(180, 50);

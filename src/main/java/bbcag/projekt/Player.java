@@ -7,10 +7,11 @@ public class Player {
     private byte position = 0;
     private byte remainingDaysInPrison;
 
+    /* These aren't being used yet
     private int pach = 0;
     private int rolled = 0;
     private byte freeCards;
-
+    */
 
     public Player(String name, String color) {
         this.name = name;
