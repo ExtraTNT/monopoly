@@ -156,6 +156,7 @@ public class MainUI extends BorderPane {
                 for(Field field : Game.getInstance().getBoard().getFieldsByOwner(player)){
                     playerPlaces.appendText(field.getName() + "\n");
                 }
+                updatePlayerPositions();
             }
 
             @Override
@@ -222,9 +223,10 @@ public class MainUI extends BorderPane {
 
 
     public void updateHotels (){
-        gc.setFill(Paint.valueOf("#000000"));
+
         for(NormalField field : Game.getInstance().getListHousableFields()){
-            if(field.getOwner() != Game.getInstance().getBank()) {
+            if(field.getOwner() != Game.getInstance().getBank() && field.getOwner() != null) {
+                gc.setFill(Paint.valueOf(field.getOwner().getColor()));
                 gc.fillText(field.getHotel() + "", getHotelX(field), getHotelY(field));
             }
         }

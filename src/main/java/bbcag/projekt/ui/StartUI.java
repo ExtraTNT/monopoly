@@ -36,7 +36,7 @@ public class StartUI extends BorderPane {
         startFigureGreen.setToggleGroup(startRadioGroup);
 
         RadioButton startFigurePink = new RadioButton("Pink");
-        startFigurePink.setUserData("#FFC0CB");
+        startFigurePink.setUserData("#FF50DB");
         startFigurePink.setToggleGroup(startRadioGroup);
 
         RadioButton startFigureYellow = new RadioButton("Yellow");
