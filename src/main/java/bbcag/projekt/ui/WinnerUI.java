@@ -16,7 +16,6 @@ public class WinnerUI extends BorderPane {
 
         winnerBox.setAlignment(Pos.BASELINE_CENTER);
 
-
         Label winLabel = new Label("Game Over!");
         winLabel.setFont(new Font(50));
         Button winButton = new Button("Exit");

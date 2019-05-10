@@ -34,10 +34,27 @@ public class HotelUI  extends HBox {
         this.setMinSize(800,300);
         buildableFields.setMinSize(300,300);
 
+        //Button actions for buying and selling houses
+        hotelUIPlusButton.setOnAction(event -> {
+            Game.getInstance().buildHouse((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText()));
+            scrollText.setText("");
+            for(NormalField nf: Game.getInstance().getListOfMyHousableFields()) {
+                scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + "\n");
+                buildableFields.setContent(scrollText);
+            }
+        });
+        hotelUIMinusButton.setOnAction(event -> {
+            Game.getInstance().removeHotel((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText()));
+            scrollText.setText("");
+            for(NormalField nf: Game.getInstance().getListOfMyHousableFields()) {
+                scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + "\n");
+                buildableFields.setContent(scrollText);
+            }
+        });
+        hotelUIDone.setOnAction(event -> Game.getInstance().onDone());
 
 
         Game.getInstance().addListener(new GameListener(){
-
             @Override
             public void onStart() {
 
@@ -87,28 +104,6 @@ public class HotelUI  extends HBox {
 
             }
         });
-
-
-
-
-        hotelUIPlusButton.setOnAction(event -> {
-            Game.getInstance().buildHouse((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText()));
-            scrollText.setText("");
-            for(NormalField nf: Game.getInstance().getListOfMyHousableFields()) {
-                scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + "\n");
-                buildableFields.setContent(scrollText);
-            }
-        });
-        hotelUIMinusButton.setOnAction(event -> {
-            Game.getInstance().removeHotel((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText()));
-            scrollText.setText("");
-            for(NormalField nf: Game.getInstance().getListOfMyHousableFields()) {
-                scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + "\n");
-                buildableFields.setContent(scrollText);
-            }
-        });
-        hotelUIDone.setOnAction(event -> Game.getInstance().onDone());
-
 
 
     }

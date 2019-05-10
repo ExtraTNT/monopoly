@@ -46,7 +46,6 @@ public class DealUI extends BorderPane {
         HBox dealBottomArea = new HBox(5);
         dealBottomArea.setPadding(new Insets(10));
 
-
         dealBottomArea.getChildren().addAll(dealDealButton, dealExitButton);
         dealScreenHBox.getChildren().addAll(traderBox1, traderBox2);
         setCenter(dealScreenHBox);
