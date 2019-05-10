@@ -168,14 +168,10 @@ public class MainUI extends BorderPane {
     }
 
     public void updatePlayerPositions (){
-        int x;
-        int y;
         gc.clearRect(0,0, 900, 900);
         for(Player p : Game.getInstance().getPlayerList()){
             gc.setFill(Paint.valueOf(p.getColor()));
-            x = getPlayerX(p);
-            y = getPlayerY(p);
-            gc.fillOval(x, y, 40, 40);
+            gc.fillOval(getPlayerX(p), getPlayerY(p), 40, 40);
         }
     }
     //Something Hugi made, function to find out the X position for a player
@@ -208,7 +204,5 @@ public class MainUI extends BorderPane {
         else{
             return((player.getPosition()-31)*72 + 140);
         }
-
     }
-
 }
