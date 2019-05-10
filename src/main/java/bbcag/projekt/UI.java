@@ -16,7 +16,7 @@ public class UI extends Application {
         Scene startScene = new Scene(new StartUI(), Color.WHITE);
         Scene dealScene = new Scene(new DealUI(), Color.WHITE);
         Scene hotelScene = new Scene(new HotelUI(), Color.WHITE);
-        Scene winScene = new Scene(new WinnerUI(), Color.BLACK);
+        Scene winScene = new Scene(new WinnerUI(), Color.WHITE);
 
         primaryStage.setScene(startScene);
 
