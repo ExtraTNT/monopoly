@@ -43,8 +43,10 @@ public class NormalField extends BuyableField {
     }
 
     public void buy(Player player) {
-        player.setAccountBalance(player.getAccountBalance() - worth);
-        this.owner = player;
+        if (owner == null) {
+            player.setAccountBalance(player.getAccountBalance() - worth);
+            this.owner = player;
+        }
     }
 
     public byte getHotel() {

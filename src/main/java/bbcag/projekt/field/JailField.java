@@ -5,7 +5,7 @@ import bbcag.projekt.Player;
 public class JailField extends Field {
 
     public JailField(Player bank) {
-        name = "Gefängnis / Nur zu Besuch";
+        name = "Gefaengnis / Nur zu Besuch";
     }
 
     @Override

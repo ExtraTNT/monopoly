@@ -156,7 +156,7 @@ public class Game {
 
             }
         }
-        if(currentPlayer.getRemainingDaysInPrison() == 0) {
+        if(currentPlayer.getRemainingDaysInPrison() <= 0) {
             byte oldPos = currentPlayer.getPosition();
             currentPlayer.setPosition((byte) ((currentPlayer.getPosition() + diceNbr) % board.size()));
             for (int i = 1; i <= diceNbr; i++) {
