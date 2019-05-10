@@ -97,6 +97,7 @@ public class MainUI extends BorderPane {
         rollButton.setOnAction(event -> Game.getInstance().rollDiceForCurrentPlayer());
         turnButton.setOnAction(event -> Game.getInstance().nextPlayer());
         dealButton.setOnAction(event -> Game.getInstance().startDealing());
+        buyButton.setOnAction(event -> Game.getInstance().buyField());
 
         setCenter(centralStack);
         centerAreaCanvas.toFront();

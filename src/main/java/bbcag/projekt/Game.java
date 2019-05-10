@@ -128,9 +128,9 @@ public class Game {
     }
     public void buyField(){
         if(board.getFieldByIndex(currentPlayer.getPosition()).canBuy()){
-            if(board.getFieldByIndex(currentPlayer.getPosition()) instanceof NormalField || board.getFieldByIndex(currentPlayer.getPosition()) instanceof RailwayField || board.getFieldByIndex(currentPlayer.getPosition()) instanceof WorkField) {
+
+            System.out.println("buy");
                 ((BuyableField) board.getFieldByIndex(currentPlayer.getPosition())).buy(currentPlayer);
-            }
         }
     }
 
