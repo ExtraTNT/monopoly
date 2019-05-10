@@ -35,23 +35,23 @@ public class StartUI extends BorderPane {
         startFigureGreen.setUserData("#008000");
         startFigureGreen.setToggleGroup(startRadioGroup);
 
-        RadioButton startFigurePink = new RadioButton("Pink");
-        startFigurePink.setUserData("#FF50DB");
-        startFigurePink.setToggleGroup(startRadioGroup);
+        RadioButton startFigureWhite = new RadioButton("White");
+        startFigureWhite.setUserData("#FFFFFF");
+        startFigureWhite.setToggleGroup(startRadioGroup);
 
         RadioButton startFigureYellow = new RadioButton("Yellow");
         startFigureYellow.setUserData("#FFFF00");
         startFigureYellow.setToggleGroup(startRadioGroup);
 
-        RadioButton startFigurePurple = new RadioButton("Purple");
-        startFigurePurple.setUserData("#800080");
-        startFigurePurple.setToggleGroup(startRadioGroup);
+        RadioButton startFigureBlack = new RadioButton("Black");
+        startFigureBlack.setUserData("#000000");
+        startFigureBlack.setToggleGroup(startRadioGroup);
 
         startCenterArea.getChildren().addAll(
                 startTitlePlayer, startPlayerEntry,
                 startTitleFigure, startFigureRed, startFigureBlue,
-                startFigureGreen, startFigurePink, startFigureYellow,
-                startFigurePurple);
+                startFigureGreen, startFigureWhite, startFigureYellow,
+                startFigureBlack);
 
         //Bottom area
         HBox startBottomArea = new HBox(5);
