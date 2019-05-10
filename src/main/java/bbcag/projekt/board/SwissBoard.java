@@ -32,7 +32,7 @@ class SwissBoard extends Board {
         fieldList.add(new NormalField("Einkommenssteuer", (short) 0, new int[]{200},0, getBank()));
 
         fieldList.add(new RailwayField("Vereinigte Privatbahnen"));
-        fieldList.add(new NormalField("Arrau, Rathausplatz", (short) 100, new int[]{6, 30, 90, 270, 400, 550}, 50));
+        fieldList.add(new NormalField("Aarau, Rathausplatz", (short) 100, new int[]{6, 30, 90, 270, 400, 550}, 50));
 
         fieldList.add(new ActionField("Chance", getBank()));
 
