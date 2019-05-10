@@ -8,10 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -67,6 +64,9 @@ public class MainUI extends BorderPane {
         playerPlayerNameField.setEditable(false);
 
         ScrollPane playerPropertyScroll = new ScrollPane();
+        TextArea playerPlaces = new TextArea();
+        playerPlaces.setEditable(false);
+        playerPropertyScroll.setContent(playerPlaces);
 
 
 
@@ -117,9 +117,10 @@ public class MainUI extends BorderPane {
                 playerPlayerNameField.setText(player.getName());
                 updatePlayerPositions();
                 playerPlaceField.setText(Game.getInstance().getBoard().getFieldByIndex(player.getPosition()).getName());
-                //for(Field field : Game.getInstance().getBoard().getFieldsByOwner(player)){
-
-                //}
+                playerPlaces.setText("");
+                for(Field field : Game.getInstance().getBoard().getFieldsByOwner(player)){
+                    playerPlaces.appendText(field.getName() + "\n");
+                }
                 //rollResult.setText(Game.getInstance().getPlayerList().get(1).getPosition() + " " + Game.getInstance().getPlayerList().get(1).getName());
             }
 
