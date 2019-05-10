@@ -7,10 +7,8 @@ public class Player {
     private byte position = 0;
     private byte remainingDaysInPrison;
 
-    /* These aren't being used yet
+    /* This isn't being used yet
     private int pach = 0;
-    private int rolled = 0;
-    private byte freeCards;
     */
 
     public Player(String name, String color) {
@@ -57,7 +55,6 @@ public class Player {
     public void setRemainingDaysInPrison(byte remainingDaysInPrison) {
         this.remainingDaysInPrison = remainingDaysInPrison;
     }
-
     public String getColor() {
         return color;
     }

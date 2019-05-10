@@ -11,18 +11,11 @@ import java.util.List;
 import java.util.Set;
 
 public class Game {
-
     private static Game instance;
-
     private Set<GameListener> listeners;
-
     private List<Player> allPlayers = new ArrayList<>();
-
-
-
     private Player currentPlayer;
     private boolean currentPlayerHasRolledDice;
-
     private Board board;
     private Player bank = new Player("bank", "#FFFFFF");
 
@@ -174,8 +167,6 @@ public class Game {
                 currentPlayer.setAccountBalance(currentPlayer.getAccountBalance()-100);
             }
         }
-
-
     }
 
     public void onHotel() {
@@ -183,7 +174,6 @@ public class Game {
             listener.onHotel();
         }
     }
-
 
     public void startDealing() {
         for (GameListener listener : listeners) {
@@ -239,8 +229,6 @@ public class Game {
         if (instance == null) {
             instance = new Game();
         }
-
         return instance;
     }
-
 }

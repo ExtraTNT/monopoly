@@ -14,12 +14,11 @@ public class UI extends Application {
 
         Scene mainScene = new Scene(new MainUI(), Color.WHITE);
         Scene startScene = new Scene(new StartUI(), Color.WHITE);
-        Scene dealScene = new Scene(new DealUI(), Color.WHITE);
+        Scene dealScene = new Scene(new DealUI(), Color.WHITE); //Not yet used
         Scene hotelScene = new Scene(new HotelUI(), Color.WHITE);
         Scene winScene = new Scene(new WinnerUI(), Color.WHITE);
 
         primaryStage.setScene(startScene);
-
 
         Game.getInstance().addListener(new GameListener() {
             @Override
@@ -68,78 +67,6 @@ public class UI extends Application {
             }
         });
 
-
         primaryStage.show();
-
-        /*
-        //Buy property screen
-        Stage propertyPopUp = new Stage();
-        Scene propertyScene = new Scene(new BuyPropertyUI(), Color.WHITE);
-
-        propertyPopUp.setScene(propertyScene);
-        propertyPopUp.show();
-         */
-
-
     }
-
-    /*
-    // MODEL CONTROLLER VIEW AREA
-    class Model {
-        private SimpleIntegerProperty currentValue = new SimpleIntegerProperty(0);
-
-        public int getCurrentValue() {
-            return currentValue.get();
-        }
-
-        public SimpleIntegerProperty currentValueProperty() {
-            return currentValue;
-        }
-
-        public void setCurrentValue(int currentValue) {
-            this.currentValue.set(currentValue);
-        }
-
-    }
-
-    class Controller {
-
-        private Model model;
-
-        public Controller(Model model) {
-            this.model = model;
-        }
-
-        public void handleButtonClick() {
-            model.setCurrentValue(model.getCurrentValue() + 1);
-        }
-    }
-
-    class View {
-        private final Controller controller;
-        private final Model model;
-        private Label numberLabel;
-        private Button incrementButton;
-
-        public View(Controller controller, Model model) {
-            this.controller = controller;
-            this.model = model;
-
-            incrementButton = new Button("Increment");
-            numberLabel = new Label("0");
-
-            listenToModelChange();
-            registerButtonActionHandler();
-        }
-
-        private void registerButtonActionHandler() {
-            incrementButton.setOnAction(actionEvent -> controller.handleButtonClick());
-        }
-
-        private void listenToModelChange() {
-            model.currentValueProperty().addListener((observable, oldNumber, newNumber) ->
-                    numberLabel.setText((newNumber.toString())));
-        }
-    }
-    */
 }
