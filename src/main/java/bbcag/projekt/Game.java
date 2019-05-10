@@ -70,6 +70,8 @@ public class Game {
         this.board = board;
     }
 
+
+    //Start function to check if there are at least 2 players + listener functions
     public void start() throws NotEnoughPlayersException {
         if (allPlayers.size() < 2) {
             throw new NotEnoughPlayersException();
@@ -132,6 +134,7 @@ public class Game {
         }
     }
 
+    //Function Hugi made to move or check where the Player is using the dice result from rollDiceForCurrentPlayer()
     public void playMove(int diceNbr) {
         if (currentPlayer.isDeath()) {
             allPlayers.remove(currentPlayer);

@@ -2,6 +2,7 @@ package bbcag.projekt.ui;
 
 import bbcag.projekt.*;
 import bbcag.projekt.field.Field;
+import bbcag.projekt.field.NormalField;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -41,16 +42,18 @@ public class MainUI extends BorderPane {
         //Button stuff at the bottom
         Button rollButton = new Button("Roll");
         Button dealButton = new Button("Deal");
+        Button buyButton = new Button("Buy");
         Button houseButton = new Button("Houses");
         Button turnButton = new Button("End Turn");
 
         HBox buttonArea = new HBox(20);
-        buttonArea.getChildren().addAll(rollButton, dealButton, houseButton, turnButton);
+        buttonArea.getChildren().addAll(rollButton, dealButton, buyButton, houseButton, turnButton);
 
-        rollButton.setPrefSize(250, 50);
-        dealButton.setPrefSize(250, 50);
-        houseButton.setPrefSize(250, 50);
-        turnButton.setPrefSize(250, 50);
+        rollButton.setPrefSize(180, 50);
+        dealButton.setPrefSize(180, 50);
+        buyButton.setPrefSize(180, 50);
+        houseButton.setPrefSize(180, 50);
+        turnButton.setPrefSize(180, 50);
 
         buttonArea.setPadding(new Insets(20));
         //Text and info stuff on the right
@@ -100,6 +103,8 @@ public class MainUI extends BorderPane {
         setBottom(buttonArea);
         setRight(rightInfoArea);
 
+
+        //Game listeners
         Game.getInstance().addListener(new GameListener() {
             @Override
             public void onStart() {
@@ -164,6 +169,7 @@ public class MainUI extends BorderPane {
             gc.fillOval(x, y, 40, 40);
         }
     }
+    //Something Hugi made, function to find out the X position for a player
     private int getPlayerX(Player player){
         if(player.getPosition() >= 30 && player.getPosition() <= 39 || player.getPosition() == 0){
             return 810;
@@ -178,6 +184,7 @@ public class MainUI extends BorderPane {
             return (720- (player.getPosition()-1)*72);
         }
     }
+    //Something Hugi made, function to find out the Y position for a player
     private int getPlayerY(Player player){
         if(player.getPosition() >= 0 && player.getPosition() <= 10){
             return 810;
