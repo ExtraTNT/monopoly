@@ -21,6 +21,7 @@ public class StartField extends Field {
 
     public void passIt(Player player) {
         player.setAccountBalance(player.getAccountBalance() + startMoney);
+        Game.getInstance().littleUpdateGUI();
     }
 
     public void setStartMoney(short startMoney) {
