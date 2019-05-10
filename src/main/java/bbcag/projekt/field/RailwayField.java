@@ -17,13 +17,13 @@ public class RailwayField extends Field {
     }
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
+        canBuy = false;
         if (this.owner == null) {
             if (this.worth < player.getAccountBalance()) {
-                if (true) {
-                    this.buy(player);
-                }
+                canBuy = true;
             }
-        } else {
+        }
+        else {
             player.setAccountBalance(player.getAccountBalance() - getRent());
             owner.setAccountBalance(owner.getAccountBalance() + getRent());
         }
@@ -42,7 +42,7 @@ public class RailwayField extends Field {
 
 
 
-    private void buy(Player player) {
+    public void buy(Player player) {
         player.setAccountBalance(player.getAccountBalance() - worth);
         this.owner = player;
     }

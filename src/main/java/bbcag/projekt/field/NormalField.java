@@ -8,6 +8,7 @@ public class NormalField extends Field {
     private int[] Rent;
 
 
+
     private int worthHotel;
 
 
@@ -25,11 +26,10 @@ public class NormalField extends Field {
 
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
+        canBuy = false;
         if (this.owner == null) {
             if (this.worth < player.getAccountBalance()) {
-                if (true) {
-                    this.buy(player);
-                }
+                canBuy = true;
             }
         }
         else {
@@ -42,7 +42,7 @@ public class NormalField extends Field {
         return Rent[Hotel];
     }
 
-    private void buy(Player player) {
+    public void buy(Player player) {
         player.setAccountBalance(player.getAccountBalance() - worth);
         this.owner = player;
     }

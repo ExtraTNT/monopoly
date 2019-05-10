@@ -15,11 +15,10 @@ public class WorkField extends Field {
 
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
+        canBuy = false;
         if (this.owner == null) {
             if (this.worth < player.getAccountBalance()) {
-                if (true) {
-                    this.buy(player);
-                }
+                canBuy = true;
             }
         }
         else {
@@ -43,7 +42,7 @@ public class WorkField extends Field {
 
 
 
-    private void buy(Player player) {
+    public void buy(Player player) {
         player.setAccountBalance(player.getAccountBalance() - worth);
         this.owner = player;
     }
