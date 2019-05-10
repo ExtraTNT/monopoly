@@ -86,9 +86,12 @@ public class Game {
         }
     }
 
-    public void config() {
-
+    public void onDone() {
+        for(GameListener listener : listeners) {
+                listener.onDone();
+        }
     }
+
 
     public void nextPlayer() {
         if (!currentPlayerHasRolledDice) {
@@ -167,6 +170,13 @@ public class Game {
 
 
     }
+
+    public void onHotel() {
+        for(GameListener listener : listeners) {
+            listener.onHotel();
+        }
+    }
+
 
     public void startDealing() {
         for (GameListener listener : listeners) {

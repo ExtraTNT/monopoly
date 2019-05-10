@@ -63,6 +63,11 @@ public class UI extends Application {
             public void onHotel() {
                 primaryStage.setScene(hotelScene);
             }
+
+            @Override
+            public void onDone() {
+                primaryStage.setScene(mainScene);
+            }
         });
 
 

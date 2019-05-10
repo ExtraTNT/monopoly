@@ -96,7 +96,7 @@ public class MainUI extends BorderPane {
         rollButton.setOnAction(event -> Game.getInstance().rollDiceForCurrentPlayer());
         turnButton.setOnAction(event -> Game.getInstance().nextPlayer());
         dealButton.setOnAction(event -> Game.getInstance().startDealing());
-        houseButton.setOnAction(event ->);
+        houseButton.setOnAction(event -> Game.getInstance().onHotel());
         buyButton.setOnAction(event -> Game.getInstance().buyField());
 
         setCenter(centralStack);
@@ -160,6 +160,11 @@ public class MainUI extends BorderPane {
 
             @Override
             public void onHotel() {
+
+            }
+
+            @Override
+            public void onDone() {
 
             }
         });

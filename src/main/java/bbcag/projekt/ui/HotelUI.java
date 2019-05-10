@@ -1,6 +1,8 @@
 package bbcag.projekt.ui;
 
 import bbcag.projekt.Game;
+import bbcag.projekt.GameListener;
+import bbcag.projekt.Player;
 import bbcag.projekt.field.NormalField;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -27,17 +29,64 @@ public class HotelUI  extends HBox {
         getChildren().addAll(buildableFields,leftArea);
 
 
+        Game.getInstance().addListener(new GameListener(){
+
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onPlayerAdded(Player player) {
+
+            }
+
+            @Override
+            public void onCurrentPlayerChange(Player player) {
+
+            }
+
+            @Override
+            public void onDicesRolled(int dice1, int dice2) {
+
+            }
+
+            @Override
+            public void onStartDealing(Player currentPlayer) {
+
+            }
+
+            @Override
+            public void onWin(Player winer) {
+
+            }
+
+            @Override
+            public void onBuy(Player player) {
+
+            }
+
+            @Override
+            public void onHotel() {
+                scrollText.setText("");
+                for(NormalField nf: Game.getInstance().getListOfMyHousableFields()) {
+                    scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + "\n");
+                    buildableFields.setContent(scrollText);
+                }
+            }
+
+            @Override
+            public void onDone() {
+
+            }
+        });
 
 
-        for(NormalField nf: Game.getInstance().getListOfMyHousableFields()) {
-            scrollText.appendText(nf.getName() + " " + nf.getHotel());
-            buildableFields.setContent(scrollText);
-        }
 
 
         hotelUIPlusButton.setOnAction(event -> Game.getInstance().buildHouse((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText())));
         hotelUIMinusButton.setOnAction(event -> Game.getInstance().removeHotel((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText())));
-
+        hotelUIDone.setOnAction(event -> Game.getInstance().onDone());
 
 
 

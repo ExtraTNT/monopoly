@@ -17,4 +17,6 @@ public interface GameListener {
     void onBuy(Player player);
 
     void onHotel();
+
+    void onDone();
 }

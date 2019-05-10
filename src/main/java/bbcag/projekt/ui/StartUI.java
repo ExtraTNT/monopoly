@@ -120,6 +120,16 @@ public class StartUI extends BorderPane {
 
             }
 
+            @Override
+            public void onHotel() {
+
+            }
+
+            @Override
+            public void onDone() {
+
+            }
+
         });
     }
 }
