@@ -1,14 +1,16 @@
 package bbcag.projekt.field;
 
 import bbcag.projekt.Game;
+import bbcag.projekt.GameListener;
 import bbcag.projekt.Player;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class NormalField extends BuyableField {
     private short worth;
     private byte Hotel = 0;
     private int[] Rent;
-
-
 
     private int worthHotel;
 
@@ -26,7 +28,13 @@ public class NormalField extends BuyableField {
     }
 
     @Override
+    public int getWorth() {
+        return worth;
+    }
+
+    @Override
     public void steppingOnIt(Player player, int rolledSum) {
+        Game.getInstance().message(player.getName() + " ist auf " + this.getName() + " gelandet.");
         canBuy = false;
         if (this.owner == null) {
             if (this.worth < player.getAccountBalance()) {
@@ -37,6 +45,13 @@ public class NormalField extends BuyableField {
             player.setAccountBalance(player.getAccountBalance() - getRent());
             owner.setAccountBalance(owner.getAccountBalance() + getRent());
             Game.getInstance().littleUpdateGUI();
+            if(owner != player) {
+                if (getRent() > 0) {
+                    Game.getInstance().message(player.getName() + " hat " + owner.getName() + " " + getRent() + "$ gezahlt.");
+                } else {
+                    Game.getInstance().message(player.getName() + " hat von " + owner.getName() + " " + (-getRent()) + "$ erhalten.");
+                }
+            }
         }
 
     }
@@ -49,6 +64,7 @@ public class NormalField extends BuyableField {
         if (owner == null) {
             player.setAccountBalance(player.getAccountBalance() - worth);
             this.owner = player;
+            canBuy = false;
         }
     }
 

@@ -43,7 +43,7 @@ public class UI extends Application {
 
             @Override
             public void onStartDealing(Player currentPlayer) {
-                // TODO Show dealing window
+                primaryStage.setScene(dealScene);
             }
 
             @Override
@@ -64,6 +64,11 @@ public class UI extends Application {
             @Override
             public void onDone() {
                 primaryStage.setScene(mainScene);
+            }
+
+            @Override
+            public void onMessage(String message) {
+
             }
         });
 

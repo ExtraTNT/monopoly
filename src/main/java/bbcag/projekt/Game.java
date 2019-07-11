@@ -40,9 +40,16 @@ public class Game {
         }
     }
 
+    public void message(String message){
+        for (GameListener listener : listeners) {
+            listener.onMessage(message);
+        }
+    }
+
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
+
     public Player getBank() {
         return bank;
     }
@@ -80,16 +87,18 @@ public class Game {
     }
 
     public void onDone() {
-        for(GameListener listener : listeners) {
-                listener.onDone();
+        for (GameListener listener : listeners) {
+            listener.onDone();
         }
     }
 
 
     public void nextPlayer() {
         if (!currentPlayerHasRolledDice) {
+            message(currentPlayer.getName() + " hat den Zug nicht richtig beendet!");
             return;
         }
+        message(currentPlayer.getName() + " hat den Zug beendet.");
 
         currentPlayer = allPlayers.get((allPlayers.indexOf(currentPlayer) + 1) % allPlayers.size());
         currentPlayerHasRolledDice = false;
@@ -97,19 +106,44 @@ public class Game {
         for (GameListener listener : listeners) {
             listener.onCurrentPlayerChange(currentPlayer);
         }
+        message(currentPlayer.getName() + " ist nun dran!");
     }
 
     public void rollDiceForCurrentPlayer() {
-        if(currentPlayerHasRolledDice){
+        if (currentPlayerHasRolledDice) {
+            message("Du kannst nicht nochmals ziehen!");
             return;
         }
         currentPlayerHasRolledDice = true;
-
+        boolean pach = false;
         int dice1 = Dice.rollDice();
         int dice2 = Dice.rollDice();
-
-        if(dice1 == dice2){
-            currentPlayer.setRemainingDaysInPrison((byte)0);
+        message(currentPlayer.getName() + " hat gewuerfelt.");
+        currentPlayer.setCount(currentPlayer.getCount() + 1);
+        boolean tester = false;
+        if (dice1 == dice2) {
+            message("Pach!");
+            pach = true;
+            if (currentPlayer.getRemainingDaysInPrison() <= 0) {
+                currentPlayerHasRolledDice = false;
+                if (currentPlayer.getCount() > 2) {
+                    currentPlayerHasRolledDice = true;
+                    currentPlayer.setRemainingDaysInPrison((byte) 3);
+                    currentPlayer.setPosition((byte) 10);
+                    currentPlayer.setCount(0);
+                    tester = true;
+                    pach = false;
+                    message(currentPlayer.getName() + " hat 3x Pach gewuerfelt und kam ins Gefaengnis");
+                }
+            }
+            else {
+                pach = false;
+            }
+            if (!tester) {
+                currentPlayer.setRemainingDaysInPrison((byte) 0);
+            }
+        } else {
+            currentPlayer.setCount(0);
         }
 
         for (GameListener listener : listeners) {
@@ -117,34 +151,34 @@ public class Game {
         }
 
         playMove(dice1 + dice2);
-
+        if(pach)message(currentPlayer.getName() + " hat Pach gewuerfelt und ist darum nochmals dran.");
         for (GameListener listener : listeners) {
             listener.onDicesRolled(dice1, dice2);
         }
     }
 
-    public void buyField(){
-        if(board.getFieldByIndex(currentPlayer.getPosition()).canBuy()){
+    public void buyField() {
+        if (board.getFieldByIndex(currentPlayer.getPosition()).canBuy()) {
             ((BuyableField) board.getFieldByIndex(currentPlayer.getPosition())).buy(currentPlayer);
             for (GameListener listener : listeners) {
                 listener.onBuy(currentPlayer);
             }
+            message(currentPlayer.getName() + " hat " + board.getFieldByIndex(currentPlayer.getPosition()).getName() +" fuer " +board.getFieldByIndex(currentPlayer.getPosition()).getWorth() +"$ gekauft");
         }
     }
-
 
     //Function Hugi made to move or check where the Player is using the dice result from rollDiceForCurrentPlayer()
     public void playMove(int diceNbr) {
         if (currentPlayer.isDeath()) {
             allPlayers.remove(currentPlayer);
-            if(allPlayers.size() == 1){
+            if (allPlayers.size() == 1) {
                 for (GameListener listener : listeners) {
                     listener.onWin(allPlayers.get(0));
                 }
 
             }
         }
-        if(currentPlayer.getRemainingDaysInPrison() <= 0) {
+        if (currentPlayer.getRemainingDaysInPrison() <= 0) {
             byte oldPos = currentPlayer.getPosition();
             currentPlayer.setPosition((byte) ((currentPlayer.getPosition() + diceNbr) % board.size()));
             for (int i = 1; i <= diceNbr; i++) {
@@ -155,17 +189,17 @@ public class Game {
                     board.getFieldByIndex((oldPos + i) % board.size()).steppingOnIt(currentPlayer, diceNbr);
                 }
             }
-        }
-        else {
-            currentPlayer.setRemainingDaysInPrison((byte)(currentPlayer.getRemainingDaysInPrison()-1));
-            if(currentPlayer.getRemainingDaysInPrison() == 0){
-                currentPlayer.setAccountBalance(currentPlayer.getAccountBalance()-100);
+        } else {
+            currentPlayer.setRemainingDaysInPrison((byte) (currentPlayer.getRemainingDaysInPrison() - 1));
+            if (currentPlayer.getRemainingDaysInPrison() == 0) {
+                currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() - 100);
+                message(currentPlayer.getName() + " hat sich frei gekauft -100$");
             }
         }
     }
 
     public void onHotel() {
-        for(GameListener listener : listeners) {
+        for (GameListener listener : listeners) {
             listener.onHotel();
         }
     }
@@ -176,48 +210,50 @@ public class Game {
         }
     }
 
-    public List<NormalField> getListOfMyHousableFields(){
+    public List<NormalField> getListOfMyHousableFields() {
 
         List<NormalField> normalFields = new ArrayList<>();
-        for(int i = 0; i < board.getFieldsByOwner(currentPlayer).size(); i++){
-            if(board.getFieldsByOwner(currentPlayer).get(i) instanceof NormalField) {
+        for (int i = 0; i < board.getFieldsByOwner(currentPlayer).size(); i++) {
+            if (board.getFieldsByOwner(currentPlayer).get(i) instanceof NormalField) {
                 normalFields.add((NormalField) board.getFieldsByOwner(currentPlayer).get(i));
             }
         }
         return normalFields;
     }
 
-    public List<NormalField> getListHousableFields(){
+    public List<NormalField> getListHousableFields() {
         List<NormalField> normalFields = new ArrayList<>();
-        for(int i = 0; i < board.getFields().size(); i++){
-            if(board.getFields().get(i) instanceof NormalField) {
-                normalFields.add((NormalField)(board.getFields().get(i)));
+        for (int i = 0; i < board.getFields().size(); i++) {
+            if (board.getFields().get(i) instanceof NormalField) {
+                normalFields.add((NormalField) (board.getFields().get(i)));
             }
         }
         return normalFields;
 
     }
 
-    public void buildHouse(NormalField field){
-        if(field.getHotel() >= 5){
+    public void buildHouse(NormalField field) {
+        if (field.getHotel() >= 5) {
             return;
         }
-        field.setHotel((byte)(field.getHotel() + 1));
+        field.setHotel((byte) (field.getHotel() + 1));
         currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() - field.getWorthHotel());
         for (GameListener listener : listeners) {
             listener.onHotel();
         }
+        message(field.getName() + ", Haus wurde gebaut");
     }
 
-    public void removeHotel(NormalField field){
-        if(field.getHotel() <= 0){
+    public void removeHotel(NormalField field) {
+        if (field.getHotel() <= 0) {
             return;
         }
-        field.setHotel((byte)(field.getHotel() - 1));
-        currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() + field.getWorthHotel()/2);
+        field.setHotel((byte) (field.getHotel() - 1));
+        currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() + field.getWorthHotel() / 2);
         for (GameListener listener : listeners) {
             listener.onHotel();
         }
+        message(field.getName() + ", Haus wurde entfernt");
     }
 
     public static Game getInstance() {
@@ -226,7 +262,8 @@ public class Game {
         }
         return instance;
     }
-    public void littleUpdateGUI(){
+
+    public void littleUpdateGUI() {
         for (GameListener listener : listeners) { // listener buy -> includes exactly that, what must
             listener.onBuy(currentPlayer);
         }

@@ -1,6 +1,7 @@
 package bbcag.projekt.ui;
 
 import bbcag.projekt.*;
+import bbcag.projekt.config.Confiuration;
 import bbcag.projekt.field.Field;
 import bbcag.projekt.field.NormalField;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 
+import javax.security.auth.login.Configuration;
 import java.util.ArrayList;
 
 public class MainUI extends BorderPane {
@@ -26,7 +28,7 @@ public class MainUI extends BorderPane {
 
 
         //Gameboard stuff
-        ImageView gameBoard = new ImageView("SWISS.png");
+        ImageView gameBoard = new ImageView(Confiuration.getInstance().get("board.type") + ".png");
         gameBoard.setFitHeight(900);
         gameBoard.setFitWidth(900);
         StackPane centralStack = new StackPane(); //Stackpane to stack both the gameBoard and Canvas on top of each other
@@ -74,12 +76,16 @@ public class MainUI extends BorderPane {
 
         TextField playerPlaceField = new TextField();
         playerPlaceField.setPrefWidth(200);
+        playerPlaceField.setEditable(false);
 
         ScrollPane playerAdditionalScroll = new ScrollPane();
         playerAdditionalScroll.setContent(rollResult);
 
+        TextArea gameMessages = new TextArea();
+        gameMessages.setEditable(false);
 
-        rightInfoArea.getChildren().addAll(playerAccountBalanceField, playerPlayerNameField, playerPropertyScroll, playerPlaceField, playerAdditionalScroll);
+
+        rightInfoArea.getChildren().addAll(playerAccountBalanceField, playerPlayerNameField, playerPropertyScroll, playerPlaceField, playerAdditionalScroll, gameMessages);
 
         rightInfoArea.setPadding(new Insets(20));
 
@@ -167,6 +173,11 @@ public class MainUI extends BorderPane {
             @Override
             public void onDone() {
 
+            }
+
+            @Override
+            public void onMessage(String message) {
+                gameMessages.appendText(message + "\n");
             }
         });
     }

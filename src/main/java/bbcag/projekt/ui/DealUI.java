@@ -1,5 +1,6 @@
 package bbcag.projekt.ui;
 
+import bbcag.projekt.Game;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -41,7 +42,8 @@ public class DealUI extends BorderPane {
         Button dealDealButton = new Button("Deal");
         Button dealExitButton = new Button("Exit");
 
-        // dealExitButton.setOnAction(event -> primaryStage.setScene(mainScene));
+        //dealExitButton.setOnAction(event -> primaryStage.setScene(mainScene));
+        dealExitButton.setOnAction(event -> Game.getInstance().onDone());
 
         HBox dealBottomArea = new HBox(5);
         dealBottomArea.setPadding(new Insets(10));

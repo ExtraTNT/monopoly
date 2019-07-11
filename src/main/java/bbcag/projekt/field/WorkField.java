@@ -5,7 +5,9 @@ import bbcag.projekt.GameListener;
 import bbcag.projekt.Player;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WorkField extends BuyableField  {
     private short worth = 150;
@@ -15,7 +17,13 @@ public class WorkField extends BuyableField  {
     }
 
     @Override
+    public int getWorth() {
+        return worth;
+    }
+
+    @Override
     public void steppingOnIt(Player player, int rolledSum) {
+            Game.getInstance().message(player.getName() + " ist auf " + this.getName() + " gelandet.");
         canBuy = false;
         if (this.owner == null) {
             if (this.worth < player.getAccountBalance()) {
@@ -29,14 +37,16 @@ public class WorkField extends BuyableField  {
                     listToCount.add(f);
                 }
             }
+            int toPay = 0;
             if(listToCount.size() == 2){
-                player.setAccountBalance(player.getAccountBalance() - (rolledSum * 11));
-                owner.setAccountBalance(owner.getAccountBalance() + (rolledSum * 11));
+                toPay = rolledSum + 11;
             }
             if(listToCount.size() == 1){
-                player.setAccountBalance(player.getAccountBalance() - (rolledSum * 4));
-                owner.setAccountBalance(owner.getAccountBalance() + (rolledSum * 4));
+                toPay = rolledSum * 4;
             }
+            player.setAccountBalance(player.getAccountBalance() - (toPay));
+            owner.setAccountBalance(owner.getAccountBalance() + (toPay));
+            Game.getInstance().message(player.getName() + " hat " + owner.getName() + " " + toPay + "$ gezahlt.");
             Game.getInstance().littleUpdateGUI();
         }
 
@@ -48,6 +58,7 @@ public class WorkField extends BuyableField  {
         if (owner == null) {
             player.setAccountBalance(player.getAccountBalance() - worth);
             this.owner = player;
+            canBuy = false;
         }
     }
 }

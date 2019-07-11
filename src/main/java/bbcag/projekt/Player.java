@@ -6,6 +6,7 @@ public class Player {
     private String color;
     private byte position = 0;
     private byte remainingDaysInPrison;
+    private int count = 0;
 
     /* This isn't being used yet
     private int pach = 0;
@@ -57,5 +58,13 @@ public class Player {
     }
     public String getColor() {
         return color;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

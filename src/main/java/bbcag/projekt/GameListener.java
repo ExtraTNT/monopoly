@@ -19,4 +19,6 @@ public interface GameListener {
     void onHotel();
 
     void onDone();
+
+    void onMessage(String message);
 }

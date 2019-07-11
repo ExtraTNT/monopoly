@@ -17,7 +17,8 @@ public class BoardFactory {
         switch (type){
             case SwissBoard.NAME:
                 return new SwissBoard(bank);
-
+            case FalloutBoard.NAME:
+                return new FalloutBoard(bank);
                 default:
                     throw new RuntimeException(type + " does not exist");
         }

@@ -1,8 +1,14 @@
 package bbcag.projekt.field;
 
+import bbcag.projekt.Game;
 import bbcag.projekt.Player;
 
+
 public class PolicemanField extends Field {
+    @Override
+    public int getWorth() {
+        return 0;
+    }
 
     public PolicemanField(Player bank) {
         this.name = "Gehe ins Gefaengnis!";
@@ -10,6 +16,7 @@ public class PolicemanField extends Field {
 
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
+        Game.getInstance().message(player.getName() + " wurde leider von der Polizei erwischt. Ab ins Gefaengnis");
         player.setPosition((byte) 10);
         player.setRemainingDaysInPrison((byte) 3);
     }

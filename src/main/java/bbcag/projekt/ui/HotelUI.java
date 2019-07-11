@@ -24,6 +24,8 @@ public class HotelUI  extends HBox {
         Button hotelUIDone = new Button("Done");
         TextArea scrollText = new TextArea();
 
+        scrollText.setEditable(false);
+
         VBox leftArea = new VBox(5);
         leftArea.setPadding(new Insets(20));
         leftArea.getChildren().addAll(chosenField,chosenFieldBuiltHouses, hotelUIPlusButton,hotelUIMinusButton,hotelUIDone);
@@ -101,6 +103,11 @@ public class HotelUI  extends HBox {
 
             @Override
             public void onDone() {
+
+            }
+
+            @Override
+            public void onMessage(String message) {
 
             }
         });

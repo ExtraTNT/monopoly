@@ -1,14 +1,17 @@
 package bbcag.projekt.field;
 
 
+import bbcag.projekt.GameListener;
 import bbcag.projekt.Player;
 import javafx.scene.canvas.GraphicsContext;
+
+import java.util.Set;
 
 public abstract class Field {
     protected Player owner = null;
     protected String name;
     protected boolean canBuy = false;
-
+    private Set<GameListener> listeners;
     public boolean canBuy() {
         return canBuy;
     }
@@ -17,6 +20,8 @@ public abstract class Field {
     public Field() {
         this(null);
     }
+
+    public abstract int getWorth();
 
     public Field(Player owner) {
         this.owner = owner;
