@@ -36,7 +36,9 @@ public class RailwayField extends BuyableField  {
             player.setAccountBalance(player.getAccountBalance() - getRent());
             owner.setAccountBalance(owner.getAccountBalance() + getRent());
             Game.getInstance().littleUpdateGUI();
-            Game.getInstance().message(player.getName() + " hat " + owner.getName() + " " + getRent() + "$ gezahlt.");
+            if(owner != player) {
+                Game.getInstance().message(player.getName() + " hat " + owner.getName() + " " + getRent() + "$ gezahlt.");
+            }
         }
 
     }

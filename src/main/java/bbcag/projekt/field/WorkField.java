@@ -46,7 +46,9 @@ public class WorkField extends BuyableField  {
             }
             player.setAccountBalance(player.getAccountBalance() - (toPay));
             owner.setAccountBalance(owner.getAccountBalance() + (toPay));
-            Game.getInstance().message(player.getName() + " hat " + owner.getName() + " " + toPay + "$ gezahlt.");
+            if(owner != player) {
+                Game.getInstance().message(player.getName() + " hat " + owner.getName() + " " + toPay + "$ gezahlt.");
+            }
             Game.getInstance().littleUpdateGUI();
         }
 

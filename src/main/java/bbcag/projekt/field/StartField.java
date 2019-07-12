@@ -29,7 +29,7 @@ public class StartField extends Field {
     }
 
     public void passIt(Player player) {
-        Game.getInstance().message(player.getName() + " ist über Los gezogen, das gibt ein bisschen Geld");
+        Game.getInstance().message(player.getName() + " ist ueber Los gezogen, das gibt ein bisschen Geld");
         player.setAccountBalance(player.getAccountBalance() + startMoney);
         Game.getInstance().littleUpdateGUI();
     }

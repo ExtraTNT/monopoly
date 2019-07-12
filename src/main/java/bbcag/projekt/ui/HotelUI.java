@@ -41,7 +41,7 @@ public class HotelUI  extends HBox {
             Game.getInstance().buildHouse((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText()));
             scrollText.setText("");
             for(NormalField nf: Game.getInstance().getListOfMyHousableFields()) {
-                scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + "\n");
+                scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + " -Cost: " + nf.getWorthHotel() + "\n");
                 buildableFields.setContent(scrollText);
             }
         });
@@ -49,7 +49,7 @@ public class HotelUI  extends HBox {
             Game.getInstance().removeHotel((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText()));
             scrollText.setText("");
             for(NormalField nf: Game.getInstance().getListOfMyHousableFields()) {
-                scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + "\n");
+                scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + " -Cost: " + nf.getWorthHotel() + "\n");
                 buildableFields.setContent(scrollText);
             }
         });
