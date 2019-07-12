@@ -37,11 +37,25 @@ public abstract class Field {
     }
 
 
+    public boolean modifyOwner(Player owner, Player newOwner){
+        if(owner == this.owner){
+            this.owner = newOwner;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
     }
 }

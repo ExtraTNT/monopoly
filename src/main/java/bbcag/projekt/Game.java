@@ -40,7 +40,7 @@ public class Game {
         }
     }
 
-    public void message(String message){
+    public void message(String message) {
         for (GameListener listener : listeners) {
             listener.onMessage(message);
         }
@@ -58,16 +58,8 @@ public class Game {
         return allPlayers;
     }
 
-    public void setPlayerList(List<Player> playermap) {
-        allPlayers = playermap;
-    }
-
     public Board getBoard() {
         return board;
-    }
-
-    public void setBoard(Board board) {
-        this.board = board;
     }
 
 
@@ -135,8 +127,7 @@ public class Game {
                     pach = false;
                     message(currentPlayer.getName() + " hat 3x Pach gewuerfelt und kam ins Gefaengnis");
                 }
-            }
-            else {
+            } else {
                 pach = false;
             }
             if (!tester) {
@@ -151,7 +142,7 @@ public class Game {
         }
 
         playMove(dice1 + dice2);
-        if(pach)message(currentPlayer.getName() + " hat Pach gewuerfelt und ist darum nochmals dran.");
+        if (pach) message(currentPlayer.getName() + " hat Pach gewuerfelt und ist darum nochmals dran.");
         for (GameListener listener : listeners) {
             listener.onDicesRolled(dice1, dice2);
         }
@@ -163,7 +154,7 @@ public class Game {
             for (GameListener listener : listeners) {
                 listener.onBuy(currentPlayer);
             }
-            message(currentPlayer.getName() + " hat " + board.getFieldByIndex(currentPlayer.getPosition()).getName() +" fuer " +board.getFieldByIndex(currentPlayer.getPosition()).getWorth() +"$ gekauft");
+            message(currentPlayer.getName() + " hat " + board.getFieldByIndex(currentPlayer.getPosition()).getName() + " fuer " + board.getFieldByIndex(currentPlayer.getPosition()).getWorth() + "$ gekauft");
         }
     }
 
@@ -233,7 +224,7 @@ public class Game {
     }
 
     public void buildHouse(NormalField field) {
-        if (field.getHotel() >= 5) {
+        if (field.getHotel() >= 5 || field.getOwner() != currentPlayer) {
             return;
         }
         field.setHotel((byte) (field.getHotel() + 1));
@@ -245,7 +236,7 @@ public class Game {
     }
 
     public void removeHotel(NormalField field) {
-        if (field.getHotel() <= 0) {
+        if (field.getHotel() <= 0 || field.getOwner() != currentPlayer) {
             return;
         }
         field.setHotel((byte) (field.getHotel() - 1));
@@ -265,6 +256,40 @@ public class Game {
 
     public void littleUpdateGUI() {
         for (GameListener listener : listeners) { // listener buy -> includes exactly that, what must
+            listener.onBuy(currentPlayer);
+        }
+    }
+
+    private void dealMoney(Player p1, int moneyP1, Player p2, int moneyP2) {
+        if (p1.getAccountBalance() >= moneyP1 && p2.getAccountBalance() >= moneyP2) {
+
+            p1.setAccountBalance(p1.getAccountBalance() + moneyP2);
+            p2.setAccountBalance(p2.getAccountBalance() + moneyP1);
+
+            p1.setAccountBalance(p1.getAccountBalance() - moneyP1);
+            p2.setAccountBalance(p2.getAccountBalance() - moneyP2);
+        } else {
+            message("Es konnte nicht getauscht werden, ein Player ist zu arm.");
+        }
+    }
+
+    private void dealPlaces(Player p1, Field f1, Player p2, Field f2) {
+        if (f1.modifyOwner(p1, p2)) {
+            if (f2.modifyOwner(p2, p1)) {
+                message(p1.getName() + " hat mit " + p2.getName() + " " + f1.getName() + " mit " + f2.getName() + " getauscht.");
+            } else {
+                f1.setOwner(p1);
+            }
+        } else {
+            message("Es konnte leider nichts getauscht werden.");
+        }
+    }
+
+    public void onDeal(Player player2, int moneyP1, int moneyP2, Field fieldP1, Field fieldP2){
+        dealMoney(currentPlayer, moneyP1, player2, moneyP2);
+        dealPlaces(currentPlayer, fieldP1, player2, fieldP2);
+
+        for (GameListener listener : listeners) {
             listener.onBuy(currentPlayer);
         }
     }

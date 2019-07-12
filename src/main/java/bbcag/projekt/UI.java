@@ -12,9 +12,11 @@ public class UI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        DealUI dealUI = new DealUI();
+
         Scene mainScene = new Scene(new MainUI(), Color.WHITE);
         Scene startScene = new Scene(new StartUI(), Color.WHITE);
-        Scene dealScene = new Scene(new DealUI(), Color.WHITE); //Not yet used
+        Scene dealScene = new Scene(dealUI, Color.WHITE);
         Scene hotelScene = new Scene(new HotelUI(), Color.WHITE);
         Scene winScene = new Scene(new WinnerUI(), Color.WHITE);
 
@@ -43,6 +45,7 @@ public class UI extends Application {
 
             @Override
             public void onStartDealing(Player currentPlayer) {
+                dealUI.update();
                 primaryStage.setScene(dealScene);
             }
 
