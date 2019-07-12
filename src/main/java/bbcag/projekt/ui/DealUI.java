@@ -70,7 +70,7 @@ public class DealUI extends BorderPane {
     private void onDealPressed() {
         if(dealer2Selection.getValue().getClass().equals(Player.class)) {
             Player player = (Player) dealer2Selection.getValue();
-            Game.getInstance().onDeal(player);
+            Game.getInstance().onDeal(player,);
 
 
             Game.getInstance().onDone();
