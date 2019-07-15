@@ -212,6 +212,13 @@ public class Game {
         return normalFields;
     }
 
+    public List<Field> getFieldsCurrentPlayer(){
+     //   return board.getFields();
+        List<Field> out = board.getFieldsByOwner(currentPlayer);
+        System.out.println("getFieldsCurrentPlayer");
+        return out;
+    }
+
     public List<NormalField> getListHousableFields() {
         List<NormalField> normalFields = new ArrayList<>();
         for (int i = 0; i < board.getFields().size(); i++) {

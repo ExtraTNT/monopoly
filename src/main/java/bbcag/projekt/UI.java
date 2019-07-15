@@ -45,7 +45,7 @@ public class UI extends Application {
 
             @Override
             public void onStartDealing(Player currentPlayer) {
-                dealUI.update();
+                dealUI.update(true);
                 primaryStage.setScene(dealScene);
             }
 
