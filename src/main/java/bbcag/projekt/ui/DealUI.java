@@ -16,17 +16,17 @@ import javafx.scene.layout.VBox;
 
 public class DealUI extends BorderPane {
 
-    ObservableList<Player> options;
-    ObservableList<Field> optionsFieldsPlayer1;
-    ObservableList<Field> optionsFieldsPlayer2;
+    private ObservableList<Player> options;
+    private ObservableList<Field> optionsFieldsPlayer1;
+    private ObservableList<Field> optionsFieldsPlayer2;
 
-    ComboBox dealer1Field;
-    ComboBox dealer2Field;
-    ComboBox dealer2Selection;
+    private ComboBox dealer1Field;
+    private ComboBox dealer2Field;
+    private ComboBox dealer2Selection;
 
 
-    TextField dealer2MoneyText;
-    TextField dealer1MoneyText;
+    private TextField dealer2MoneyText;
+    private TextField dealer1MoneyText;
 
     public DealUI() {
         HBox dealScreenHBox = new HBox();
@@ -92,8 +92,18 @@ public class DealUI extends BorderPane {
 
     private void onDealPressed() {
             Player player = (Player) dealer2Selection.getValue();
-            int money1 =  Integer.parseInt(dealer1MoneyText.getText());
-            int money2 =  Integer.parseInt(dealer2MoneyText.getText());
+            int money1;
+            int money2;
+
+            if(dealer1MoneyText.getText() != "" || !dealer1MoneyText.getText().isEmpty()){
+                money1 =  Integer.parseInt(dealer1MoneyText.getText()); //exception here NumberFormatException -> string is ""
+            } else{money1 = 0;
+            }
+            if(dealer2MoneyText.getText() != ""|| !dealer1MoneyText.getText().isEmpty()) {
+                money2 = Integer.parseInt(dealer2MoneyText.getText()); //exception here NumberFormatException
+            } else{money2 = 0;
+            }
+
 
             Game.getInstance().onDeal(player, money1, money2, (Field)dealer1Field.getValue(), (Field)dealer2Field.getValue());
 
@@ -113,3 +123,5 @@ public class DealUI extends BorderPane {
         dealer1Field = new ComboBox(optionsFieldsPlayer1);
     }
 }
+
+//todo fix (update, onDealPressed) -> nullpointer with fields and player, ""!= ""

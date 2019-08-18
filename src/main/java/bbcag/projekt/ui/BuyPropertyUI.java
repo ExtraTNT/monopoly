@@ -30,3 +30,4 @@ public class BuyPropertyUI extends VBox {
 }
 
 */
+//todo ask timothy -> ev useless class

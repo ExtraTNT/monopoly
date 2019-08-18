@@ -280,24 +280,39 @@ public class Game {
         }
     }
 
-    private void dealPlaces(Player p1, Field f1, Player p2, Field f2) {
-        if (f1.modifyOwner(p1, p2)) {
-            if (f2.modifyOwner(p2, p1)) {
-                message(p1.getName() + " hat mit " + p2.getName() + " " + f1.getName() + " mit " + f2.getName() + " getauscht.");
-            } else {
-                f1.setOwner(p1);
+    private void dealPlaces(Player p1, Field f1, Player p2, Field f2) { //todo make possible that just one field is required
+        boolean p1Fail = false;
+        boolean p2Fail = false;
+
+        if(f1 != null){
+            if(f1.modifyOwner(p1, p2)){
+                message(p1.getName() + " hat " + p2.getName() + " " + f1.getName() + " gegeben");
             }
-        } else {
-            message("Es konnte leider nichts getauscht werden.");
+            else{
+                p1Fail = true;
+            }
+        }
+        if(f2 != null){
+            if(f2.modifyOwner(p2, p1)){
+                message(p2.getName() + " hat " + p2.getName() + " " + f2.getName() + " gegeben");
+            }
+            else{
+                p2Fail = true;
+            }
+        }
+        if(p1Fail || p2Fail){
+            f1.setOwner(p1);
+            f2.setOwner(p2);
+            message("Es konnte leider kein Grundstück getauscht werden.");
         }
     }
 
     public void onDeal(Player player2, int moneyP1, int moneyP2, Field fieldP1, Field fieldP2){
         dealMoney(currentPlayer, moneyP1, player2, moneyP2);
-        dealPlaces(currentPlayer, fieldP1, player2, fieldP2);
-
-        for (GameListener listener : listeners) {
-            listener.onBuy(currentPlayer);
+        if(fieldP1 != null && fieldP2 != null) {
+            dealPlaces(currentPlayer, fieldP1, player2, fieldP2);
         }
+
+        littleUpdateGUI();
     }
 }
