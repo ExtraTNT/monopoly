@@ -159,6 +159,11 @@ public class Game {
     }
 
     //Function Hugi made to move or check where the Player is using the dice result from rollDiceForCurrentPlayer()
+    /**playMove
+     * @param diceNbr int -> dice1-result + dice2-result
+     * function move the Player if necessary or check if the player has remainingDaysInPrision -> wait, wenn go from 1 to 0 -> pay
+     * tests also if the player wins.
+     */
     public void playMove(int diceNbr) {
         if (currentPlayer.isDeath()) {
             allPlayers.remove(currentPlayer);
@@ -188,19 +193,29 @@ public class Game {
             }
         }
     }
-
+    /**
+     * onHotel
+     * call the listener onHotel -> ezer control
+     */
     public void onHotel() {
         for (GameListener listener : listeners) {
             listener.onHotel();
         }
     }
-
+    /**
+     * startDealing
+     * call the listener startDealing -> ezer control
+     */
     public void startDealing() {
         for (GameListener listener : listeners) {
             listener.onStartDealing(currentPlayer);
         }
     }
-
+    /**
+     * getFieldsCurrentPlayer
+     * simpler control
+     * @return the fields witch are the current player own -> simpler control
+     */
     public List<NormalField> getListOfMyHousableFields() {
 
         List<NormalField> normalFields = new ArrayList<>();
@@ -260,7 +275,10 @@ public class Game {
         }
         return instance;
     }
-
+    /**
+     * littleUpdateGUI
+     * updates the gui by using the onBuy listener (historic)
+     */
     public void littleUpdateGUI() {
         for (GameListener listener : listeners) { // listener buy -> includes exactly that, what must
             listener.onBuy(currentPlayer);
