@@ -2,43 +2,43 @@ package bbcag.projekt.board;
 
 import bbcag.projekt.Player;
 import bbcag.projekt.field.Field;
-import bbcag.projekt.field.NormalField;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Board {
 
-    public List<Field> getFields() {
-        return fields;
+    private final List<Field> FIELDS;
+    private final Player BANK;
+
+    protected abstract List<Field> createFields();
+
+    /**
+     * FIELDS -> all FIELDS from the Board aka the board... xD
+     * @param bank the Player who owns all FIELDS that can't be sold to Player
+     */
+    protected Board(Player bank) {
+        this.BANK = bank;
+        FIELDS = createFields();
     }
 
-    private final List<Field> fields;
-
-    private final Player bank;
-
-    protected Board(Player bank) { //Player Bank -> cant buy by a player
-        this.bank = bank;
-        fields = createFields();
-    }
-
+    /**
+     * @return BANK, the Player who owns all FIELDS that can't be sold to Player
+     */
     protected Player getBank() {
-        return bank;
+        return BANK;
     }
 
     public Field getFieldByName(String name) {
-        for (Field candidate : fields) {
+        for (Field candidate : FIELDS) {
             if (candidate.getName().equals(name)) {
                 return candidate;
             }
         }
-
         return null;
     }
-
     public List<Field> getFieldsByOwner(Player owner){
         List fieldshousable = new ArrayList<>();
-        for (Field candidate : fields) {
+        for (Field candidate : FIELDS) {
             if(candidate.getOwner() == null){
 
             }
@@ -48,19 +48,17 @@ public abstract class Board {
         }
     return fieldshousable;
     }
-
     public int getIndexFromField(Field field){
-        return fields.indexOf(field);
+        return FIELDS.indexOf(field);
     }
-
+    public List<Field> getFields() {
+        return FIELDS;
+    }
     public Field getFieldByIndex(int index){
-        return fields.get(index);
+        return FIELDS.get(index);
     }
-
-
-    protected abstract List<Field> createFields();
 
     public int size() {
-        return fields.size();
+        return FIELDS.size();
     }
 }

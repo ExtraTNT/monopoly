@@ -3,13 +3,13 @@ package bbcag.projekt.config;
 import java.io.IOException;
 import java.util.Properties;
 
-public class Confiuration {
+public class Configuration {
 
-    private static Confiuration instance;
+    private static Configuration instance;
 
     private final Properties properties;
 
-    private Confiuration() {
+    private Configuration() {
         properties = new Properties();
 
         try {
@@ -23,9 +23,9 @@ public class Confiuration {
         return (String) properties.get(key);
     }
 
-    public static Confiuration getInstance() {
+    public static Configuration getInstance() {
         if (instance == null) {
-            instance = new Confiuration();
+            instance = new Configuration();
         }
         return instance;
     }

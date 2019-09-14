@@ -1,23 +1,16 @@
 package bbcag.projekt.ui;
 
 import bbcag.projekt.*;
-import bbcag.projekt.config.Confiuration;
+import bbcag.projekt.config.Configuration;
 import bbcag.projekt.field.Field;
 import bbcag.projekt.field.NormalField;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
-
-import javax.security.auth.login.Configuration;
-import java.util.ArrayList;
 
 public class MainUI extends BorderPane {
 
@@ -28,7 +21,7 @@ public class MainUI extends BorderPane {
 
 
         //Gameboard stuff
-        ImageView gameBoard = new ImageView(Confiuration.getInstance().get("board.type") + ".png");
+        ImageView gameBoard = new ImageView(Configuration.getInstance().get("board.type") + ".png");
         gameBoard.setFitHeight(900);
         gameBoard.setFitWidth(900);
         StackPane centralStack = new StackPane(); //Stackpane to stack both the gameBoard and Canvas on top of each other

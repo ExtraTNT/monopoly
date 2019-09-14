@@ -1,6 +1,5 @@
 package bbcag.projekt.board;
 
-import bbcag.projekt.field.ActionField;
 import bbcag.projekt.Player;
 import bbcag.projekt.field.*;
 

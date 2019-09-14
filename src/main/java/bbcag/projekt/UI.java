@@ -8,9 +8,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class UI extends Application {
-
+    /**
+     * start
+     * the "main" because javafx (see javafx-doc)
+     * @param primaryStage the primary stage -> whats happen on the screen
+     */
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage){
 
         DealUI dealUI = new DealUI();
 
