@@ -177,6 +177,10 @@ public class Game {
         if (currentPlayer.getRemainingDaysInPrison() <= 0) {
             byte oldPos = currentPlayer.getPosition();
             currentPlayer.setPosition((byte) ((currentPlayer.getPosition() + diceNbr) % board.size()));
+            /*
+              if the player move in every field will the method passIt with the player (currentPlayer) called.
+              if the player step to the final field, steppingOnIt will called with the player (currentPlayer)
+             */
             for (int i = 1; i <= diceNbr; i++) {
                 if (i < diceNbr) {
                     board.getFieldByIndex((oldPos + i) % board.size()).passIt(currentPlayer);
