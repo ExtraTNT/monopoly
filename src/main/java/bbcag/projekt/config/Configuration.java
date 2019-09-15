@@ -6,22 +6,7 @@ import java.util.Properties;
 public class Configuration {
 
     private static Configuration instance;
-
-    private final Properties properties;
-
-    private Configuration() {
-        properties = new Properties();
-
-        try {
-            properties.load(getClass().getResourceAsStream("/config.properties"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public String get(String key){
-        return (String) properties.get(key);
-    }
+    private final Properties PROPERTIES;
 
     public static Configuration getInstance() {
         if (instance == null) {
@@ -29,4 +14,19 @@ public class Configuration {
         }
         return instance;
     }
+    private Configuration() {
+        PROPERTIES = new Properties();
+
+        try {
+            PROPERTIES.load(getClass().getResourceAsStream("/config.properties"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String get(String key){
+        return (String) PROPERTIES.get(key);
+    }
+
+
 }

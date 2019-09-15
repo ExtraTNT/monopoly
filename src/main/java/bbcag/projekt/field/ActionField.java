@@ -1,14 +1,7 @@
 package bbcag.projekt.field;
 
-import bbcag.projekt.Game;
-import bbcag.projekt.GameListener;
-import bbcag.projekt.Player;
-import bbcag.projekt.board.Board;
-import bbcag.projekt.field.Field;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import bbcag.projekt.engine.Game;
+import bbcag.projekt.player.Player;
 
 public class ActionField extends Field {
     public ActionField(String name, Player bank){
@@ -24,9 +17,8 @@ public class ActionField extends Field {
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
             Game.getInstance().message(player.getName() + " ist auf " + this.getName() + " gelandet.");
-        //int event = (int) (Math.random()*8);
-        int event = 7;
-        switch (event){
+        int event = (int) (Math.random()*8);
+                switch (event){
             case 1:
                 player.setAccountBalance(player.getAccountBalance() + rolledSum * 3 + 10);
                 Game.getInstance().message("Du bekommst die gewuerfelte Zahl * 3 plus 10$. (" + (rolledSum*3+10) + "$)");

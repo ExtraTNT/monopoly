@@ -1,14 +1,11 @@
 package bbcag.projekt.ui;
 
-import bbcag.projekt.Game;
-import bbcag.projekt.Player;
+import bbcag.projekt.engine.Game;
+import bbcag.projekt.player.Player;
 import bbcag.projekt.field.Field;
-import bbcag.projekt.field.NormalField;
-import com.sun.org.apache.xml.internal.utils.StringToIntTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;

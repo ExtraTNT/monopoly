@@ -1,13 +1,10 @@
 package bbcag.projekt.field;
 
-import bbcag.projekt.Game;
-import bbcag.projekt.GameListener;
-import bbcag.projekt.Player;
+import bbcag.projekt.engine.Game;
+import bbcag.projekt.player.Player;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class WorkField extends BuyableField  {
     private short worth = 150;
@@ -16,11 +13,18 @@ public class WorkField extends BuyableField  {
         this.name = name;
     }
 
+    public void buy(Player player) {
+        if (owner == null) {
+            player.setAccountBalance(player.getAccountBalance() - worth);
+            this.owner = player;
+            canBuy = false;
+        }
+    }
+
     @Override
     public int getWorth() {
         return worth;
     }
-
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
             Game.getInstance().message(player.getName() + " ist auf " + this.getName() + " gelandet.");
@@ -52,15 +56,5 @@ public class WorkField extends BuyableField  {
             Game.getInstance().littleUpdateGUI();
         }
 
-    }
-
-
-
-    public void buy(Player player) {
-        if (owner == null) {
-            player.setAccountBalance(player.getAccountBalance() - worth);
-            this.owner = player;
-            canBuy = false;
-        }
     }
 }

@@ -19,5 +19,5 @@ dependencies {
 mainClassName = 'bbcag.projekt.UI'
 
 javafx {
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    modules = ['javafx.controls', 'javafx.fxml']
 }

@@ -1,4 +1,4 @@
-package bbcag.projekt;
+package bbcag.projekt.player;
 
 public class Player {
     private String name;
@@ -18,11 +18,7 @@ public class Player {
     }
 
     public boolean isDeath() {
-        if (accountBalance < 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return (accountBalance < 0);
     }
 
     public String getName() {

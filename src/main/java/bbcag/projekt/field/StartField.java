@@ -1,10 +1,7 @@
 package bbcag.projekt.field;
 
-import bbcag.projekt.Game;
-import bbcag.projekt.GameListener;
-import bbcag.projekt.Player;
-
-import java.util.Set;
+import bbcag.projekt.engine.Game;
+import bbcag.projekt.player.Player;
 
 public class StartField extends Field {
     private short startMoney;
@@ -32,9 +29,5 @@ public class StartField extends Field {
         Game.getInstance().message(player.getName() + " ist ueber Los gezogen, das gibt ein bisschen Geld");
         player.setAccountBalance(player.getAccountBalance() + startMoney);
         Game.getInstance().littleUpdateGUI();
-    }
-
-    public void setStartMoney(short startMoney) {
-        this.startMoney = startMoney;
     }
 }

@@ -1,24 +1,18 @@
 package bbcag.projekt.field;
 
-import bbcag.projekt.Game;
-import bbcag.projekt.GameListener;
-import bbcag.projekt.Player;
-
-import java.util.HashSet;
-import java.util.Set;
+import bbcag.projekt.engine.Game;
+import bbcag.projekt.player.Player;
 
 public class NormalField extends BuyableField {
     private short worth;
     private byte Hotel = 0;
     private int[] Rent;
-
     private int worthHotel;
 
 
     public NormalField(String name, short worth, int[] rent, int worthHotel) {
         this(name, worth, rent, worthHotel, null);
     }
-
     public NormalField(String name, short worth, int[] rent, int worthHotel, Player owner) {
         super(owner);
         this.name = name;
@@ -27,11 +21,30 @@ public class NormalField extends BuyableField {
         this.worthHotel = worthHotel;
     }
 
+    public int getRent() {
+        return Rent[Hotel];
+    }
+    public void buy(Player player) {
+        if (owner == null) {
+            player.setAccountBalance(player.getAccountBalance() - worth);
+            this.owner = player;
+            canBuy = false;
+        }
+    }
+    public byte getHotel() {
+        return Hotel;
+    }
+    public void setHotel(byte hotel) {
+        Hotel = hotel;
+    }
+    public int getWorthHotel() {
+        return worthHotel;
+    }
+
     @Override
     public int getWorth() {
         return worth;
     }
-
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
         Game.getInstance().message(player.getName() + " ist auf " + this.getName() + " gelandet.");
@@ -54,30 +67,6 @@ public class NormalField extends BuyableField {
             }
         }
 
-    }
-
-    public int getRent() {
-        return Rent[Hotel];
-    }
-
-    public void buy(Player player) {
-        if (owner == null) {
-            player.setAccountBalance(player.getAccountBalance() - worth);
-            this.owner = player;
-            canBuy = false;
-        }
-    }
-
-    public byte getHotel() {
-        return Hotel;
-    }
-
-    public void setHotel(byte hotel) {
-        Hotel = hotel;
-    }
-
-    public int getWorthHotel() {
-        return worthHotel;
     }
 }
 

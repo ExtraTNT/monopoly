@@ -1,4 +1,6 @@
-package bbcag.projekt;
+package bbcag.projekt.engine;
+
+import bbcag.projekt.player.Player;
 
 public interface GameListener {
 

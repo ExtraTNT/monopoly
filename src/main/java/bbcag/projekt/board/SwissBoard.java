@@ -1,6 +1,6 @@
 package bbcag.projekt.board;
 
-import bbcag.projekt.Player;
+import bbcag.projekt.player.Player;
 import bbcag.projekt.field.*;
 
 import java.util.ArrayList;

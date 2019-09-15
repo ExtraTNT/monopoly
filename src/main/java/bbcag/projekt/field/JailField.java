@@ -1,11 +1,7 @@
 package bbcag.projekt.field;
 
-import bbcag.projekt.Game;
-import bbcag.projekt.GameListener;
-import bbcag.projekt.Player;
-
-import java.util.HashSet;
-import java.util.Set;
+import bbcag.projekt.engine.Game;
+import bbcag.projekt.player.Player;
 
 public class JailField extends Field {
     @Override

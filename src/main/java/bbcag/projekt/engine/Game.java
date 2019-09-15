@@ -1,9 +1,10 @@
-package bbcag.projekt;
+package bbcag.projekt.engine;
 
 import bbcag.projekt.board.Board;
 import bbcag.projekt.board.BoardFactory;
 import bbcag.projekt.exception.NotEnoughPlayersException;
 import bbcag.projekt.field.*;
+import bbcag.projekt.player.Player;
 
 import java.util.ArrayList;
 import java.util.HashSet;

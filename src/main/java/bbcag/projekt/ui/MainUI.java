@@ -1,7 +1,9 @@
 package bbcag.projekt.ui;
 
-import bbcag.projekt.*;
 import bbcag.projekt.config.Configuration;
+import bbcag.projekt.engine.Game;
+import bbcag.projekt.engine.GameListener;
+import bbcag.projekt.player.Player;
 import bbcag.projekt.field.Field;
 import bbcag.projekt.field.NormalField;
 import javafx.geometry.Insets;

@@ -1,10 +1,5 @@
 package bbcag.projekt.ui;
 
-import bbcag.projekt.Game;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 /*
 public class BuyPropertyUI extends VBox {
 

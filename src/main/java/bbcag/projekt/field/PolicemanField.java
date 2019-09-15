@@ -1,7 +1,7 @@
 package bbcag.projekt.field;
 
-import bbcag.projekt.Game;
-import bbcag.projekt.Player;
+import bbcag.projekt.engine.Game;
+import bbcag.projekt.player.Player;
 
 
 public class PolicemanField extends Field {

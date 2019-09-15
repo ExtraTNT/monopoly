@@ -1,11 +1,11 @@
-package bbcag.projekt;
+package bbcag.projekt.engine;
 import java.util.Random;
 
-public class Dice {
+class Dice {
     private static Random rand = new Random();
     private Dice() {
     }
-    public static int rollDice() {
+    static int rollDice() {
         return rand.nextInt(6) + 1;
     }
 }
