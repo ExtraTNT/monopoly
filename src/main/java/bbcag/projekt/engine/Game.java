@@ -25,11 +25,9 @@ public class Game {
 
         board = BoardFactory.getInstance().createBoard(bank);
     }
-
     public void addListener(GameListener listener) {
         listeners.add(listener);
     }
-
     public void addPlayer(String name, String color) {
         Player player = new Player(name, color);
 
@@ -40,30 +38,23 @@ public class Game {
             listener.onPlayerAdded(player);
         }
     }
-
     public void message(String message) {
         for (GameListener listener : listeners) {
             listener.onMessage(message);
         }
     }
-
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
-
     public Player getBank() {
         return bank;
     }
-
     public List<Player> getPlayerList() {
         return allPlayers;
     }
-
     public Board getBoard() {
         return board;
     }
-
-
     //Start function to check if there are at least 2 players + listener functions
     public void start() throws NotEnoughPlayersException {
         if (allPlayers.size() < 2) {
@@ -78,14 +69,11 @@ public class Game {
             listener.onCurrentPlayerChange(currentPlayer);
         }
     }
-
     public void onDone() {
         for (GameListener listener : listeners) {
             listener.onDone();
         }
     }
-
-
     public void nextPlayer() {
         if (!currentPlayerHasRolledDice) {
             message(currentPlayer.getName() + " hat den Zug nicht richtig beendet!");
@@ -101,7 +89,6 @@ public class Game {
         }
         message(currentPlayer.getName() + " ist nun dran!");
     }
-
     public void rollDiceForCurrentPlayer() {
         if (currentPlayerHasRolledDice) {
             message("Du kannst nicht nochmals ziehen!");
@@ -148,7 +135,6 @@ public class Game {
             listener.onDicesRolled(dice1, dice2);
         }
     }
-
     public void buyField() {
         if (board.getFieldByIndex(currentPlayer.getPosition()).canBuy()) {
             ((BuyableField) board.getFieldByIndex(currentPlayer.getPosition())).buy(currentPlayer);
@@ -158,7 +144,6 @@ public class Game {
             message(currentPlayer.getName() + " hat " + board.getFieldByIndex(currentPlayer.getPosition()).getName() + " fuer " + board.getFieldByIndex(currentPlayer.getPosition()).getWorth() + "$ gekauft");
         }
     }
-
     //Function Hugi made to move or check where the Player is using the dice result from rollDiceForCurrentPlayer()
     /**playMove
      * @param diceNbr int -> dice1-result + dice2-result
@@ -207,6 +192,14 @@ public class Game {
             listener.onHotel();
         }
     }
+    public void onDeal(Player player2, int moneyP1, int moneyP2, Field fieldP1, Field fieldP2){
+        dealMoney(currentPlayer, moneyP1, player2, moneyP2);
+        if(fieldP1 != null && fieldP2 != null) {
+            dealPlaces(currentPlayer, fieldP1, player2, fieldP2);
+        }
+
+        littleUpdateGUI();
+    }
     /**
      * startDealing
      * call the listener startDealing -> ezer control
@@ -231,14 +224,12 @@ public class Game {
         }
         return normalFields;
     }
-
     public List<Field> getFieldsCurrentPlayer(){
      //   return board.getFields();
         List<Field> out = board.getFieldsByOwner(currentPlayer);
         System.out.println("getFieldsCurrentPlayer");
         return out;
     }
-
     public List<NormalField> getListHousableFields() {
         List<NormalField> normalFields = new ArrayList<>();
         for (int i = 0; i < board.getFields().size(); i++) {
@@ -249,7 +240,6 @@ public class Game {
         return normalFields;
 
     }
-
     public void buildHouse(NormalField field) {
         if (field.getHotel() >= 5 || field.getOwner() != currentPlayer) {
             return;
@@ -261,7 +251,6 @@ public class Game {
         }
         message(field.getName() + ", Haus wurde gebaut");
     }
-
     public void removeHotel(NormalField field) {
         if (field.getHotel() <= 0 || field.getOwner() != currentPlayer) {
             return;
@@ -273,7 +262,6 @@ public class Game {
         }
         message(field.getName() + ", Haus wurde entfernt");
     }
-
     public static Game getInstance() {
         if (instance == null) {
             instance = new Game();
@@ -289,7 +277,6 @@ public class Game {
             listener.onBuy(currentPlayer);
         }
     }
-
     private void dealMoney(Player p1, int moneyP1, Player p2, int moneyP2) {
         if (p1.getAccountBalance() >= moneyP1 && p2.getAccountBalance() >= moneyP2) {
 
@@ -302,7 +289,6 @@ public class Game {
             message("Es konnte nicht getauscht werden, ein Player ist zu arm.");
         }
     }
-
     private void dealPlaces(Player p1, Field f1, Player p2, Field f2) { //todo make possible that just one field is required
         boolean p1Fail = false;
         boolean p2Fail = false;
@@ -328,14 +314,5 @@ public class Game {
             f2.setOwner(p2);
             message("Es konnte leider kein Grundstück getauscht werden.");
         }
-    }
-
-    public void onDeal(Player player2, int moneyP1, int moneyP2, Field fieldP1, Field fieldP2){
-        dealMoney(currentPlayer, moneyP1, player2, moneyP2);
-        if(fieldP1 != null && fieldP2 != null) {
-            dealPlaces(currentPlayer, fieldP1, player2, fieldP2);
-        }
-
-        littleUpdateGUI();
     }
 }
