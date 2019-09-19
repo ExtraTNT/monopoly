@@ -88,11 +88,11 @@ public class DealUI extends BorderPane {
             int money1;
             int money2;
 
-            if(dealer1MoneyText.getText() != "" || !dealer1MoneyText.getText().isEmpty()){
+            if(!dealer1MoneyText.getText().equals("") || !dealer1MoneyText.getText().isEmpty()){
                 money1 =  Integer.parseInt(dealer1MoneyText.getText()); //exception here NumberFormatException -> string is ""
             } else{money1 = 0;
             }
-            if(dealer2MoneyText.getText() != ""|| !dealer1MoneyText.getText().isEmpty()) {
+            if(!dealer2MoneyText.getText().equals("") || !dealer1MoneyText.getText().isEmpty()) {
                 money2 = Integer.parseInt(dealer2MoneyText.getText()); //exception here NumberFormatException
             } else{money2 = 0;
             }
