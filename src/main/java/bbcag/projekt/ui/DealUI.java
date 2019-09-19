@@ -16,12 +16,9 @@ public class DealUI extends BorderPane {
     private ObservableList<Player> options;
     private ObservableList<Field> optionsFieldsPlayer1;
     private ObservableList<Field> optionsFieldsPlayer2;
-
     private ComboBox dealer1Field;
     private ComboBox dealer2Field;
     private ComboBox dealer2Selection;
-
-
     private TextField dealer2MoneyText;
     private TextField dealer1MoneyText;
 
@@ -86,7 +83,6 @@ public class DealUI extends BorderPane {
         setCenter(dealScreenHBox);
         setBottom(dealBottomArea);
     }
-
     private void onDealPressed() {
             Player player = (Player) dealer2Selection.getValue();
             int money1;
@@ -106,7 +102,6 @@ public class DealUI extends BorderPane {
 
             Game.getInstance().onDone();
     }
-
     public void update(boolean optionsupdate){
         if(optionsupdate) {
             options.setAll(Game.getInstance().getPlayerList());

@@ -177,14 +177,6 @@ public class MainUI extends BorderPane {
         });
     }
 
-    public String getRollResult() {
-        return rollResult.getText();
-    }
-
-    public void setRollResult(String rollResult) {
-        this.rollResult.setText(rollResult);
-    }
-
     public void updatePlayerPositions (){
         gc.clearRect(0,0, 900, 900);
         for(Player p : Game.getInstance().getPlayerList()){
@@ -224,10 +216,6 @@ public class MainUI extends BorderPane {
             return((player.getPosition()-31)*72 + 140);
         }
     }
-
-
-
-
     public void updateHotels (){
 
         for(NormalField field : Game.getInstance().getListHousableFields()){
@@ -237,7 +225,6 @@ public class MainUI extends BorderPane {
             }
         }
     }
-
     private int getHotelY(Field field){
         if(Game.getInstance().getBoard().getIndexFromField(field) >= 0 && Game.getInstance().getBoard().getIndexFromField(field) <= 10){
             return 790;

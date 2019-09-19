@@ -11,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class StartUI extends BorderPane {
-
     public StartUI() {
 
         //Center area
