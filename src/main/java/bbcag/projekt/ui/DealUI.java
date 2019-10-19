@@ -168,4 +168,4 @@ public class DealUI extends BorderPane {
     }
 }
 
-//todo fix (update, onDealPressed) -> nullpointer with fields and player, ""!= ""
+//todo fix (update, onDealPressed) -> nullptr with fields and player, ""!= ""
