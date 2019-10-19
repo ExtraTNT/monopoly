@@ -149,6 +149,9 @@ public class Game {
      * @param diceNbr int -> dice1-result + dice2-result
      * function move the Player if necessary or check if the player has remainingDaysInPrision -> wait, wenn go from 1 to 0 -> pay
      * tests also if the player wins.
+     * if the player move in a field will the method passIt with the player (currentPlayer) called.
+     * if the player step to the final field, steppingOnIt will called with the player (currentPlayer)
+     *
      */
     public void playMove(int diceNbr) {
         if (currentPlayer.isDeath()) {
@@ -163,10 +166,7 @@ public class Game {
         if (currentPlayer.getRemainingDaysInPrison() <= 0) {
             byte oldPos = currentPlayer.getPosition();
             currentPlayer.setPosition((byte) ((currentPlayer.getPosition() + diceNbr) % board.size()));
-            /*
-              if the player move in every field will the method passIt with the player (currentPlayer) called.
-              if the player step to the final field, steppingOnIt will called with the player (currentPlayer)
-             */
+
             for (int i = 1; i <= diceNbr; i++) {
                 if (i < diceNbr) {
                     board.getFieldByIndex((oldPos + i) % board.size()).passIt(currentPlayer);
@@ -238,8 +238,8 @@ public class Game {
             }
         }
         return normalFields;
-
     }
+
     public void buildHouse(NormalField field) {
         if (field.getHotel() >= 5 || field.getOwner() != currentPlayer) {
             return;
@@ -251,6 +251,7 @@ public class Game {
         }
         message(field.getName() + ", Haus wurde gebaut");
     }
+
     public void removeHotel(NormalField field) {
         if (field.getHotel() <= 0 || field.getOwner() != currentPlayer) {
             return;
@@ -262,6 +263,11 @@ public class Game {
         }
         message(field.getName() + ", Haus wurde entfernt");
     }
+
+    /**getInstance
+     * Singleton!
+     * @return the instance
+     */
     public static Game getInstance() {
         if (instance == null) {
             instance = new Game();
@@ -270,13 +276,16 @@ public class Game {
     }
     /**
      * littleUpdateGUI
-     * updates the gui by using the onBuy listener (historic)
+     * updates the gui by using the onBuy listener -> this listener was the first, which needs this default set of actions
      */
     public void littleUpdateGUI() {
         for (GameListener listener : listeners) { // listener buy -> includes exactly that, what must
             listener.onBuy(currentPlayer);
         }
     }
+
+    //pls document usefully after programming and fixing bugs -> comments first, then javadocs... vv
+
     private void dealMoney(Player p1, int moneyP1, Player p2, int moneyP2) {
         if (p1.getAccountBalance() >= moneyP1 && p2.getAccountBalance() >= moneyP2) {
 

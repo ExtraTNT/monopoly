@@ -2,6 +2,9 @@ package bbcag.projekt.engine;
 
 import bbcag.projekt.player.Player;
 
+/**GameListener Interface
+ * Simple interface which allows the gui to communicate with the engine
+ */
 public interface GameListener {
 
     void onStart();

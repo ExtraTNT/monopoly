@@ -10,9 +10,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * Start UI
+ * a simple UI which will displayed, when the game starts, in which the players can create the player-objects
+ * After that, the UI will start the engine
+ */
 public class StartUI extends BorderPane {
     public StartUI() {
-
         //Center area
         VBox startCenterArea = new VBox(5);
         startCenterArea.setPadding(new Insets(20));
@@ -76,6 +80,9 @@ public class StartUI extends BorderPane {
 
         startDoneButton.setOnAction(event -> {
             try {
+                /**
+                 * Game.start() starts the engine
+                 */
                 Game.getInstance().start();
             } catch (NotEnoughPlayersException e) {
                 startPlayerListText.appendText("\nERROR NOT ENOUGH PLAYERS\n\n");
@@ -85,7 +92,6 @@ public class StartUI extends BorderPane {
         Game.getInstance().addListener(new GameListener() {
             @Override
             public void onStart() {
-
             }
 
             @Override

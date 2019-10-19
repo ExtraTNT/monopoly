@@ -29,7 +29,11 @@ public class UI extends Application {
 
         primaryStage.setScene(startScene);
 
+        /**GameListener
+         * Interface for easy control, used on all GUI elements and in the engine
+         */
         Game.getInstance().addListener(new GameListener() {
+
             @Override
             public void onStart() {
                 primaryStage.setScene(mainScene);
@@ -42,7 +46,6 @@ public class UI extends Application {
 
             @Override
             public void onCurrentPlayerChange(Player player) {
-                // Empty
             }
 
             @Override

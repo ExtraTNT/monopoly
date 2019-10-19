@@ -185,7 +185,12 @@ public class MainUI extends BorderPane {
         }
         updateHotels();
     }
-    //Something Hugi made, function to find out the X position for a player
+
+    /**getPlayerX
+     * calculate the x pos, that the player can be drawn on the screen
+     * @param player the player object
+     * @return X-position to draw the player at
+     */
     private int getPlayerX(Player player){
         if(player.getPosition() >= 30 && player.getPosition() <= 39 || player.getPosition() == 0){
             return 810;
@@ -200,7 +205,12 @@ public class MainUI extends BorderPane {
             return (720- (player.getPosition()-1)*72);
         }
     }
-    //Something Hugi made, function to find out the Y position for a player
+
+    /**getPlayerY
+     * calculate the y pos, that the player can be drawn on the screen
+     * @param player the player object
+     * @return y-position to draw the player at
+     */
     private int getPlayerY(Player player){
         if(player.getPosition() >= 0 && player.getPosition() <= 10){
             return 810;
