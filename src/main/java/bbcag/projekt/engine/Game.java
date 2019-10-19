@@ -69,11 +69,17 @@ public class Game {
             listener.onCurrentPlayerChange(currentPlayer);
         }
     }
+
     public void onDone() {
         for (GameListener listener : listeners) {
             listener.onDone();
         }
     }
+
+    /**nextPlayer
+     * tests, if the currentPlayer done with the round
+     * if it so, change the current player
+     */
     public void nextPlayer() {
         if (!currentPlayerHasRolledDice) {
             message(currentPlayer.getName() + " hat den Zug nicht richtig beendet!");
@@ -89,6 +95,11 @@ public class Game {
         }
         message(currentPlayer.getName() + " ist nun dran!");
     }
+
+    /** rollDiceForCurrentPlayer
+     * rolls the Dices for the current player, handles the pach-rules, calls the listener and calls the playMove function
+     * edit pach-rules here
+     */
     public void rollDiceForCurrentPlayer() {
         if (currentPlayerHasRolledDice) {
             message("Du kannst nicht nochmals ziehen!");
@@ -108,7 +119,7 @@ public class Game {
                 currentPlayerHasRolledDice = false;
                 if (currentPlayer.getCount() > 2) {
                     currentPlayerHasRolledDice = true;
-                    currentPlayer.setRemainingDaysInPrison((byte) 3);
+                    currentPlayer.setRemainingDaysInPrison((byte) 4); // because the playmove hasn't start yet
                     currentPlayer.setPosition((byte) 10);
                     currentPlayer.setCount(0);
                     tester = true;
@@ -128,7 +139,6 @@ public class Game {
         for (GameListener listener : listeners) {
             listener.onDicesRolled(dice1, dice2);
         }
-
         playMove(dice1 + dice2);
         if (pach) message(currentPlayer.getName() + " hat Pach gewuerfelt und ist darum nochmals dran.");
         for (GameListener listener : listeners) {

@@ -55,7 +55,6 @@ public class HotelUI  extends HBox {
         });
         hotelUIDone.setOnAction(event -> Game.getInstance().onDone());
 
-
         Game.getInstance().addListener(new GameListener(){
             @Override
             public void onStart() {
