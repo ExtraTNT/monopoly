@@ -5,6 +5,7 @@ import bbcag.projekt.player.Player;
 
 
 public class PolicemanField extends Field {
+
     @Override
     public int getWorth() {
         return 0;
@@ -14,6 +15,12 @@ public class PolicemanField extends Field {
         this.name = "Gehe ins Gefaengnis!";
     }
 
+    /**stepingOnIt
+     * that happens, if you go to the police...
+     * make a message, set the position to 10 (the JailField) and set RemainingDaysInPrison
+     * @param player the current player
+     * @param rolledSum the sum the 2 dies, which the player has rolled
+     */
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
         Game.getInstance().message(player.getName() + " wurde leider von der Polizei erwischt. Ab ins Gefaengnis");
