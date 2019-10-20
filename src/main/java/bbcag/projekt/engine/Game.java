@@ -195,6 +195,10 @@ public class Game {
             listener.onDicesRolled(dice1, dice2);
         }
     }
+
+    /**buyField
+     * test, if the player can buy the fiel, on which he is standing and calls the buy method form this field, with the player + calls the onBuy listener and send a message
+     */
     public void buyField() {
         if (board.getFieldByIndex(currentPlayer.getPosition()).canBuy()) {
             ((BuyableField) board.getFieldByIndex(currentPlayer.getPosition())).buy(currentPlayer);
@@ -252,14 +256,7 @@ public class Game {
             listener.onHotel();
         }
     }
-    public void onDeal(Player player2, int moneyP1, int moneyP2, Field fieldP1, Field fieldP2){
-        dealMoney(currentPlayer, moneyP1, player2, moneyP2);
-        if(fieldP1 != null && fieldP2 != null) {
-            dealPlaces(currentPlayer, fieldP1, player2, fieldP2);
-        }
 
-        littleUpdateGUI();
-    }
     /**
      * startDealing
      * call the listener startDealing -> ezer control
@@ -284,12 +281,17 @@ public class Game {
         }
         return normalFields;
     }
+
+    /**getFieldsCurrentPlayer
+     * @return the fields, owned by the current PLayer
+     */
     public List<Field> getFieldsCurrentPlayer(){
-     //   return board.getFields();
-        List<Field> out = board.getFieldsByOwner(currentPlayer);
-        System.out.println("getFieldsCurrentPlayer");
-        return out;
+        return board.getFieldsByOwner(currentPlayer);
     }
+
+    /**getListHousableFields
+     * @return a list with all normalFields
+     */
     public List<NormalField> getListHousableFields() {
         List<NormalField> normalFields = new ArrayList<>();
         for (int i = 0; i < board.getFields().size(); i++) {
@@ -300,6 +302,12 @@ public class Game {
         return normalFields;
     }
 
+    /**buildHouse
+     * tests, if a field has les, than 5 houses and if it own by the currentPlayer, if true:
+     * it increment 1 to the hotel-value from the field and reduce the player accountbalance by the worth of the house / hotel
+     * finally the listener onHotel gets called and a message gets created
+     * @param field the selected field
+     */
     public void buildHouse(NormalField field) {
         if (field.getHotel() >= 5 || field.getOwner() != currentPlayer) {
             return;
@@ -312,6 +320,12 @@ public class Game {
         message(field.getName() + ", Haus wurde gebaut");
     }
 
+    /**remobeHotel
+     * test if the field has more than 0 houses and is own by the current player, if true:
+     * it reduce the hotel-value from the field by 1 and adds the half of the worth of a hotel / house to the player accountbalance
+     * finally the listener onHotel gets called and a message gets created
+     * @param field the selected field
+     */
     public void removeHotel(NormalField field) {
         if (field.getHotel() <= 0 || field.getOwner() != currentPlayer) {
             return;
@@ -383,5 +397,14 @@ public class Game {
             f2.setOwner(p2);
             message("Es konnte leider kein Grundstück getauscht werden.");
         }
+    }
+
+    public void onDeal(Player player2, int moneyP1, int moneyP2, Field fieldP1, Field fieldP2){
+        dealMoney(currentPlayer, moneyP1, player2, moneyP2);
+        if(fieldP1 != null && fieldP2 != null) {
+            dealPlaces(currentPlayer, fieldP1, player2, fieldP2);
+        }
+
+        littleUpdateGUI();
     }
 }
