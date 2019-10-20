@@ -76,7 +76,7 @@ public class Game {
     }
 
     /**getBank
-     * returns a non human player, which is used to own field like the JailField
+     * returns a non human player, which is used to own field like the StartField
      * @return the non human player bank
      */
     public Player getBank() {
