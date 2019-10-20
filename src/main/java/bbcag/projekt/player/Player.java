@@ -8,6 +8,12 @@ public class Player {
     private byte remainingDaysInPrison;
     private int count = 0;
 
+    /**Player
+     * a object with data init...
+     *
+     * @param name the player name
+     * @param color the color used in the gui
+     */
     public Player(String name, String color) {
         this.name = name;
         this.color = color;

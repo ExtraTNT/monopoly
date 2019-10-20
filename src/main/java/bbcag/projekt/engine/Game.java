@@ -11,6 +11,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**Game
+ * the engine as such...
+ * this class is a singleton class...
+ */
 public class Game {
     private static Game instance;
     private Set<GameListener> listeners;
@@ -20,14 +24,29 @@ public class Game {
     private Board board;
     private Player bank = new Player("bank", "#FFFFFF");
 
+    /**Game
+     *the engine as such...
+     * crates the listeners and the board...
+     */
     private Game() {
         listeners = new HashSet<>();
-
         board = BoardFactory.getInstance().createBoard(bank);
     }
+
+    /**addListener
+     * adds new GameListener to the listener set.
+     * used in the UI-classes to communicate with the engine
+     * @param listener the new listener
+     */
     public void addListener(GameListener listener) {
         listeners.add(listener);
     }
+
+    /**addPlayer
+     * adds a new player in the allPlayer list, sets the current player and trigger the listener onPlayerAdded
+     * @param name the name of new player
+     * @param color the color of the new player
+     */
     public void addPlayer(String name, String color) {
         Player player = new Player(name, color);
 
@@ -38,24 +57,51 @@ public class Game {
             listener.onPlayerAdded(player);
         }
     }
+
+    /**message
+     * sends a message to the gui, used for things like: playerxy has rolled
+     * @param message the message to display in the gui
+     */
     public void message(String message) {
         for (GameListener listener : listeners) {
             listener.onMessage(message);
         }
     }
+
+    /**getCurrentPlayer
+     * @return the current player
+     */
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
+
+    /**getBank
+     * returns a non human player, which is used to own field like the JailField
+     * @return the non human player bank
+     */
     public Player getBank() {
         return bank;
     }
+
+    /**getPlayerList
+     * @return a list with all not death human-player in this session
+     */
     public List<Player> getPlayerList() {
         return allPlayers;
     }
+
+    /**getBoard
+     *
+     * @return the created board-object -> more details in the Game constructor, the BoardFactory class and the Board class
+     */
     public Board getBoard() {
         return board;
     }
-    //Start function to check if there are at least 2 players + listener functions
+
+    /**start
+     * Start function to check if there are at least 2 players + listener functions (onStart and on CurrentPlayerChange)
+     * @throws NotEnoughPlayersException .
+     */
     public void start() throws NotEnoughPlayersException {
         if (allPlayers.size() < 2) {
             throw new NotEnoughPlayersException();
@@ -70,6 +116,10 @@ public class Game {
         }
     }
 
+    /**onDone
+     * calls a listener
+     * is used, if a gui action done...
+     */
     public void onDone() {
         for (GameListener listener : listeners) {
             listener.onDone();
@@ -157,7 +207,7 @@ public class Game {
     //Function Hugi made to move or check where the Player is using the dice result from rollDiceForCurrentPlayer()
     /**playMove
      * @param diceNbr int -> dice1-result + dice2-result
-     * function move the Player if necessary or check if the player has remainingDaysInPrision -> wait, wenn go from 1 to 0 -> pay
+     * function move the Player if necessary or check if the player has remainingDaysInPrison -> wait, if go from 1 to 0 -> pay
      * tests also if the player wins.
      * if the player move in a field will the method passIt with the player (currentPlayer) called.
      * if the player step to the final field, steppingOnIt will called with the player (currentPlayer)

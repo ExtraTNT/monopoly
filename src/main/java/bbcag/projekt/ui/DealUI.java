@@ -74,8 +74,6 @@ public class DealUI extends BorderPane {
         dealExitButton.setOnAction(event -> Game.getInstance().onDone());
         dealDealButton.setOnAction(event -> onDealPressed());
 
-
-
         HBox dealBottomArea = new HBox(5);
         dealBottomArea.setPadding(new Insets(10));
 
