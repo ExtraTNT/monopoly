@@ -19,7 +19,7 @@ public class PolicemanField extends Field {
      * that happens, if you go to the police...
      * make a message, set the position to 10 (the JailField) and set RemainingDaysInPrison
      * @param player the current player
-     * @param rolledSum the sum the 2 dies, which the player has rolled
+     * @param rolledSum the sum of the 2 dies, which the player has rolled
      */
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
