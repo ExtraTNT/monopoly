@@ -15,7 +15,7 @@ public class PolicemanField extends Field {
         this.name = "Gehe ins Gefaengnis!";
     }
 
-    /**stepingOnIt
+    /**steppingOnIt
      * that happens, if you go to the police...
      * make a message, set the position to 10 (the JailField) and set RemainingDaysInPrison
      * @param player the current player
