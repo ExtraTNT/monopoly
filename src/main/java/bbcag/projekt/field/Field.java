@@ -20,7 +20,7 @@ public abstract class Field {
     /**steppingOnIt
      * define what happens, if a player stepping on this field
      * @param player the current player
-     * @param rolledSum the sum the 2 dies, which the player has rolled
+     * @param rolledSum the sum of the 2 dies, which the player has rolled
      */
     public abstract void steppingOnIt(Player player, int rolledSum);
 

@@ -3,17 +3,28 @@ package bbcag.projekt.field;
 import bbcag.projekt.engine.Game;
 import bbcag.projekt.player.Player;
 
+/**ActionField
+ * the "random thing" fields
+ */
 public class ActionField extends Field {
     public ActionField(String name, Player bank){
         owner = bank;
         this.name = name;
     }
 
+    /**getWorth
+     * @return the worth of the field == 0
+     */
     @Override
     public int getWorth() {
         return 0;
     }
 
+    /**steppingOnIt
+     * just a random action like give the player money or move player 3 fields back or what ever.
+     * @param player the current player
+     * @param rolledSum the sum  of the 2 dies, which the player has rolled
+     */
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
             Game.getInstance().message(player.getName() + " ist auf " + this.getName() + " gelandet.");

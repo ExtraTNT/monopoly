@@ -12,9 +12,9 @@ public abstract class Board {
 
     protected abstract List<Field> createFields();
 
-    /**
+    /**Board
      * FIELDS -> all FIELDS from the Board aka the board... xD
-     * @param bank the Player who owns all FIELDS that can't be sold to Player
+     * @param bank the Player who owns all FIELDS which can't be sold to Player
      */
     protected Board(Player bank) {
         this.BANK = bank;
