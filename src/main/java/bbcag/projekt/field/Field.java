@@ -8,13 +8,24 @@ public abstract class Field {
     protected String name;
     protected boolean canBuy = false;
 
+    /**Field
+     * every Field on the Board
+     */
     public Field() {
         this(null);
     }
+
+    /**Field
+     *
+     * @param owner if the field is owned by the bank... (like the StartField)
+     */
     public Field(Player owner) {
         this.owner = owner;
     }
 
+    /**getWorth
+     * @return the worth of the field (how much it cost)
+     */
     public abstract int getWorth();
 
     /**steppingOnIt
@@ -24,11 +35,24 @@ public abstract class Field {
      */
     public abstract void steppingOnIt(Player player, int rolledSum);
 
+    /**canBuy
+     *
+     * @return if the field is buyable at the time
+     */
     public boolean canBuy() {
         return canBuy;
     }
+
+    /**passIt
+     * define what happens, if you step over this field (mostly nothing...)
+     * @param player the current player
+     */
     public void passIt(Player player){
     }
+
+    /**getOwner
+     * @return the owner of this Field
+     */
     public Player getOwner() {
         return owner;
     }
@@ -48,9 +72,17 @@ public abstract class Field {
             return false;
         }
     }
+
+    /**getName
+     * @return the name -> is better to different toString and getName, but it do exactly the same...
+     */
     public String getName() {
         return name;
     }
+
+    /**setName
+     * @param name the name of the Field
+     */
     public void setName(String name) {
         this.name = name;
     }
@@ -62,6 +94,10 @@ public abstract class Field {
     public void setOwner(Player owner) {
         this.owner = owner;
     }
+
+    /**toString
+     * @return the name
+     */
     @Override
     public String toString() {
         return this.getName();
