@@ -23,6 +23,8 @@ public class DealUI extends BorderPane {
     private TextField dealer2MoneyText;
     private TextField dealer1MoneyText;
     private TextField dealer1Name;
+    private Label dealer1FullMoneyLabel;
+    private Label dealer2FullMoneyLabel;
 
     public DealUI() {
         HBox dealScreenHBox = new HBox();
@@ -34,7 +36,7 @@ public class DealUI extends BorderPane {
         dealer1Name = new TextField();
         dealer1Name.setEditable(false);
         ScrollPane dealer1PropertyScroll = new ScrollPane();
-        Label dealer1FullMoneyLabel = new Label();
+        dealer1FullMoneyLabel = new Label();
         dealer1PropertyScroll.setContent(dealer1FullMoneyLabel);
 
         VBox traderBox1 = new VBox(5);
@@ -57,7 +59,7 @@ public class DealUI extends BorderPane {
         dealer2Field = new ComboBox(optionsFieldsPlayer2);
         dealer2MoneyText = new TextField();
         ScrollPane dealer2PropertyScroll = new ScrollPane();
-        Label dealer2FullMoneyLabel = new Label();
+        dealer2FullMoneyLabel = new Label();
         dealer2PropertyScroll.setContent(dealer2FullMoneyLabel);
 
         VBox traderBox2 = new VBox(5);
@@ -101,6 +103,7 @@ public class DealUI extends BorderPane {
             public void onStartDealing(Player currentPlayer) {
                 dealer1Name.setText(Game.getInstance().getCurrentPlayer().toString());
                 options.setAll(Game.getInstance().getPlayerList());
+                dealer1FullMoneyLabel.setText(Game.getInstance().getCurrentPlayer().getAccountBalance() + "$");
             }
 
             @Override
@@ -139,9 +142,9 @@ public class DealUI extends BorderPane {
             int money1;
             int money2;
 
-            if(!dealer1MoneyText.getText().equals("") || !dealer1MoneyText.getText().isEmpty()){ money1 =  Integer.parseInt(dealer1MoneyText.getText());}
+            if(!dealer1MoneyText.getText().equals("") && !dealer1MoneyText.getText().isEmpty()){ money1 = Integer.parseInt(dealer1MoneyText.getText());}
             else{money1 = 0;}
-            if(!dealer2MoneyText.getText().equals("") || !dealer1MoneyText.getText().isEmpty()) { money2 = Integer.parseInt(dealer2MoneyText.getText());}
+            if(!dealer2MoneyText.getText().equals("") && !dealer1MoneyText.getText().isEmpty()){ money2 = Integer.parseInt(dealer2MoneyText.getText());}
             else{money2 = 0;}
 
             Game.getInstance().onDeal(player, money1, money2, (Field)dealer1Field.getValue(), (Field)dealer2Field.getValue());
@@ -150,7 +153,6 @@ public class DealUI extends BorderPane {
     private void update(){
             optionsFieldsPlayer1.setAll(Game.getInstance().getFieldsCurrentPlayer());
             optionsFieldsPlayer2.setAll(Game.getInstance().getBoard().getFieldsByOwner((Player) dealer2Selection.getValue()));
-        //deb-ug xD
-        //System.out.println(dealer2Selection.getSelectionModel().getSelectedItem().toString());
+            dealer2FullMoneyLabel.setText(((Player) dealer2Selection.getValue()).getAccountBalance() + "$");
     }
 }

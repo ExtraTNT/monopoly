@@ -21,7 +21,7 @@ public class NormalField extends BuyableField {
         this.worthHotel = worthHotel;
     }
 
-    public int getRent() {
+    private int getRent() {
         return Rent[Hotel];
     }
     public void buy(Player player) {

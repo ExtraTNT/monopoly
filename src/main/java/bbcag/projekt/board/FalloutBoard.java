@@ -2,15 +2,14 @@ package bbcag.projekt.board;
 
 import bbcag.projekt.player.Player;
 import bbcag.projekt.field.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
 class FalloutBoard extends Board {
 
-    protected static final String NAME = "FALLOUT";
+    static final String NAME = "FALLOUT";
 
-    protected FalloutBoard(Player bank) {
+    FalloutBoard(Player bank) {
         super(bank);
     }
 

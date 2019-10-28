@@ -17,8 +17,9 @@ import javafx.scene.paint.Paint;
 public class MainUI extends BorderPane {
 
     private static Label rollResult = new Label("_ and _");
-    private Canvas centerAreaCanvas = new Canvas(900,900);
+    private Canvas centerAreaCanvas = new Canvas(900, 900);
     private GraphicsContext gc = centerAreaCanvas.getGraphicsContext2D();
+
     public MainUI() {
 
         //Gameboard stuff
@@ -26,7 +27,7 @@ public class MainUI extends BorderPane {
         gameBoard.setFitHeight(900);
         gameBoard.setFitWidth(900);
         StackPane centralStack = new StackPane(); //Stackpane to stack both the gameBoard and Canvas on top of each other
-        centralStack.getChildren().addAll(gameBoard,centerAreaCanvas);
+        centralStack.getChildren().addAll(gameBoard, centerAreaCanvas);
 
         //Button stuff at the bottom
         Button rollButton = new Button("Roll");
@@ -92,9 +93,15 @@ public class MainUI extends BorderPane {
         //Game listeners
         Game.getInstance().addListener(new GameListener() {
             @Override
-            public void onStart() {updatePlayerPositions();}
+            public void onStart() {
+                updatePlayerPositions();
+            }
+
             @Override
-            public void onPlayerAdded(Player player) {updatePlayerPositions();}
+            public void onPlayerAdded(Player player) {
+                updatePlayerPositions();
+            }
+
             @Override
             public void onCurrentPlayerChange(Player player) {
                 playerAccountBalanceField.setText(player.getAccountBalance() + ".-");
@@ -102,118 +109,147 @@ public class MainUI extends BorderPane {
                 updatePlayerPositions();
                 playerPlaceField.setText(Game.getInstance().getBoard().getFieldByIndex(player.getPosition()).getName());
                 playerPlaces.setText("");
-                for(Field field : Game.getInstance().getBoard().getFieldsByOwner(player)){
+                for (Field field : Game.getInstance().getBoard().getFieldsByOwner(player)) {
                     playerPlaces.appendText(field.getName() + "\n");
                 }
             }
+
             @Override
             public void onDicesRolled(int dice1, int dice2) {
                 rollResult.setText(dice1 + " and " + dice2);
                 updatePlayerPositions();
                 playerPlaceField.setText(Game.getInstance().getBoard().getFieldByIndex(Game.getInstance().getCurrentPlayer().getPosition()).getName());
             }
+
             @Override
-            public void onStartDealing(Player currentPlayer) {}
+            public void onStartDealing(Player currentPlayer) {
+            }
+
             @Override
             public void onWin(Player winer) {
                 gc.setFill(Paint.valueOf("#ff0000"));
                 gc.fillText((winer + " WINS!"), 400, 200);
             }
+
             @Override
             public void onBuy(Player player) {
                 playerAccountBalanceField.setText(player.getAccountBalance() + ".-");
                 playerPlaces.setText("");
-                for(Field field : Game.getInstance().getBoard().getFieldsByOwner(player)){
+                for (Field field : Game.getInstance().getBoard().getFieldsByOwner(player)) {
                     playerPlaces.appendText(field.getName() + "\n");
                 }
                 updatePlayerPositions();
             }
+
             @Override
-            public void onHotel() {updatePlayerPositions();}
+            public void onHotel() {
+                updatePlayerPositions();
+            }
+
             @Override
-            public void onDone() { }
+            public void onDone() {
+            }
+
             @Override
-            public void onMessage(String message) {gameMessages.appendText(message + "\n");}
+            public void onMessage(String message) {
+                gameMessages.appendText(message + "\n");
+            }
         });
     }
-    private void updatePlayerPositions(){
-        gc.clearRect(0,0, 900, 900);
-        for(Player p : Game.getInstance().getPlayerList()){
+
+    private void updatePlayerPositions() {
+        gc.clearRect(0, 0, 900, 900);
+        for (Player p : Game.getInstance().getPlayerList()) {
             gc.setFill(Paint.valueOf(p.getColor()));
             gc.fillOval(getPlayerX(p), getPlayerY(p), 40, 40);
         }
         updateHotels();
     }
 
-    /**getPlayerX
+    /**
+     * getPlayerX
      * calculate the x pos, that the player can be drawn on the screen
+     *
      * @param player the player object
      * @return X-position to draw the player at
      */
-    private int getPlayerX(Player player){
-        if(player.getPosition() >= 30 && player.getPosition() <= 39 || player.getPosition() == 0){
+    private int getPlayerX(Player player) {
+        if (player.getPosition() >= 30 && player.getPosition() <= 39 || player.getPosition() == 0) {
             return 810;
         }
-        if(player.getPosition() >= 10 && player.getPosition() <= 20){
+        if (player.getPosition() >= 10 && player.getPosition() <= 20) {
             return 50;
         }
-        if(player.getPosition() >20 && player.getPosition() < 30){
-            return((player.getPosition()-21)*72 + 140);
-        }
-        else{
-            return (720- (player.getPosition()-1)*72);
+        if (player.getPosition() > 20 && player.getPosition() < 30) {
+            return ((player.getPosition() - 21) * 72 + 140);
+        } else {
+            return (720 - (player.getPosition() - 1) * 72);
         }
     }
 
-    /**getPlayerY
+    /**
+     * getPlayerY
      * calculate the y pos, that the player can be drawn on the screen
+     *
      * @param player the player object
      * @return y-position to draw the player at
      */
-    private int getPlayerY(Player player){
-        if(player.getPosition() >= 0 && player.getPosition() <= 10){return 810;}
-        if(player.getPosition() >= 20 && player.getPosition() <= 30){return 50;}
-        if(player.getPosition() > 10 && player.getPosition() < 20){return (720- (player.getPosition()-11)*72);}
-        else{return((player.getPosition()-31)*72 + 140);}
+    private int getPlayerY(Player player) {
+        if (player.getPosition() >= 0 && player.getPosition() <= 10) {
+            return 810;
+        }
+        if (player.getPosition() >= 20 && player.getPosition() <= 30) {
+            return 50;
+        }
+        if (player.getPosition() > 10 && player.getPosition() < 20) {
+            return (720 - (player.getPosition() - 11) * 72);
+        } else {
+            return ((player.getPosition() - 31) * 72 + 140);
+        }
     }
-    private void updateHotels(){
 
-        for(NormalField field : Game.getInstance().getListHousableFields()){
-            if(field.getOwner() != Game.getInstance().getBank() && field.getOwner() != null) {
+    private void updateHotels() {
+
+        for (NormalField field : Game.getInstance().getListHousableFields()) {
+            if (field.getOwner() != Game.getInstance().getBank() && field.getOwner() != null) {
                 gc.setFill(Paint.valueOf(field.getOwner().getColor()));
                 gc.fillText(field.getHotel() + "", getHotelX(field), getHotelY(field));
             }
         }
     }
-    private int getHotelY(Field field){
-        if(Game.getInstance().getBoard().getIndexFromField(field) >= 0 &&
-                Game.getInstance().getBoard().getIndexFromField(field) <= 10){
+
+    private int getHotelY(Field field) {
+        if (Game.getInstance().getBoard().getIndexFromField(field) >= 0 &&
+                Game.getInstance().getBoard().getIndexFromField(field) <= 10) {
             return 790;
         }
-        if(Game.getInstance().getBoard().getIndexFromField(field) >= 20 &&
-                Game.getInstance().getBoard().getIndexFromField(field) <= 30){
+        if (Game.getInstance().getBoard().getIndexFromField(field) >= 20 &&
+                Game.getInstance().getBoard().getIndexFromField(field) <= 30) {
             return 120;
         }
-        if(Game.getInstance().getBoard().getIndexFromField(field) > 10 &&
-                Game.getInstance().getBoard().getIndexFromField(field) < 20){
-            return (720- (Game.getInstance().getBoard().getIndexFromField(field)-11)*72);
+        if (Game.getInstance().getBoard().getIndexFromField(field) > 10 &&
+                Game.getInstance().getBoard().getIndexFromField(field) < 20) {
+            return (720 - (Game.getInstance().getBoard().getIndexFromField(field) - 11) * 72);
+        } else {
+            return ((Game.getInstance().getBoard().getIndexFromField(field) - 31) * 72 + 140);
         }
-        else{return((Game.getInstance().getBoard().getIndexFromField(field)-31)*72 + 140);}
     }
-    private int getHotelX(Field field){
-        if(Game.getInstance().getBoard().getIndexFromField(field) >= 30 &&
+
+    private int getHotelX(Field field) {
+        if (Game.getInstance().getBoard().getIndexFromField(field) >= 30 &&
                 Game.getInstance().getBoard().getIndexFromField(field) <= 39 ||
-                Game.getInstance().getBoard().getIndexFromField(field) == 0){
+                Game.getInstance().getBoard().getIndexFromField(field) == 0) {
             return 780;
         }
-        if(Game.getInstance().getBoard().getIndexFromField(field) >= 10 &&
-                Game.getInstance().getBoard().getIndexFromField(field) <= 20){
+        if (Game.getInstance().getBoard().getIndexFromField(field) >= 10 &&
+                Game.getInstance().getBoard().getIndexFromField(field) <= 20) {
             return 105;
         }
-        if(Game.getInstance().getBoard().getIndexFromField(field) >20 &&
-                Game.getInstance().getBoard().getIndexFromField(field) < 30){
-            return((Game.getInstance().getBoard().getIndexFromField(field)-21)*72 + 140);
+        if (Game.getInstance().getBoard().getIndexFromField(field) > 20 &&
+                Game.getInstance().getBoard().getIndexFromField(field) < 30) {
+            return ((Game.getInstance().getBoard().getIndexFromField(field) - 21) * 72 + 140);
+        } else {
+            return (720 - (Game.getInstance().getBoard().getIndexFromField(field) - 1) * 72);
         }
-        else{return (720- (Game.getInstance().getBoard().getIndexFromField(field)-1)*72);}
     }
 }

@@ -2,15 +2,14 @@ package bbcag.projekt.board;
 
 import bbcag.projekt.player.Player;
 import bbcag.projekt.field.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
 class SwissBoard extends Board {
 
-    protected static final String NAME = "SWISS";
+    static final String NAME = "SWISS";
 
-    protected SwissBoard(Player bank) {
+    SwissBoard(Player bank) {
         super(bank);
     }
 

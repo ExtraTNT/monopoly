@@ -217,7 +217,7 @@ public class Game {
      * if the player step to the final field, steppingOnIt will called with the player (currentPlayer)
      *
      */
-    public void playMove(int diceNbr) {
+    private void playMove(int diceNbr) {
         if (currentPlayer.isDeath()) {
             allPlayers.remove(currentPlayer);
             if (allPlayers.size() == 1) {
@@ -364,6 +364,12 @@ public class Game {
         if (p1.getAccountBalance() >= moneyP1 && p2.getAccountBalance() >= moneyP2) {
             p1.setAccountBalance(p1.getAccountBalance() + moneyP2- moneyP1);
             p2.setAccountBalance(p2.getAccountBalance() + moneyP1- moneyP2);
+
+            if(moneyP1 > moneyP2){
+                message(p1 + " hat " + p2 + " " + (moneyP1 - moneyP2) + "$ gegeben.");
+            } else if(moneyP1 < moneyP2) {
+                message(p2 + " hat " + p1 + " " + (moneyP2 - moneyP1) + "$ gegeben.");
+            }
             return true;
         } else {
             message("Es konnte nicht getauscht werden, ein Player ist zu arm.");
@@ -371,7 +377,7 @@ public class Game {
         }
     }
 
-    private boolean dealPlaces(Player p1, Field f1, Player p2, Field f2) { //todo make possible that just one field is required (done, but not well tested)
+    private boolean dealPlaces(Player p1, Field f1, Player p2, Field f2) {
         boolean p1Fail = false;
         boolean p2Fail = false;
 
@@ -393,12 +399,11 @@ public class Game {
     }
 
     public void onDeal(Player player2, int moneyP1, int moneyP2, Field fieldP1, Field fieldP2){
+        if(player2 == currentPlayer){return;}
         if(dealMoney(currentPlayer, moneyP1, player2, moneyP2)) {
-            if (fieldP1 != null && fieldP2 != null) {
                 if(!dealPlaces(currentPlayer, fieldP1, player2, fieldP2)){
                     player2.setAccountBalance(player2.getAccountBalance() + moneyP2- moneyP1);
                     currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() + moneyP1- moneyP2);
-                }
             }
         }
         littleUpdateGUI();

@@ -11,7 +11,7 @@ public abstract class BuyableField extends Field {
     /**BuyableField
      * a constructor to construct the Railway and WorkFields
      */
-    public BuyableField() {
+    BuyableField() {
         this(null);
     }
 
@@ -19,7 +19,7 @@ public abstract class BuyableField extends Field {
      * a constructor to construct the NormalFields
      * @param owner the owner of the Field
      */
-    public BuyableField(Player owner) {
+    BuyableField(Player owner) {
         this.owner = owner;
     }
 

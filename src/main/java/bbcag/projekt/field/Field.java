@@ -4,9 +4,9 @@ package bbcag.projekt.field;
 import bbcag.projekt.player.Player;
 
 public abstract class Field {
-    protected Player owner;
+    Player owner;
     protected String name;
-    protected boolean canBuy = false;
+    boolean canBuy = false;
 
     /**Field
      * every Field on the Board

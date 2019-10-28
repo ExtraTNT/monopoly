@@ -16,7 +16,7 @@ public abstract class Board {
      * FIELDS -> all FIELDS from the Board aka the board... xD
      * @param bank the Player who owns all FIELDS which can't be sold to Player
      */
-    protected Board(Player bank) {
+    Board(Player bank) {
         this.BANK = bank;
         FIELDS = createFields();
     }
@@ -24,7 +24,7 @@ public abstract class Board {
     /**
      * @return BANK, the Player who owns all FIELDS that can't be sold to Player
      */
-    protected Player getBank() {
+    Player getBank() {
         return BANK;
     }
 
@@ -39,11 +39,10 @@ public abstract class Board {
     public List<Field> getFieldsByOwner(Player owner){
         List fieldshousable = new ArrayList<>();
         for (Field candidate : FIELDS) {
-            if(candidate.getOwner() == null){
-
-            }
-            else if (candidate.getOwner().equals(owner)){
-                fieldshousable.add(candidate);
+            if (candidate.getOwner() != null) {
+                if (candidate.getOwner().equals(owner)){
+                    fieldshousable.add(candidate);
+                }
             }
         }
     return fieldshousable;

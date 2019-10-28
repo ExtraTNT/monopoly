@@ -15,7 +15,7 @@ public class RailwayField extends BuyableField  {
         this.name = name;
     }
 
-    public int getRent(){
+    private int getRent(){
         List<Field> listToCount = new ArrayList<>();
         for(Field f : Game.getInstance().getBoard().getFieldsByOwner(owner)){
             if(f instanceof RailwayField){

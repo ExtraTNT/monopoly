@@ -14,9 +14,9 @@ public class Configuration {
         }
         return instance;
     }
+
     private Configuration() {
         PROPERTIES = new Properties();
-
         try {
             PROPERTIES.load(getClass().getResourceAsStream("/config.properties"));
         } catch (IOException e) {
@@ -24,9 +24,7 @@ public class Configuration {
         }
     }
 
-    public String get(String key){
+    public String get(String key) {
         return (String) PROPERTIES.get(key);
     }
-
-
 }
