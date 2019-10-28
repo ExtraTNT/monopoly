@@ -106,7 +106,7 @@ public class DealUI extends BorderPane {
             public void onStartDealing(Player currentPlayer) {
                 dealer1Name.setText(Game.getInstance().getCurrentPlayer().toString());
                 options.setAll(Game.getInstance().getPlayerList());
-
+/*
                 dealer2Selection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
                     @Override
                     public void changed(ObservableValue observable, Object oldValue, Object newValue) {
@@ -114,6 +114,8 @@ public class DealUI extends BorderPane {
                         //update();
                     }
                 });
+                */
+
             }
 
             @Override
