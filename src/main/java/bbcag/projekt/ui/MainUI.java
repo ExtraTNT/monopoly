@@ -21,18 +21,12 @@ public class MainUI extends BorderPane {
     private GraphicsContext gc = centerAreaCanvas.getGraphicsContext2D();
     public MainUI() {
 
-
         //Gameboard stuff
         ImageView gameBoard = new ImageView(Configuration.getInstance().get("board.type") + ".png");
         gameBoard.setFitHeight(900);
         gameBoard.setFitWidth(900);
         StackPane centralStack = new StackPane(); //Stackpane to stack both the gameBoard and Canvas on top of each other
         centralStack.getChildren().addAll(gameBoard,centerAreaCanvas);
-
-
-
-        //gc.setFill(Paint.valueOf("#ff0000"));
-        //gc.fillOval(500,810,40,40);
 
         //Button stuff at the bottom
         Button rollButton = new Button("Roll");
@@ -55,7 +49,6 @@ public class MainUI extends BorderPane {
         //Text and info stuff on the right
 
         VBox rightInfoArea = new VBox(3);
-
         TextField playerAccountBalanceField = new TextField();
         TextField playerPlayerNameField = new TextField();
 
@@ -67,8 +60,6 @@ public class MainUI extends BorderPane {
         playerPlaces.setEditable(false);
         playerPropertyScroll.setContent(playerPlaces);
 
-
-
         TextField playerPlaceField = new TextField();
         playerPlaceField.setPrefWidth(200);
         playerPlaceField.setEditable(false);
@@ -79,17 +70,10 @@ public class MainUI extends BorderPane {
         TextArea gameMessages = new TextArea();
         gameMessages.setEditable(false);
 
-
         rightInfoArea.getChildren().addAll(playerAccountBalanceField, playerPlayerNameField, playerPropertyScroll, playerPlaceField, playerAdditionalScroll, gameMessages);
-
         rightInfoArea.setPadding(new Insets(20));
 
-
         //Left area space info
-        VBox leftInfoArea = new VBox(3);
-
-        ScrollPane spacePropertyScroll = new ScrollPane();
-
 
         rollResult.setPrefHeight(50);
         rollResult.setPrefWidth(100);
@@ -105,19 +89,12 @@ public class MainUI extends BorderPane {
         setBottom(buttonArea);
         setRight(rightInfoArea);
 
-
         //Game listeners
         Game.getInstance().addListener(new GameListener() {
             @Override
-            public void onStart() {
-                updatePlayerPositions();
-            }
-
+            public void onStart() {updatePlayerPositions();}
             @Override
-            public void onPlayerAdded(Player player) {
-                updatePlayerPositions();
-            }
-
+            public void onPlayerAdded(Player player) {updatePlayerPositions();}
             @Override
             public void onCurrentPlayerChange(Player player) {
                 playerAccountBalanceField.setText(player.getAccountBalance() + ".-");
@@ -128,28 +105,20 @@ public class MainUI extends BorderPane {
                 for(Field field : Game.getInstance().getBoard().getFieldsByOwner(player)){
                     playerPlaces.appendText(field.getName() + "\n");
                 }
-                //rollResult.setText(Game.getInstance().getPlayerList().get(1).getPosition() + " " + Game.getInstance().getPlayerList().get(1).getName());
             }
-
             @Override
             public void onDicesRolled(int dice1, int dice2) {
                 rollResult.setText(dice1 + " and " + dice2);
                 updatePlayerPositions();
                 playerPlaceField.setText(Game.getInstance().getBoard().getFieldByIndex(Game.getInstance().getCurrentPlayer().getPosition()).getName());
-
             }
-
             @Override
-            public void onStartDealing(Player currentPlayer) {
-
-            }
-
+            public void onStartDealing(Player currentPlayer) {}
             @Override
             public void onWin(Player winer) {
                 gc.setFill(Paint.valueOf("#ff0000"));
                 gc.fillText((winer + " WINS!"), 400, 200);
             }
-
             @Override
             public void onBuy(Player player) {
                 playerAccountBalanceField.setText(player.getAccountBalance() + ".-");
@@ -159,25 +128,15 @@ public class MainUI extends BorderPane {
                 }
                 updatePlayerPositions();
             }
-
             @Override
-            public void onHotel() {
-                updatePlayerPositions();
-            }
-
+            public void onHotel() {updatePlayerPositions();}
             @Override
-            public void onDone() {
-
-            }
-
+            public void onDone() { }
             @Override
-            public void onMessage(String message) {
-                gameMessages.appendText(message + "\n");
-            }
+            public void onMessage(String message) {gameMessages.appendText(message + "\n");}
         });
     }
-
-    public void updatePlayerPositions (){
+    private void updatePlayerPositions(){
         gc.clearRect(0,0, 900, 900);
         for(Player p : Game.getInstance().getPlayerList()){
             gc.setFill(Paint.valueOf(p.getColor()));
@@ -212,21 +171,12 @@ public class MainUI extends BorderPane {
      * @return y-position to draw the player at
      */
     private int getPlayerY(Player player){
-        if(player.getPosition() >= 0 && player.getPosition() <= 10){
-            return 810;
-        }
-        if(player.getPosition() >= 20 && player.getPosition() <= 30){
-            return 50;
-        }
-        if(player.getPosition() > 10 && player.getPosition() < 20){
-            return (720- (player.getPosition()-11)*72);
-
-        }
-        else{
-            return((player.getPosition()-31)*72 + 140);
-        }
+        if(player.getPosition() >= 0 && player.getPosition() <= 10){return 810;}
+        if(player.getPosition() >= 20 && player.getPosition() <= 30){return 50;}
+        if(player.getPosition() > 10 && player.getPosition() < 20){return (720- (player.getPosition()-11)*72);}
+        else{return((player.getPosition()-31)*72 + 140);}
     }
-    public void updateHotels (){
+    private void updateHotels(){
 
         for(NormalField field : Game.getInstance().getListHousableFields()){
             if(field.getOwner() != Game.getInstance().getBank() && field.getOwner() != null) {
@@ -236,32 +186,34 @@ public class MainUI extends BorderPane {
         }
     }
     private int getHotelY(Field field){
-        if(Game.getInstance().getBoard().getIndexFromField(field) >= 0 && Game.getInstance().getBoard().getIndexFromField(field) <= 10){
+        if(Game.getInstance().getBoard().getIndexFromField(field) >= 0 &&
+                Game.getInstance().getBoard().getIndexFromField(field) <= 10){
             return 790;
         }
-        if(Game.getInstance().getBoard().getIndexFromField(field) >= 20 && Game.getInstance().getBoard().getIndexFromField(field) <= 30){
+        if(Game.getInstance().getBoard().getIndexFromField(field) >= 20 &&
+                Game.getInstance().getBoard().getIndexFromField(field) <= 30){
             return 120;
         }
-        if(Game.getInstance().getBoard().getIndexFromField(field) > 10 && Game.getInstance().getBoard().getIndexFromField(field) < 20){
+        if(Game.getInstance().getBoard().getIndexFromField(field) > 10 &&
+                Game.getInstance().getBoard().getIndexFromField(field) < 20){
             return (720- (Game.getInstance().getBoard().getIndexFromField(field)-11)*72);
-
         }
-        else{
-            return((Game.getInstance().getBoard().getIndexFromField(field)-31)*72 + 140);
-        }
+        else{return((Game.getInstance().getBoard().getIndexFromField(field)-31)*72 + 140);}
     }
     private int getHotelX(Field field){
-        if(Game.getInstance().getBoard().getIndexFromField(field) >= 30 && Game.getInstance().getBoard().getIndexFromField(field) <= 39 || Game.getInstance().getBoard().getIndexFromField(field) == 0){
+        if(Game.getInstance().getBoard().getIndexFromField(field) >= 30 &&
+                Game.getInstance().getBoard().getIndexFromField(field) <= 39 ||
+                Game.getInstance().getBoard().getIndexFromField(field) == 0){
             return 780;
         }
-        if(Game.getInstance().getBoard().getIndexFromField(field) >= 10 && Game.getInstance().getBoard().getIndexFromField(field) <= 20){
+        if(Game.getInstance().getBoard().getIndexFromField(field) >= 10 &&
+                Game.getInstance().getBoard().getIndexFromField(field) <= 20){
             return 105;
         }
-        if(Game.getInstance().getBoard().getIndexFromField(field) >20 && Game.getInstance().getBoard().getIndexFromField(field) < 30){
+        if(Game.getInstance().getBoard().getIndexFromField(field) >20 &&
+                Game.getInstance().getBoard().getIndexFromField(field) < 30){
             return((Game.getInstance().getBoard().getIndexFromField(field)-21)*72 + 140);
         }
-        else{
-            return (720- (Game.getInstance().getBoard().getIndexFromField(field)-1)*72);
-        }
+        else{return (720- (Game.getInstance().getBoard().getIndexFromField(field)-1)*72);}
     }
 }

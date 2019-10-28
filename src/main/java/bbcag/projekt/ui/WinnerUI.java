@@ -24,6 +24,5 @@ public class WinnerUI extends BorderPane {
 
         //Clicking this button makes you exit
         winButton.setOnAction(event -> System.exit(0));
-
     }
 }

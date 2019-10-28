@@ -45,9 +45,7 @@ public class DealUI extends BorderPane {
         options = FXCollections.observableArrayList();
         options.addAll(Game.getInstance().getPlayerList());
         dealer2Selection = new ComboBox(options);
-
         dealer2Selection.setOnAction(event -> update()); // -> update (p2 just 4 testing)
-
         optionsFieldsPlayer2 = FXCollections.observableArrayList();
         dealer2Field = new ComboBox(optionsFieldsPlayer2);
         dealer2MoneyText = new TextField();
@@ -70,7 +68,6 @@ public class DealUI extends BorderPane {
 
         HBox dealBottomArea = new HBox(5);
         dealBottomArea.setPadding(new Insets(10));
-
         dealBottomArea.getChildren().addAll(dealDealButton, dealExitButton);
         dealScreenHBox.getChildren().addAll(traderBox1, traderBox2);
         setCenter(dealScreenHBox);
@@ -79,30 +76,25 @@ public class DealUI extends BorderPane {
         Game.getInstance().addListener(new GameListener(){
             @Override
             public void onStart() {
-
             }
 
             @Override
             public void onPlayerAdded(Player player) {
-
             }
 
             @Override
             public void onCurrentPlayerChange(Player player) {
-
             }
 
             @Override
             public void onDicesRolled(int dice1, int dice2) {
-
             }
 
             @Override
             public void onStartDealing(Player currentPlayer) {
                 dealer1Name.setText(Game.getInstance().getCurrentPlayer().toString());
                 options.setAll(Game.getInstance().getPlayerList());
-/*
-                dealer2Selection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+/*              dealer2Selection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
                     @Override
                     public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                         System.out.println(newValue);
@@ -110,17 +102,14 @@ public class DealUI extends BorderPane {
                     }
                 });
                 */
-
             }
 
             @Override
             public void onWin(Player winer) {
-
             }
 
             @Override
             public void onBuy(Player player) {
-
             }
 
             @Override
@@ -129,21 +118,17 @@ public class DealUI extends BorderPane {
 
             @Override
             public void onDone() {
-
             }
 
             @Override
             public void onMessage(String message) {
-
             }
         });
     }
 
     //private void updatep2() { //just 4 testing
-
         //Player test = (Player) dealer2Selection.getSelectionModel().getSelectedItem();
         //Object test3 = dealer2Selection.getValue();
-
 
         //System.out.println(test.toString());
         //System.out.println(test3.toString());
@@ -164,7 +149,6 @@ public class DealUI extends BorderPane {
             Game.getInstance().onDone();
     }
     private void update(){
-
         optionsFieldsPlayer1.setAll(Game.getInstance().getFieldsCurrentPlayer());
         optionsFieldsPlayer2.setAll(Game.getInstance().getBoard().getFieldsByOwner((Player)dealer2Selection.getValue()));
 

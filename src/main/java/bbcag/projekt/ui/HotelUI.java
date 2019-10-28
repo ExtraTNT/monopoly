@@ -9,11 +9,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-
 public class HotelUI  extends HBox {
     public HotelUI() {
-
-
 
         //Different fields
         ScrollPane buildableFields = new ScrollPane();
@@ -58,37 +55,30 @@ public class HotelUI  extends HBox {
         Game.getInstance().addListener(new GameListener(){
             @Override
             public void onStart() {
-
             }
 
             @Override
             public void onPlayerAdded(Player player) {
-
             }
 
             @Override
             public void onCurrentPlayerChange(Player player) {
-
             }
 
             @Override
             public void onDicesRolled(int dice1, int dice2) {
-
             }
 
             @Override
             public void onStartDealing(Player currentPlayer) {
-
             }
 
             @Override
             public void onWin(Player winer) {
-
             }
 
             @Override
             public void onBuy(Player player) {
-
             }
 
             @Override
@@ -102,15 +92,12 @@ public class HotelUI  extends HBox {
 
             @Override
             public void onDone() {
-
             }
 
             @Override
             public void onMessage(String message) {
-
             }
         });
-
 
     }
 }

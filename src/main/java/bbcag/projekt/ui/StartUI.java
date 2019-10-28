@@ -79,14 +79,8 @@ public class StartUI extends BorderPane {
         });
 
         startDoneButton.setOnAction(event -> {
-            try {
-                /**
-                 * Game.start() starts the engine
-                 */
-                Game.getInstance().start();
-            } catch (NotEnoughPlayersException e) {
-                startPlayerListText.appendText("\nERROR NOT ENOUGH PLAYERS\n\n");
-            }
+            try { Game.getInstance().start(); }
+            catch (NotEnoughPlayersException e) { startPlayerListText.appendText("\nERROR NOT ENOUGH PLAYERS\n\n"); }
         });
 
         Game.getInstance().addListener(new GameListener() {
@@ -97,47 +91,38 @@ public class StartUI extends BorderPane {
             @Override
             public void onPlayerAdded(Player player) {
                 startPlayerListText.appendText(player.getName() + "\n");
-
             }
 
             @Override
             public void onCurrentPlayerChange(Player player) {
-
             }
 
             @Override
             public void onDicesRolled(int dice1, int dice2) {
-
             }
 
             @Override
             public void onStartDealing(Player currentPlayer) {
-
             }
 
             @Override
             public void onWin(Player winer) {
-
             }
 
             @Override
             public void onBuy(Player player) {
-
             }
 
             @Override
             public void onHotel() {
-
             }
 
             @Override
             public void onDone() {
-
             }
 
             @Override
             public void onMessage(String message) {
-
             }
 
         });
