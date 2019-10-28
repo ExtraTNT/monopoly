@@ -87,40 +87,31 @@ public class StartUI extends BorderPane {
             @Override
             public void onStart() {
             }
-
             @Override
             public void onPlayerAdded(Player player) {
                 startPlayerListText.appendText(player.getName() + "\n");
             }
-
             @Override
             public void onCurrentPlayerChange(Player player) {
             }
-
             @Override
             public void onDicesRolled(int dice1, int dice2) {
             }
-
             @Override
             public void onStartDealing(Player currentPlayer) {
             }
-
             @Override
             public void onWin(Player winer) {
             }
-
             @Override
             public void onBuy(Player player) {
             }
-
             @Override
             public void onHotel() {
             }
-
             @Override
             public void onDone() {
             }
-
             @Override
             public void onMessage(String message) {
             }
