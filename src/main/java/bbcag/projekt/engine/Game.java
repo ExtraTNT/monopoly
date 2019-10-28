@@ -371,7 +371,7 @@ public class Game {
         }
     }
 
-    private boolean dealPlaces(Player p1, Field f1, Player p2, Field f2) { //todo make possible that just one field is required
+    private boolean dealPlaces(Player p1, Field f1, Player p2, Field f2) { //todo make possible that just one field is required (done, but not well tested)
         boolean p1Fail = false;
         boolean p2Fail = false;
 
@@ -384,8 +384,8 @@ public class Game {
             else{ p2Fail = true; }
         }
         if(p1Fail || p2Fail){
-            f1.setOwner(p1);
-            f2.setOwner(p2);
+            if (f1 != null) { f1.setOwner(p1); }
+            if (f2 != null) { f2.setOwner(p2); }
             message("Es konnte leider kein Grundstück getauscht werden.");
             return false;
         }
