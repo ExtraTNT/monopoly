@@ -4,6 +4,8 @@ import bbcag.projekt.engine.Game;
 import bbcag.projekt.engine.GameListener;
 import bbcag.projekt.player.Player;
 import bbcag.projekt.field.Field;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -22,44 +24,41 @@ public class DealUI extends BorderPane {
     private ComboBox dealer2Selection;
     private TextField dealer2MoneyText;
     private TextField dealer1MoneyText;
+    private TextField dealer1Name;
 
     public DealUI() {
         HBox dealScreenHBox = new HBox();
 
         //Left deal side
 
-        optionsFieldsPlayer1 =
-                FXCollections.observableArrayList();
+        optionsFieldsPlayer1 = FXCollections.observableArrayList();
         dealer1Field = new ComboBox(optionsFieldsPlayer1);
         dealer1MoneyText = new TextField();
+        dealer1Name = new TextField();
+        dealer1Name.setEditable(false);
         ScrollPane dealer1PropertyScroll = new ScrollPane();
         Label dealer1FullMoneyLabel = new Label();
         dealer1PropertyScroll.setContent(dealer1FullMoneyLabel);
 
         VBox traderBox1 = new VBox(5);
         traderBox1.setPadding(new Insets(20));
-        traderBox1.getChildren().addAll(dealer1MoneyText, dealer1PropertyScroll, dealer1FullMoneyLabel, dealer1Field);
+        traderBox1.getChildren().addAll(dealer1Name, dealer1MoneyText, dealer1PropertyScroll, dealer1FullMoneyLabel, dealer1Field);
 
         //Right deal side
 
-        options =
-                FXCollections.observableArrayList();
+        options = FXCollections.observableArrayList();
         options.addAll(Game.getInstance().getPlayerList());
-
         dealer2Selection = new ComboBox(options);
 
-        dealer2Selection.setOnAction(event -> update(false));
+        dealer2Selection.setOnAction(event -> update()); // -> update (p2 just 4 testing)
 
-        optionsFieldsPlayer2 =
-                FXCollections.observableArrayList();
+        optionsFieldsPlayer2 = FXCollections.observableArrayList();
         dealer2Field = new ComboBox(optionsFieldsPlayer2);
-
         dealer2MoneyText = new TextField();
         ScrollPane dealer2PropertyScroll = new ScrollPane();
         Label dealer2FullMoneyLabel = new Label();
         TextField dealer2PropertyText = new TextField();
         dealer2PropertyScroll.setContent(dealer2FullMoneyLabel);
-
 
         VBox traderBox2 = new VBox(5);
         traderBox2.setPadding(new Insets(20));
@@ -105,7 +104,16 @@ public class DealUI extends BorderPane {
 
             @Override
             public void onStartDealing(Player currentPlayer) {
+                dealer1Name.setText(Game.getInstance().getCurrentPlayer().toString());
+                options.setAll(Game.getInstance().getPlayerList());
 
+                dealer2Selection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+                    @Override
+                    public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                        System.out.println(newValue);
+                        //update();
+                    }
+                });
             }
 
             @Override
@@ -133,37 +141,39 @@ public class DealUI extends BorderPane {
             }
         });
     }
+
+    private void updatep2() { //just 4 testing
+
+        //Player test = (Player) dealer2Selection.getSelectionModel().getSelectedItem();
+        //Object test3 = dealer2Selection.getValue();
+
+
+        //System.out.println(test.toString());
+        //System.out.println(test3.toString());
+        update();
+    }
+
     private void onDealPressed() {
             Player player = (Player) dealer2Selection.getValue();
             int money1;
             int money2;
 
-            if(!dealer1MoneyText.getText().equals("") || !dealer1MoneyText.getText().isEmpty()){
-                money1 =  Integer.parseInt(dealer1MoneyText.getText()); //exception here NumberFormatException -> string is ""
-            } else{money1 = 0;
-            }
-            if(!dealer2MoneyText.getText().equals("") || !dealer1MoneyText.getText().isEmpty()) {
-                money2 = Integer.parseInt(dealer2MoneyText.getText()); //exception here NumberFormatException
-            } else{money2 = 0;
-            }
-
+            if(!dealer1MoneyText.getText().equals("") || !dealer1MoneyText.getText().isEmpty()){ money1 =  Integer.parseInt(dealer1MoneyText.getText());}
+            else{money1 = 0;}
+            if(!dealer2MoneyText.getText().equals("") || !dealer1MoneyText.getText().isEmpty()) { money2 = Integer.parseInt(dealer2MoneyText.getText());}
+            else{money2 = 0;}
 
             Game.getInstance().onDeal(player, money1, money2, (Field)dealer1Field.getValue(), (Field)dealer2Field.getValue());
-
             Game.getInstance().onDone();
     }
-    public void update(boolean optionsupdate){
-        if(optionsupdate) {
-            options.setAll(Game.getInstance().getPlayerList());
-        }
+    public void update(){
 
         optionsFieldsPlayer1.setAll(Game.getInstance().getFieldsCurrentPlayer());
-
         optionsFieldsPlayer2.setAll(Game.getInstance().getBoard().getFieldsByOwner((Player)dealer2Selection.getValue()));
 
-        dealer2Selection = new ComboBox(options);
-        dealer1Field = new ComboBox(optionsFieldsPlayer1);
+
+        System.out.println(dealer2Selection.getSelectionModel().getSelectedItem().toString());
     }
 }
 
-//todo fix (update, onDealPressed) -> nullptr with fields and player, ""!= ""
+//todo fix javafx (and the code...)
