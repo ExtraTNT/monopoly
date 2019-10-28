@@ -360,51 +360,47 @@ public class Game {
 
     //pls document usefully after programming and fixing bugs -> comments first, then javadocs... vv
 
-    private void dealMoney(Player p1, int moneyP1, Player p2, int moneyP2) {
+    private boolean dealMoney(Player p1, int moneyP1, Player p2, int moneyP2) {
         if (p1.getAccountBalance() >= moneyP1 && p2.getAccountBalance() >= moneyP2) {
-
-            p1.setAccountBalance(p1.getAccountBalance() + moneyP2);
-            p2.setAccountBalance(p2.getAccountBalance() + moneyP1);
-
-            p1.setAccountBalance(p1.getAccountBalance() - moneyP1);
-            p2.setAccountBalance(p2.getAccountBalance() - moneyP2);
+            p1.setAccountBalance(p1.getAccountBalance() + moneyP2- moneyP1);
+            p2.setAccountBalance(p2.getAccountBalance() + moneyP1- moneyP2);
+            return true;
         } else {
             message("Es konnte nicht getauscht werden, ein Player ist zu arm.");
+            return false;
         }
     }
-    private void dealPlaces(Player p1, Field f1, Player p2, Field f2) { //todo make possible that just one field is required
+
+    private boolean dealPlaces(Player p1, Field f1, Player p2, Field f2) { //todo make possible that just one field is required
         boolean p1Fail = false;
         boolean p2Fail = false;
 
         if(f1 != null){
-            if(f1.modifyOwner(p1, p2)){
-                message(p1.getName() + " hat " + p2.getName() + " " + f1.getName() + " gegeben");
-            }
-            else{
-                p1Fail = true;
-            }
+            if(f1.modifyOwner(p1, p2)){ message(p1.getName() + " hat " + p2.getName() + " " + f1.getName() + " gegeben"); }
+            else{ p1Fail = true; }
         }
         if(f2 != null){
-            if(f2.modifyOwner(p2, p1)){
-                message(p2.getName() + " hat " + p2.getName() + " " + f2.getName() + " gegeben");
-            }
-            else{
-                p2Fail = true;
-            }
+            if(f2.modifyOwner(p2, p1)){ message(p2.getName() + " hat " + p1.getName() + " " + f2.getName() + " gegeben"); }
+            else{ p2Fail = true; }
         }
         if(p1Fail || p2Fail){
             f1.setOwner(p1);
             f2.setOwner(p2);
             message("Es konnte leider kein Grundstück getauscht werden.");
+            return false;
         }
+        return true;
     }
 
     public void onDeal(Player player2, int moneyP1, int moneyP2, Field fieldP1, Field fieldP2){
-        dealMoney(currentPlayer, moneyP1, player2, moneyP2);
-        if(fieldP1 != null && fieldP2 != null) {
-            dealPlaces(currentPlayer, fieldP1, player2, fieldP2);
+        if(dealMoney(currentPlayer, moneyP1, player2, moneyP2)) {
+            if (fieldP1 != null && fieldP2 != null) {
+                if(!dealPlaces(currentPlayer, fieldP1, player2, fieldP2)){
+                    player2.setAccountBalance(player2.getAccountBalance() + moneyP2- moneyP1);
+                    currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() + moneyP1- moneyP2);
+                }
+            }
         }
-
         littleUpdateGUI();
     }
 }

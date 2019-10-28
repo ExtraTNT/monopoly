@@ -45,7 +45,14 @@ public class DealUI extends BorderPane {
         options = FXCollections.observableArrayList();
         options.addAll(Game.getInstance().getPlayerList());
         dealer2Selection = new ComboBox(options);
+
+
+        /**dealer2Selection.setOnAction(event -> update());
+         * this method provoke exceptions, but doesn't cause any other problems
+         * the old method resulted in a failure of the garbage collector xD
+         */
         dealer2Selection.setOnAction(event -> update()); // -> update (p2 just 4 testing)
+
         optionsFieldsPlayer2 = FXCollections.observableArrayList();
         dealer2Field = new ComboBox(optionsFieldsPlayer2);
         dealer2MoneyText = new TextField();
@@ -94,14 +101,6 @@ public class DealUI extends BorderPane {
             public void onStartDealing(Player currentPlayer) {
                 dealer1Name.setText(Game.getInstance().getCurrentPlayer().toString());
                 options.setAll(Game.getInstance().getPlayerList());
-/*              dealer2Selection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-                    @Override
-                    public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                        System.out.println(newValue);
-                        //update();
-                    }
-                });
-                */
             }
 
             @Override
@@ -149,12 +148,9 @@ public class DealUI extends BorderPane {
             Game.getInstance().onDone();
     }
     private void update(){
-        optionsFieldsPlayer1.setAll(Game.getInstance().getFieldsCurrentPlayer());
-        optionsFieldsPlayer2.setAll(Game.getInstance().getBoard().getFieldsByOwner((Player)dealer2Selection.getValue()));
-
+            optionsFieldsPlayer1.setAll(Game.getInstance().getFieldsCurrentPlayer());
+            optionsFieldsPlayer2.setAll(Game.getInstance().getBoard().getFieldsByOwner((Player) dealer2Selection.getValue()));
         //deb-ug xD
-        System.out.println(dealer2Selection.getSelectionModel().getSelectedItem().toString());
+        //System.out.println(dealer2Selection.getSelectionModel().getSelectedItem().toString());
     }
 }
-
-//todo fix javafx (and the code...)
