@@ -4,8 +4,6 @@ import bbcag.projekt.engine.Game;
 import bbcag.projekt.engine.GameListener;
 import bbcag.projekt.player.Player;
 import bbcag.projekt.field.Field;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -30,7 +28,6 @@ public class DealUI extends BorderPane {
         HBox dealScreenHBox = new HBox();
 
         //Left deal side
-
         optionsFieldsPlayer1 = FXCollections.observableArrayList();
         dealer1Field = new ComboBox(optionsFieldsPlayer1);
         dealer1MoneyText = new TextField();
@@ -45,7 +42,6 @@ public class DealUI extends BorderPane {
         traderBox1.getChildren().addAll(dealer1Name, dealer1MoneyText, dealer1PropertyScroll, dealer1FullMoneyLabel, dealer1Field);
 
         //Right deal side
-
         options = FXCollections.observableArrayList();
         options.addAll(Game.getInstance().getPlayerList());
         dealer2Selection = new ComboBox(options);
@@ -57,7 +53,6 @@ public class DealUI extends BorderPane {
         dealer2MoneyText = new TextField();
         ScrollPane dealer2PropertyScroll = new ScrollPane();
         Label dealer2FullMoneyLabel = new Label();
-        TextField dealer2PropertyText = new TextField();
         dealer2PropertyScroll.setContent(dealer2FullMoneyLabel);
 
         VBox traderBox2 = new VBox(5);
@@ -144,7 +139,7 @@ public class DealUI extends BorderPane {
         });
     }
 
-    private void updatep2() { //just 4 testing
+    //private void updatep2() { //just 4 testing
 
         //Player test = (Player) dealer2Selection.getSelectionModel().getSelectedItem();
         //Object test3 = dealer2Selection.getValue();
@@ -152,8 +147,8 @@ public class DealUI extends BorderPane {
 
         //System.out.println(test.toString());
         //System.out.println(test3.toString());
-        update();
-    }
+        //update();
+    //}
 
     private void onDealPressed() {
             Player player = (Player) dealer2Selection.getValue();
@@ -168,12 +163,12 @@ public class DealUI extends BorderPane {
             Game.getInstance().onDeal(player, money1, money2, (Field)dealer1Field.getValue(), (Field)dealer2Field.getValue());
             Game.getInstance().onDone();
     }
-    public void update(){
+    private void update(){
 
         optionsFieldsPlayer1.setAll(Game.getInstance().getFieldsCurrentPlayer());
         optionsFieldsPlayer2.setAll(Game.getInstance().getBoard().getFieldsByOwner((Player)dealer2Selection.getValue()));
 
-
+        //deb-ug xD
         System.out.println(dealer2Selection.getSelectionModel().getSelectedItem().toString());
     }
 }
