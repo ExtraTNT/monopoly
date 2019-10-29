@@ -234,7 +234,10 @@ public class Game {
             message(currentPlayer.getName() + " hat den Zug nicht richtig beendet!");
             return;
         }
-        message(currentPlayer.getName() + " hat den Zug beendet.");
+        if (currentPlayer.isDeath()) {
+            message(currentPlayer.getName() + " hat kein Geld mehr und scheidet darum aus.");
+            allPlayers.remove(currentPlayer);
+        } else { message(currentPlayer.getName() + " hat den Zug beendet.");};
         if (allPlayers.size() == 1) {
             for (GameListener listener : listeners) {
                 listener.onWin(allPlayers.get(0));
@@ -257,10 +260,6 @@ public class Game {
         if (currentPlayerHasRolledDice) {
             message("Du kannst nicht nochmals ziehen!");
             return;
-        }
-        if (currentPlayer.isDeath()) {
-            message(currentPlayer.getName() + " hat kein Geld mehr und scheidet darum aus.");
-            allPlayers.remove(currentPlayer);
         }
         currentPlayerHasRolledDice = true;
         boolean pach = false;
@@ -334,11 +333,11 @@ public class Game {
             if (currentPlayer.getRemainingDaysInPrison() == 0) {
                 currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() - 100);
                 message(currentPlayer.getName() + " hat sich frei gekauft -100$");
-                if (currentPlayer.isDeath()) {
-                    message(currentPlayer.getName() + " hat kein Geld mehr und scheidet darum aus.");
-                    allPlayers.remove(currentPlayer);
-                }
             }
+        }
+        if (currentPlayer.isDeath()) {
+            message(currentPlayer.getName() + " hat kein Geld mehr und scheidet darum aus.");
+            allPlayers.remove(currentPlayer);
         }
     }
 

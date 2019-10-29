@@ -12,6 +12,7 @@ public class NormalField extends BuyableField {
     public NormalField(String name, short worth, int[] rent, int worthHotel) {
         this(name, worth, rent, worthHotel, null);
     }
+
     public NormalField(String name, short worth, int[] rent, int worthHotel, Player owner) {
         super(owner);
         this.name = name;
@@ -23,6 +24,7 @@ public class NormalField extends BuyableField {
     private int getRent() {
         return Rent[Hotel];
     }
+
     public void buy(Player player) {
         if (owner == null) {
             player.setAccountBalance(player.getAccountBalance() - worth);
@@ -30,12 +32,15 @@ public class NormalField extends BuyableField {
             canBuy = false;
         }
     }
+
     public byte getHotel() {
         return Hotel;
     }
+
     public void setHotel(byte hotel) {
         Hotel = hotel;
     }
+
     public int getWorthHotel() {
         return worthHotel;
     }
@@ -44,6 +49,7 @@ public class NormalField extends BuyableField {
     public int getWorth() {
         return worth;
     }
+
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
         Game.getInstance().message(player.getName() + " ist auf " + this.getName() + " gelandet.");
@@ -53,12 +59,11 @@ public class NormalField extends BuyableField {
                 canBuy = true;
                 Game.getInstance().message(player.getName() + " moechtest du " + this.getName() + " kaufen fuer " + this.getWorth() + "$?");
             }
-        }
-        else {
+        } else {
             player.setAccountBalance(player.getAccountBalance() - getRent());
             owner.setAccountBalance(owner.getAccountBalance() + getRent());
             Game.getInstance().littleUpdateGUI();
-            if(owner != player) {
+            if (owner != player) {
                 if (getRent() > 0) {
                     Game.getInstance().message(player.getName() + " hat " + owner.getName() + " " + getRent() + "$ gezahlt.");
                 } else {
