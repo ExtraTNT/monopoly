@@ -9,7 +9,6 @@ public class NormalField extends BuyableField {
     private int[] Rent;
     private int worthHotel;
 
-
     public NormalField(String name, short worth, int[] rent, int worthHotel) {
         this(name, worth, rent, worthHotel, null);
     }
@@ -52,6 +51,7 @@ public class NormalField extends BuyableField {
         if (this.owner == null) {
             if (this.worth < player.getAccountBalance()) {
                 canBuy = true;
+                Game.getInstance().message(player.getName() + " moechtest du " + this.getName() + " kaufen fuer " + this.getWorth() + "$?");
             }
         }
         else {

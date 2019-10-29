@@ -32,6 +32,7 @@ public class WorkField extends BuyableField  {
         if (this.owner == null) {
             if (this.worth < player.getAccountBalance()) {
                 canBuy = true;
+                Game.getInstance().message(player.getName() + " moechtest du " + this.getName() + " kaufen fuer " + this.getWorth() + "$?");
             }
         }
         else {
