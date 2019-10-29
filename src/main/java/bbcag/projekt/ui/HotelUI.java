@@ -43,7 +43,7 @@ public class HotelUI  extends HBox {
             }
         });
         hotelUIMinusButton.setOnAction(event -> {
-            Game.getInstance().removeHotel((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText()));
+            Game.getInstance().removeHouse((NormalField) Game.getInstance().getBoard().getFieldByName(chosenField.getText()));
             scrollText.setText("");
             for(NormalField nf: Game.getInstance().getListOfMyHousableFields()) {
                 scrollText.appendText(nf.getName() + " -Houses: " + nf.getHotel() + " -Cost: " + nf.getWorthHotel() + "\n");
