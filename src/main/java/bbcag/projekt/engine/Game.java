@@ -258,6 +258,10 @@ public class Game {
             message("Du kannst nicht nochmals ziehen!");
             return;
         }
+        if (currentPlayer.isDeath()) {
+            message(currentPlayer.getName() + " hat kein Geld mehr und scheidet darum aus.");
+            allPlayers.remove(currentPlayer);
+        }
         currentPlayerHasRolledDice = true;
         boolean pach = false;
         int dice1 = Dice.rollDice();
@@ -277,13 +281,14 @@ public class Game {
                     currentPlayer.setCount(0);
                     tester = true;
                     pach = false;
-                    message(currentPlayer.getName() + " hat 3x Pach gewuerfelt und kam ins Gefaengnis");
+                    message(currentPlayer.getName() + " hat 3x Pach gewuerfelt und kam ins Gefaengnis.");
                 }
             } else {
                 pach = false;
             }
-            if (!tester) {
+            if (!tester && currentPlayer.getRemainingDaysInPrison() > 0) {
                 currentPlayer.setRemainingDaysInPrison((byte) 0);
+                message(currentPlayer.getName() + " ist aus dem Gefaengnis ausgebrochen.");
             }
         } else {
             currentPlayer.setCount(0);
@@ -329,10 +334,11 @@ public class Game {
             if (currentPlayer.getRemainingDaysInPrison() == 0) {
                 currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() - 100);
                 message(currentPlayer.getName() + " hat sich frei gekauft -100$");
+                if (currentPlayer.isDeath()) {
+                    message(currentPlayer.getName() + " hat kein Geld mehr und scheidet darum aus.");
+                    allPlayers.remove(currentPlayer);
+                }
             }
-        }
-        if (currentPlayer.isDeath()) {
-            allPlayers.remove(currentPlayer);
         }
     }
 
