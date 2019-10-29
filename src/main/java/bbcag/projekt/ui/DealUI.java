@@ -26,6 +26,9 @@ public class DealUI extends BorderPane {
     private Label dealer1FullMoneyLabel;
     private Label dealer2FullMoneyLabel;
 
+    /**DealUI
+     * The UI, to deal with other player (Money and Fields)
+     */
     public DealUI() {
         HBox dealScreenHBox = new HBox();
 
@@ -129,6 +132,10 @@ public class DealUI extends BorderPane {
         });
     }
 
+    /**onDealPressed
+     * check, if the players have given a number as money-value (if not, 0 will be used) and calls the onDeal method on the Game
+     * after that, it calls the onDone method -> back to the mainUI
+     */
     private void onDealPressed() {
             Player player = (Player) dealer2Selection.getValue();
             int money1;
@@ -136,7 +143,7 @@ public class DealUI extends BorderPane {
 
             if(!dealer1MoneyText.getText().equals("") && !dealer1MoneyText.getText().isEmpty()){ money1 = Integer.parseInt(dealer1MoneyText.getText());}
             else{money1 = 0;}
-            if(!dealer2MoneyText.getText().equals("") && !dealer1MoneyText.getText().isEmpty()){ money2 = Integer.parseInt(dealer2MoneyText.getText());}
+            if(!dealer2MoneyText.getText().equals("") && !dealer2MoneyText.getText().isEmpty()){ money2 = Integer.parseInt(dealer2MoneyText.getText());}
             else{money2 = 0;}
 
             Game.getInstance().onDeal(player, money1, money2, (Field)dealer1Field.getValue(), (Field)dealer2Field.getValue());

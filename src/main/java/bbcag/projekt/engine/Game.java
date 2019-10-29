@@ -136,7 +136,11 @@ public class Game {
             return;
         }
         message(currentPlayer.getName() + " hat den Zug beendet.");
-
+        if (allPlayers.size() == 1) {
+            for (GameListener listener : listeners) {
+                listener.onWin(allPlayers.get(0));
+            }
+        }
         currentPlayer = allPlayers.get((allPlayers.indexOf(currentPlayer) + 1) % allPlayers.size());
         currentPlayerHasRolledDice = false;
 
@@ -218,15 +222,7 @@ public class Game {
      *
      */
     private void playMove(int diceNbr) {
-        if (currentPlayer.isDeath()) {
-            allPlayers.remove(currentPlayer);
-            if (allPlayers.size() == 1) {
-                for (GameListener listener : listeners) {
-                    listener.onWin(allPlayers.get(0));
-                }
 
-            }
-        }
         if (currentPlayer.getRemainingDaysInPrison() <= 0) {
             byte oldPos = currentPlayer.getPosition();
             currentPlayer.setPosition((byte) ((currentPlayer.getPosition() + diceNbr) % board.size()));
@@ -245,6 +241,9 @@ public class Game {
                 currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() - 100);
                 message(currentPlayer.getName() + " hat sich frei gekauft -100$");
             }
+        }
+        if (currentPlayer.isDeath()) {
+            allPlayers.remove(currentPlayer);
         }
     }
     /**
@@ -376,7 +375,6 @@ public class Game {
         if (p1.getAccountBalance() >= moneyP1 && p2.getAccountBalance() >= moneyP2) {
             p1.setAccountBalance(p1.getAccountBalance() + moneyP2- moneyP1);
             p2.setAccountBalance(p2.getAccountBalance() + moneyP1- moneyP2);
-
             if(moneyP1 > moneyP2){
                 message(p1 + " hat " + p2 + " " + (moneyP1 - moneyP2) + "$ gegeben.");
             } else if(moneyP1 < moneyP2) {
@@ -435,10 +433,11 @@ public class Game {
      */
     public void onDeal(Player player2, int moneyP1, int moneyP2, Field fieldP1, Field fieldP2){
         if(player2 == currentPlayer){return;}
+        message(currentPlayer.getName() + " handelt mit " + player2.getName());
         if(dealMoney(currentPlayer, moneyP1, player2, moneyP2)) {
-                if(!dealPlaces(currentPlayer, fieldP1, player2, fieldP2)){
-                    player2.setAccountBalance(player2.getAccountBalance() + moneyP2- moneyP1);
-                    currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() + moneyP1- moneyP2);
+            if(!dealPlaces(currentPlayer, fieldP1, player2, fieldP2)){
+                player2.setAccountBalance(player2.getAccountBalance() + moneyP2- moneyP1);
+                currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() + moneyP1- moneyP2);
             }
         }
         littleUpdateGUI();
