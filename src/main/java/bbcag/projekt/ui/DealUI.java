@@ -104,6 +104,7 @@ public class DealUI extends BorderPane {
                 dealer1Name.setText(Game.getInstance().getCurrentPlayer().toString());
                 options.setAll(Game.getInstance().getPlayerList());
                 dealer1FullMoneyLabel.setText(Game.getInstance().getCurrentPlayer().getAccountBalance() + "$");
+                optionsFieldsPlayer1.setAll(Game.getInstance().getFieldsCurrentPlayer());
             }
 
             @Override
@@ -151,7 +152,6 @@ public class DealUI extends BorderPane {
             Game.getInstance().onDone();
     }
     private void update(){
-            optionsFieldsPlayer1.setAll(Game.getInstance().getFieldsCurrentPlayer());
             optionsFieldsPlayer2.setAll(Game.getInstance().getBoard().getFieldsByOwner((Player) dealer2Selection.getValue()));
             dealer2FullMoneyLabel.setText(((Player) dealer2Selection.getValue()).getAccountBalance() + "$");
     }
