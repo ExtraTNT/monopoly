@@ -129,15 +129,6 @@ public class DealUI extends BorderPane {
         });
     }
 
-    //private void updatep2() { //just 4 testing
-        //Player test = (Player) dealer2Selection.getSelectionModel().getSelectedItem();
-        //Object test3 = dealer2Selection.getValue();
-
-        //System.out.println(test.toString());
-        //System.out.println(test3.toString());
-        //update();
-    //}
-
     private void onDealPressed() {
             Player player = (Player) dealer2Selection.getValue();
             int money1;

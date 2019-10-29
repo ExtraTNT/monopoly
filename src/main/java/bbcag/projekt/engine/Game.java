@@ -360,6 +360,18 @@ public class Game {
 
     //pls document usefully after programming and fixing bugs -> comments first, then javadocs... vv
 
+    /**dealMoney
+     *
+     * test, if any player have enough money to deal with -> if it not so, make a message "Es konnte nicht getauscht werden, ein Player ist zu arm."
+     * deal with the money
+     * make a message, which player pays which how much...
+     *
+     * @param p1 player1 (current player)
+     * @param moneyP1 money given form player1 to player2
+     * @param p2 player2
+     * @param moneyP2 money given form player2 to player1
+     * @return success
+     */
     private boolean dealMoney(Player p1, int moneyP1, Player p2, int moneyP2) {
         if (p1.getAccountBalance() >= moneyP1 && p2.getAccountBalance() >= moneyP2) {
             p1.setAccountBalance(p1.getAccountBalance() + moneyP2- moneyP1);
@@ -377,6 +389,17 @@ public class Game {
         }
     }
 
+    /**dealPlaces
+     *
+     * changes the owner of the fields and make messages
+     * if a modifyOwner fails, it resets the owner of the fields to the sate before
+     *
+     * @param p1 player1 (current player)
+     * @param f1 field of player1
+     * @param p2 player2
+     * @param f2 field of player2
+     * @return success
+     */
     private boolean dealPlaces(Player p1, Field f1, Player p2, Field f2) {
         boolean p1Fail = false;
         boolean p2Fail = false;
@@ -398,6 +421,18 @@ public class Game {
         return true;
     }
 
+    /**onDeal
+     * if the current player = player 2 returns straight
+     *
+     * first calls dealMoney, if this works, calls dealPlaces, if this fails it redo the money changes
+     * finally updates the gui
+     *
+     * @param player2 the player2
+     * @param moneyP1 the money the current player will give to player2
+     * @param moneyP2 the money player2 will give to the current player
+     * @param fieldP1 the field the current player will give to player2
+     * @param fieldP2 the field player2 will give to the current player
+     */
     public void onDeal(Player player2, int moneyP1, int moneyP2, Field fieldP1, Field fieldP2){
         if(player2 == currentPlayer){return;}
         if(dealMoney(currentPlayer, moneyP1, player2, moneyP2)) {
