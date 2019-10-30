@@ -5,19 +5,34 @@ import bbcag.projekt.field.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**SwissBoard
+ * the default Layout -> use it to create your own -> make the right changes in BoardFactory and add a picture in format (LayoutName.png) then you can chose your board by changing the property
+ */
 class SwissBoard extends Board {
 
+    /**NAME
+     * the name of the Board -> used in the properties and in the BoardFactory
+     * this must be package-private (or "more public")
+     */
     static final String NAME = "SWISS";
 
+    /**SwissBoard
+     * @param bank the bank-player-object
+     */
     SwissBoard(Player bank) {
         super(bank);
     }
 
+    /**createFields
+     * use this to create your own board -> use fieldList.add(new "fieldyouwant"())
+     * start with the first field, end with the last...
+     * @return the list with the fields on the right position
+     */
     @Override
     protected List<Field> createFields() {
         List<Field> fieldList = new ArrayList<>();
 
-        //Free to reconfigure
+        //Free to reconfigure (better create yor own)
 
         fieldList.add(new StartField((short) 400, getBank()));
 

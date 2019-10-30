@@ -5,14 +5,13 @@ import bbcag.projekt.board.BoardFactory;
 import bbcag.projekt.exception.NotEnoughPlayersException;
 import bbcag.projekt.field.*;
 import bbcag.projekt.player.Player;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Game
+
+/** Game
  * the engine as such...
  * this class is a singleton class...
  */
@@ -25,8 +24,7 @@ public class Game {
     private Board board;
     private Player bank = new Player("bank", "#FFFFFF");
 
-    /**
-     * Game
+     /** Game
      * the engine as such...
      * crates the listeners and the board...
      */
@@ -156,17 +154,15 @@ public class Game {
      * start
      * Start function to check if there are at least 2 players + listener functions (onStart and on CurrentPlayerChange)
      *
-     * @throws NotEnoughPlayersException .
+     * @throws NotEnoughPlayersException not enough players
      */
     public void start() throws NotEnoughPlayersException {
         if (allPlayers.size() < 2) {
             throw new NotEnoughPlayersException();
         }
-
         for (GameListener listener : listeners) {
             listener.onStart();
         }
-
         for (GameListener listener : listeners) {
             listener.onCurrentPlayerChange(currentPlayer);
         }
@@ -276,7 +272,7 @@ public class Game {
                 if (currentPlayer.getCount() > 2) {
                     currentPlayerHasRolledDice = true;
                     currentPlayer.setRemainingDaysInPrison((byte) 4); // because the playmove hasn't start yet
-                    currentPlayer.setPosition((byte) 10);
+                    currentPlayer.setPosition((byte) 10); //pos JailFields
                     currentPlayer.setCount(0);
                     tester = true;
                     pach = false;

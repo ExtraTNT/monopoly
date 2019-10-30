@@ -5,6 +5,9 @@ import bbcag.projekt.field.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**FalloutBoard
+ * Custom Board by ExtraTNT (and a dude who has uploaded a picture of his custom fallout-monopoly-board)
+ */
 class FalloutBoard extends Board {
 
     static final String NAME = "FALLOUT";
