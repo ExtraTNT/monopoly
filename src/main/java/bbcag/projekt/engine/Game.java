@@ -231,7 +231,7 @@ public class Game {
         if (currentPlayer.isDeath()) {
             message(currentPlayer.getName() + " hat kein Geld mehr und scheidet darum aus.");
             allPlayers.remove(currentPlayer);
-        } else { message(currentPlayer.getName() + " hat den Zug beendet.");};
+        } else { message(currentPlayer.getName() + " hat den Zug beendet.");}
         if (allPlayers.size() == 1) {
             for (GameListener listener : listeners) {
                 listener.onWin(allPlayers.get(0));
