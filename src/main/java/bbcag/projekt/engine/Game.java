@@ -49,7 +49,6 @@ public class Game {
      * addListener
      * adds new GameListener to the listener set.
      * used in the UI-classes to communicate with the engine
-     *
      * @param listener the new listener
      */
     public void addListener(GameListener listener) {
@@ -59,7 +58,6 @@ public class Game {
     /**
      * addPlayer
      * adds a new player in the allPlayer list, sets the current player and trigger the listener onPlayerAdded
-     *
      * @param name  the name of new player
      * @param color the color of the new player
      */

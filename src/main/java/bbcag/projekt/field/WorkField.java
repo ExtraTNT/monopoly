@@ -6,7 +6,7 @@ import bbcag.projekt.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkField extends BuyableField  {
+public class WorkField extends BuyableField {
     private short worth = 150;
 
     public WorkField(String name) {
@@ -25,33 +25,33 @@ public class WorkField extends BuyableField  {
     public int getWorth() {
         return worth;
     }
+
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
-            Game.getInstance().message(player.getName() + " ist auf " + this.getName() + " gelandet.");
+        Game.getInstance().message(player.getName() + " ist auf " + this.getName() + " gelandet.");
         canBuy = false;
         if (this.owner == null) {
             if (this.worth < player.getAccountBalance()) {
                 canBuy = true;
                 Game.getInstance().message(player.getName() + " moechtest du " + this.getName() + " kaufen fuer " + this.getWorth() + "$?");
             }
-        }
-        else {
+        } else {
             List<Field> listToCount = new ArrayList<>();
-            for(Field f : Game.getInstance().getBoard().getFieldsByOwner(owner)){
-                if(f instanceof WorkField){
+            for (Field f : Game.getInstance().getBoard().getFieldsByOwner(owner)) {
+                if (f instanceof WorkField) {
                     listToCount.add(f);
                 }
             }
             int toPay = 0;
-            if(listToCount.size() == 2){
+            if (listToCount.size() == 2) {
                 toPay = rolledSum + 11;
             }
-            if(listToCount.size() == 1){
+            if (listToCount.size() == 1) {
                 toPay = rolledSum * 4;
             }
             player.setAccountBalance(player.getAccountBalance() - (toPay));
             owner.setAccountBalance(owner.getAccountBalance() + (toPay));
-            if(owner != player) {
+            if (owner != player) {
                 Game.getInstance().message(player.getName() + " hat " + owner.getName() + " " + toPay + "$ gezahlt.");
             }
             Game.getInstance().littleUpdateGUI();
