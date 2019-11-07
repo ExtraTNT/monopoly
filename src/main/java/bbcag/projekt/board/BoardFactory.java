@@ -19,6 +19,8 @@ public class BoardFactory {
                 return new SwissBoard(bank);
             case FalloutBoard.NAME: //custom board 1
                 return new FalloutBoard(bank);
+            case DebianBoard.NAME:
+                return new DebianBoard(bank);
                 default:
                     throw new RuntimeException(type + " does not exist");
         }
