@@ -358,7 +358,7 @@ public class Game {
      * @param field the selected field
      */
     public void buildHouse(NormalField field) {
-        if (field.getHotel() >= 5 || field.getOwner() != currentPlayer) {
+        if (field.getHotel() >= 5 || field.getOwner() != currentPlayer || currentPlayer.getAccountBalance() < field.getWorthHotel()) {
             return;
         }
         field.setHotel((byte) (field.getHotel() + 1));
@@ -366,6 +366,7 @@ public class Game {
         for (GameListener listener : listeners) {
             listener.onHotel();
         }
+        littleUpdateGUI();
         message(field.getName() + ", Haus wurde gebaut");
     }
 
