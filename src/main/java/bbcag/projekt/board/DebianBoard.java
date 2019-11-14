@@ -10,7 +10,11 @@ public class DebianBoard extends Board{
 
         static final String NAME = "DEBIAN";
 
-        DebianBoard(Player bank) {
+    /** DebianBoard
+     * a custom board by myself -> I use debian as my os on my notebook -> I'm programming a lot on my notebook... -> I really like debian
+     * @param bank the bank player object
+     */
+    DebianBoard(Player bank) {
             super(bank);
         }
 

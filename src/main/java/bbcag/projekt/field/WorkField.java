@@ -6,6 +6,9 @@ import bbcag.projekt.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+/**WorkField
+ * the Field with the water and electricity...
+ */
 public class WorkField extends BuyableField {
     private short worth = 150;
 
@@ -26,6 +29,14 @@ public class WorkField extends BuyableField {
         return worth;
     }
 
+    /**steppingOnIt
+     * test, if the field has no owner and the current player have enough money to buy -> if it so, the player can buy it...
+     * if the field have a owner, it calculates the rent for it ->
+     * test how much WorkFields the owner have and how much the current player has rolled...
+     * if the rent calculate, it move the money for the rent from the current player to the owner of this field.
+     * @param player the current player
+     * @param rolledSum the sum of the 2 dies, which the player has rolled
+     */
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
         Game.getInstance().message(player.getName() + " ist auf " + this.getName() + " gelandet.");
