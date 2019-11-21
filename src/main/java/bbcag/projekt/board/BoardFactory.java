@@ -32,7 +32,6 @@ public class BoardFactory {
                 default:
                     throw new RuntimeException(type + " does not exist");
         }
-
     }
 
     /**getInstance

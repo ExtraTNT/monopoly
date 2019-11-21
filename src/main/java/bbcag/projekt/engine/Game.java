@@ -361,6 +361,21 @@ public class Game {
         if (field.getHotel() >= 5 || field.getOwner() != currentPlayer || currentPlayer.getAccountBalance() < field.getWorthHotel()) {
             return;
         }
+        int groupIndex = field.getGroupIndex();
+        List groupFieldsCurrentPLayer = new ArrayList<>();
+        for(Field candidate : board.getFieldsByOwner(currentPlayer)){
+            if(candidate.getClass() == NormalField.class){
+                NormalField parsedCandidat = (NormalField) candidate;
+                if(parsedCandidat.getGroupIndex() == groupIndex){
+                    groupFieldsCurrentPLayer.add(parsedCandidat);
+                }
+            }
+        }
+
+        if(board.getFieldsByGroup(groupIndex).size() > groupFieldsCurrentPLayer.size()){
+            message( currentPlayer.toString() + " besitzt leider nicht genug Grundstueke dieser Farbe.");
+            return;
+        }
         field.setHotel((byte) (field.getHotel() + 1));
         currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() - field.getWorthHotel());
         for (GameListener listener : listeners) {

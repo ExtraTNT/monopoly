@@ -8,21 +8,27 @@ public class NormalField extends BuyableField {
     private byte Hotel = 0;
     private int[] Rent;
     private int worthHotel;
+    private int groupIndex;
 
-    public NormalField(String name, short worth, int[] rent, int worthHotel) {
-        this(name, worth, rent, worthHotel, null);
+    public NormalField(String name, short worth, int[] rent, int worthHotel, int gIndex) {
+        this(name, worth, rent, worthHotel, gIndex, null);
     }
 
-    public NormalField(String name, short worth, int[] rent, int worthHotel, Player owner) {
+    public NormalField(String name, short worth, int[] rent, int worthHotel, int gIndex, Player owner) {
         super(owner);
         this.name = name;
         this.worth = worth;
         this.Rent = rent;
         this.worthHotel = worthHotel;
+        this.groupIndex = gIndex;
     }
 
     private int getRent() {
         return Rent[Hotel];
+    }
+
+    public int getGroupIndex() {
+        return groupIndex;
     }
 
     public void buy(Player player) {

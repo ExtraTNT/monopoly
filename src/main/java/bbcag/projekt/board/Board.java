@@ -1,5 +1,6 @@
 package bbcag.projekt.board;
 
+import bbcag.projekt.field.NormalField;
 import bbcag.projekt.player.Player;
 import bbcag.projekt.field.Field;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public abstract class Board {
         return null;
     }
 
-    /**ggetFieldsByOwner
+    /**getFieldsByOwner
      * returns fields by owner
      * @param owner the owner of the field
      * @return field with owner owner
@@ -61,6 +62,20 @@ public abstract class Board {
             }
         }
     return fieldshousable;
+    }
+
+    //add fields in group
+    public List<NormalField> getFieldsByGroup(int groupIndex){
+        List FieldsWithIndexX = new ArrayList<>();
+        for (Field candidate : FIELDS){
+            if (candidate.getClass() == NormalField.class){
+                NormalField parsedCandidat = (NormalField) candidate;
+                if(parsedCandidat.getGroupIndex() == groupIndex){
+                    FieldsWithIndexX.add(parsedCandidat);
+                }
+            }
+        }
+        return FieldsWithIndexX;
     }
 
     /**getIndexFromField
