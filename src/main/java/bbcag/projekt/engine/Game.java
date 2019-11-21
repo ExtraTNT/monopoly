@@ -351,7 +351,7 @@ public class Game {
 
     /**
      * buildHouse
-     * tests, if a field has les, than 5 houses and if it own by the currentPlayer, if true:
+     * tests, if a field has les, than 5 houses and if it own by the currentPlayer, if true it test, if the current player have all Fields of the group, if that is also true:
      * it increment 1 to the hotel-value from the field and reduce the player accountbalance by the worth of the house / hotel
      * finally the listener onHotel gets called and a message gets created
      *
