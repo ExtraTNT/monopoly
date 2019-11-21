@@ -362,17 +362,17 @@ public class Game {
             return;
         }
         int groupIndex = field.getGroupIndex();
-        List groupFieldsCurrentPLayer = new ArrayList<>();
+        int count = 0;
         for(Field candidate : board.getFieldsByOwner(currentPlayer)){
             if(candidate.getClass() == NormalField.class){
                 NormalField parsedCandidat = (NormalField) candidate;
-                if(parsedCandidat.getGroupIndex() == groupIndex){
-                    groupFieldsCurrentPLayer.add(parsedCandidat);
+                if(parsedCandidat.getGroupIndex() == groupIndex){ ;
+                    count ++;
                 }
             }
         }
 
-        if(board.getFieldsByGroup(groupIndex).size() > groupFieldsCurrentPLayer.size()){
+        if(board.getFieldsByGroup(groupIndex).size() > count){
             message( currentPlayer.toString() + " besitzt leider nicht genug Grundstueke dieser Farbe.");
             return;
         }
