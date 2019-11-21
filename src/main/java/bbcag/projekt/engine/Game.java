@@ -366,7 +366,7 @@ public class Game {
         for(Field candidate : board.getFieldsByOwner(currentPlayer)){
             if(candidate.getClass() == NormalField.class){
                 NormalField parsedCandidat = (NormalField) candidate;
-                if(parsedCandidat.getGroupIndex() == groupIndex){ ;
+                if(parsedCandidat.getGroupIndex() == groupIndex){
                     count ++;
                 }
             }
