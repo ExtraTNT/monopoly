@@ -219,6 +219,16 @@ public class Game {
     }
 
     /**
+     * onCardShow
+     * calls the onCardShow listener
+     */
+    public void onCardShow() {
+        for (GameListener listener : listeners) {
+            listener.onCardShow();
+        }
+    }
+
+    /**
      * nextPlayer
      * tests, if the currentPlayer done with the round
      * if it so, change the current player

@@ -23,6 +23,7 @@ public class UI extends Application {
         Scene dealScene = new Scene(dealUI, Color.WHITE);
         Scene hotelScene = new Scene(new HotelUI(), Color.WHITE);
         Scene winScene = new Scene(new WinnerUI(), Color.WHITE);
+        Scene cardScene = new Scene(new PreviewUI(), Color.WHITE);
         primaryStage.setScene(startScene);
 
         /**GameListener
@@ -49,6 +50,8 @@ public class UI extends Application {
             public void onDone() { primaryStage.setScene(mainScene); }
             @Override
             public void onMessage(String message) {}
+            @Override
+            public void onCardShow() { primaryStage.setScene(cardScene); }
         });
         primaryStage.show();
     }

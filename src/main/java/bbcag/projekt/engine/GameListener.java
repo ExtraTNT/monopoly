@@ -63,4 +63,9 @@ public interface GameListener {
      * @param message the message
      */
     void onMessage(String message);
+
+    /**onCardShow
+     * opens a new UI, in which the player can show his cards.
+     */
+    void onCardShow();
 }

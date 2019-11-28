@@ -77,6 +77,11 @@ public class WinnerUI extends BorderPane {
             public void onMessage(String message) {
 
             }
+
+            @Override
+            public void onCardShow() {
+
+            }
         });
     }
 }

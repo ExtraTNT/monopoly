@@ -129,6 +129,11 @@ public class DealUI extends BorderPane {
             @Override
             public void onMessage(String message) {
             }
+
+            @Override
+            public void onCardShow() {
+
+            }
         });
     }
 

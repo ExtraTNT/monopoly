@@ -35,9 +35,10 @@ public class MainUI extends BorderPane {
         Button buyButton = new Button("Buy");
         Button houseButton = new Button("Houses");
         Button turnButton = new Button("End Turn");
+        Button cardButton = new Button("Show Fields");
 
         HBox buttonArea = new HBox(20);
-        buttonArea.getChildren().addAll(rollButton, dealButton, buyButton, houseButton, turnButton);
+        buttonArea.getChildren().addAll(rollButton, dealButton, buyButton, houseButton, cardButton, turnButton);
 
 
         rollButton.setPrefSize(180, 50);
@@ -45,6 +46,7 @@ public class MainUI extends BorderPane {
         buyButton.setPrefSize(180, 50);
         houseButton.setPrefSize(180, 50);
         turnButton.setPrefSize(180, 50);
+        cardButton.setPrefSize(180, 50);
 
         buttonArea.setPadding(new Insets(20));
         //Text and info stuff on the right
@@ -84,6 +86,7 @@ public class MainUI extends BorderPane {
         dealButton.setOnAction(event -> Game.getInstance().startDealing());
         houseButton.setOnAction(event -> Game.getInstance().onHotel());
         buyButton.setOnAction(event -> Game.getInstance().buyField());
+        cardButton.setOnAction(event -> Game.getInstance().onCardShow());
 
         setCenter(centralStack);
         centerAreaCanvas.toFront();
@@ -153,6 +156,11 @@ public class MainUI extends BorderPane {
             @Override
             public void onMessage(String message) {
                 gameMessages.appendText(message + "\n");
+            }
+
+            @Override
+            public void onCardShow() {
+
             }
         });
     }
