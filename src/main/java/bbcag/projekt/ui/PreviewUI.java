@@ -6,14 +6,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 
 public class PreviewUI extends BorderPane {
 
     public PreviewUI(){
-        HBox textFrame = new HBox();
+        VBox textFrame = new VBox();
         ImageView cardImageView = new ImageView("Card" + Configuration.getInstance().get("card.type") + ".png");
         cardImageView.setFitHeight(512);
         cardImageView.setFitWidth(256);
