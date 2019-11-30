@@ -19,8 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-
 
 public class PreviewUI extends BorderPane {
 
@@ -43,14 +41,10 @@ public class PreviewUI extends BorderPane {
         worth.setAlignment(Pos.CENTER);
         costHouse.setAlignment(Pos.BOTTOM_CENTER);
 
-
-
         ObservableList<Field> optionsFields = FXCollections.observableArrayList();
-        ComboBox CBFields;
 
-        CBFields = new ComboBox(optionsFields);
+        ComboBox CBFields = new ComboBox(optionsFields);
         CBFields.setPrefSize(180, 50);
-
 
         VBox textFrame = new VBox();
         ImageView cardImageView = new ImageView("Card" + Configuration.getInstance().get("card.type") + ".png");
@@ -77,56 +71,37 @@ public class PreviewUI extends BorderPane {
 
             @Override
             public void onStart() {
-
             }
-
             @Override
             public void onPlayerAdded(Player player) {
-
             }
-
             @Override
             public void onCurrentPlayerChange(Player player) {
-
             }
-
             @Override
             public void onDicesRolled(int dice1, int dice2) {
-
             }
-
             @Override
             public void onStartDealing(Player currentPlayer) {
-
             }
-
             @Override
             public void onWin(Player winer) {
-
             }
-
             @Override
             public void onBuy(Player player) {
-
             }
-
             @Override
             public void onHotel() {
-
             }
-
             @Override
             public void onDone() {
                 worth.setText("");
                 rent.setText("");
                 costHouse.setText("");
             }
-
             @Override
             public void onMessage(String message) {
-
             }
-
             @Override
             public void onCardShow() {
                 optionsFields.setAll(Game.getInstance().getFieldsCurrentPlayer());
@@ -135,9 +110,9 @@ public class PreviewUI extends BorderPane {
     }
 
     private void update(Field field) {
-        String rentStr = new String();
-        String worthStr = new String();
-        String houseStr = new String();
+        String rentStr = "";
+        String worthStr = "";
+        String houseStr = "";
 
         if(field.getClass() == NormalField.class){
             worthStr = field.getWorth() + "$";
@@ -166,10 +141,8 @@ public class PreviewUI extends BorderPane {
             houseStr = "";
             rentStr = "1 Feld: Die gewuerfelte Summe mal 4\n2 Felder: Die gewuerfelte Summe mal 11";
         }
-
         rent.setText(rentStr);
         worth.setText(worthStr);
         costHouse.setText(houseStr);
-
     }
 }
