@@ -3,6 +3,9 @@ package bbcag.projekt.field;
 import bbcag.projekt.engine.Game;
 import bbcag.projekt.player.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NormalField extends BuyableField {
     private short worth;
     private byte Hotel = 0;
@@ -26,6 +29,7 @@ public class NormalField extends BuyableField {
     private int getRent() {
         return Rent[Hotel];
     }
+    public int[] getRentList(){return Rent;}
 
     public int getGroupIndex() {
         return groupIndex;

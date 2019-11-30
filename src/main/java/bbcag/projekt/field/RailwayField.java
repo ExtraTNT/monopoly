@@ -25,6 +25,7 @@ public class RailwayField extends BuyableField  {
 
         return Rent[listToCount.size()-1];
     }
+    public int[] getRentList(){ return Rent;}
     public void buy(Player player) {
         if (owner == null) {
             player.setAccountBalance(player.getAccountBalance() - worth);

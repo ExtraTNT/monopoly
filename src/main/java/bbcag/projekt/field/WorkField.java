@@ -55,7 +55,7 @@ public class WorkField extends BuyableField {
             }
             int toPay = 0;
             if (listToCount.size() == 2) {
-                toPay = rolledSum + 11;
+                toPay = rolledSum * 11;
             }
             if (listToCount.size() == 1) {
                 toPay = rolledSum * 4;
