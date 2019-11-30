@@ -34,9 +34,6 @@ public class PreviewUI extends BorderPane {
         rent.setPrefSize(180, 200);
         rent.setMaxSize(180, 200);
 
-        worth.setText("Test");
-        costHouse.setText("Test");
-
         worth.setPrefHeight(100);
         worth.setAlignment(Pos.CENTER);
         costHouse.setAlignment(Pos.BOTTOM_CENTER);
