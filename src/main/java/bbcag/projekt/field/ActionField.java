@@ -68,7 +68,7 @@ public class ActionField extends Field {
                 break;
             default: //give money (rolledSum * 5)
                 player.setAccountBalance(player.getAccountBalance() + rolledSum * 5);
-                Game.getInstance().message("Du kriegst den 5-Fachen wert, von dem was du gewuefelt hast ausbezahlt. (" + (rolledSum * 5) + "$)");
+                Game.getInstance().message("Du kriegst den 5-Fachen wert, von dem was du gewuerfelt hast ausbezahlt. (" + (rolledSum * 5) + "$)");
                 break;
         }
 
