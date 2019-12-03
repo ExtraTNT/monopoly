@@ -4,6 +4,8 @@ import bbcag.projekt.engine.Game;
 import bbcag.projekt.player.Player;
 
 public class StartField extends Field {
+
+
     private short startMoney;
 
     public StartField(short money, Player bank) {
@@ -15,6 +17,10 @@ public class StartField extends Field {
     @Override
     public int getWorth() {
         return 0;
+    }
+
+    public short getStartMoney() {
+        return startMoney;
     }
 
     @Override

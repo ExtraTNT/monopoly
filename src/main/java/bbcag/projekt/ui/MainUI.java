@@ -160,7 +160,6 @@ public class MainUI extends BorderPane {
 
             @Override
             public void onCardShow() {
-
             }
         });
     }

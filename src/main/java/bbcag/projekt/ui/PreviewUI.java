@@ -3,10 +3,7 @@ package bbcag.projekt.ui;
 import bbcag.projekt.config.Configuration;
 import bbcag.projekt.engine.Game;
 import bbcag.projekt.engine.GameListener;
-import bbcag.projekt.field.Field;
-import bbcag.projekt.field.NormalField;
-import bbcag.projekt.field.RailwayField;
-import bbcag.projekt.field.WorkField;
+import bbcag.projekt.field.*;
 import bbcag.projekt.player.Player;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +16,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+
+import java.util.List;
 
 public class PreviewUI extends BorderPane {
 
@@ -34,7 +33,7 @@ public class PreviewUI extends BorderPane {
         rent.setPrefSize(180, 200);
         rent.setMaxSize(180, 200);
 
-        worth.setPrefHeight(100);
+        worth.setPrefHeight(100); //used to make the rent (TextArea) fit in the box (if the picture (card) is made with the original grind)
         worth.setAlignment(Pos.CENTER);
         costHouse.setAlignment(Pos.BOTTOM_CENTER);
 
@@ -101,7 +100,17 @@ public class PreviewUI extends BorderPane {
             }
             @Override
             public void onCardShow() {
-                optionsFields.setAll(Game.getInstance().getFieldsCurrentPlayer());
+                List<Field> fieldsCP = Game.getInstance().getFieldsCurrentPlayer();
+                optionsFields.setAll(fieldsCP);
+                Field field = Game.getInstance().getBoard().getFieldByIndex(Game.getInstance().getCurrentPlayer().getPosition());
+                boolean br = false;
+                for (Field f: fieldsCP) {
+                    if (f == field){
+                        br = true;
+                        break;
+                    }
+                }
+                if(!br) optionsFields.add(field);
             }
         });
     }
@@ -110,18 +119,22 @@ public class PreviewUI extends BorderPane {
         String rentStr = "";
         String worthStr = "";
         String houseStr = "";
-
+        //doesn't work with switch because of type class
         if(field.getClass() == NormalField.class){
             worthStr = field.getWorth() + "$";
             houseStr = "Kosten Haus / Hotel " + ((NormalField) field).getWorthHotel() + "$";
             int count = 0;
             for(int i : ((NormalField) field).getRentList()){
-                if (count == 5){
-                    rentStr += "Hotel: " + i + "$";
-                } else if (count == 0) {
-                    rentStr += "Ohne Etwas: " + i + "$\n";
-                } else {
-                    rentStr += count + " Haus: " + i + "$\n";
+                switch (count) {
+                    case 5:
+                        rentStr += "Hotel: " + i + "$";
+                        break;
+                    case 0:
+                        rentStr += "Ohne Etwas: " + i + "$\n";
+                        break;
+                    default:
+                        rentStr += count + " Haus: " + i + "$\n";
+                        break;
                 }
                 count ++;
             }
@@ -137,7 +150,12 @@ public class PreviewUI extends BorderPane {
             worthStr = field.getWorth() + "$";
             houseStr = "";
             rentStr = "1 Feld: Die gewuerfelte Summe mal 4\n2 Felder: Die gewuerfelte Summe mal 11";
+        } else if(field.getClass() == StartField.class){
+            rentStr = "Steping over: " + ((StartField) field).getStartMoney() + "$\nStepping on: " + (((StartField) field).getStartMoney()*2) + "$" ;
+        } else if(field.getClass() == JailField.class){
+         rentStr = "Wuerfele 3 mal um Pach um frei zu kommen.\nsollte es dir nicht gelingen, so musst du 100$ zahlen";
         }
+
         rent.setText(rentStr);
         worth.setText(worthStr);
         costHouse.setText(houseStr);

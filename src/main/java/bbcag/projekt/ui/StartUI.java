@@ -80,7 +80,7 @@ public class StartUI extends BorderPane {
 
         startDoneButton.setOnAction(event -> {
             try { Game.getInstance().start(); }
-            catch (NotEnoughPlayersException e) { startPlayerListText.appendText("\nERROR NOT ENOUGH PLAYERS\n\n"); }
+            catch (NotEnoughPlayersException e) { startPlayerListText.appendText("\nERROR NOT ENOUGH PLAYERS!\n"); }
         });
 
         Game.getInstance().addListener(new GameListener() {
