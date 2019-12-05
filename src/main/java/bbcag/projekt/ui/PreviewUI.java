@@ -99,7 +99,7 @@ public class PreviewUI extends BorderPane {
         costHouse.setText("");
         List<Field> fieldsSP = Game.getInstance().getBoard().getFieldsByOwner((Player) CBPlayers.getValue());
         optionsFields.setAll(fieldsSP);
-        if (CBPlayers.getValue() != Game.getInstance().getCurrentPlayer()) {
+        if (CBPlayers.getValue() == Game.getInstance().getCurrentPlayer()) {
             Field field = Game.getInstance().getBoard().getFieldByIndex(((Player) (CBPlayers.getValue())).getPosition());
             boolean br = false;
             for (Field f : fieldsSP) {
