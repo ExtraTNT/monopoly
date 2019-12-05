@@ -6,15 +6,12 @@ import bbcag.projekt.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class RailwayField extends BuyableField  {
     private short worth = 200;
     private int[] Rent = new int[]{25, 50, 100, 200};
-
     public RailwayField(String name) {
         this.name = name;
     }
-
     private int getRent(){
         List<Field> listToCount = new ArrayList<>();
         for(Field f : Game.getInstance().getBoard().getFieldsByOwner(owner)){
@@ -22,7 +19,6 @@ public class RailwayField extends BuyableField  {
                 listToCount.add(f);
             }
         }
-
         return Rent[listToCount.size()-1];
     }
     public int[] getRentList(){ return Rent;}
@@ -33,7 +29,6 @@ public class RailwayField extends BuyableField  {
             canBuy = false;
         }
     }
-
     @Override
     public int getWorth() {
         return worth;
@@ -56,6 +51,5 @@ public class RailwayField extends BuyableField  {
                 Game.getInstance().message(player.getName() + " hat " + owner.getName() + " " + getRent() + "$ gezahlt.");
             }
         }
-
     }
 }

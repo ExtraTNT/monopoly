@@ -40,7 +40,6 @@ public class MainUI extends BorderPane {
         HBox buttonArea = new HBox(20);
         buttonArea.getChildren().addAll(rollButton, dealButton, buyButton, houseButton, cardButton, turnButton);
 
-
         rollButton.setPrefSize(180, 50);
         dealButton.setPrefSize(180, 50);
         buyButton.setPrefSize(180, 50);
@@ -77,7 +76,6 @@ public class MainUI extends BorderPane {
         rightInfoArea.setPadding(new Insets(20));
 
         //Left area space info
-
         rollResult.setPrefHeight(50);
         rollResult.setPrefWidth(100);
 
@@ -96,15 +94,9 @@ public class MainUI extends BorderPane {
         //Game listeners
         Game.getInstance().addListener(new GameListener() {
             @Override
-            public void onStart() {
-                updatePlayerPositions();
-            }
-
+            public void onStart() { updatePlayerPositions(); }
             @Override
-            public void onPlayerAdded(Player player) {
-                updatePlayerPositions();
-            }
-
+            public void onPlayerAdded(Player player) { updatePlayerPositions(); }
             @Override
             public void onCurrentPlayerChange(Player player) {
                 playerAccountBalanceField.setText(player.getAccountBalance() + ".-");
@@ -116,24 +108,19 @@ public class MainUI extends BorderPane {
                     playerPlaces.appendText(field.getName() + "\n");
                 }
             }
-
             @Override
             public void onDicesRolled(int dice1, int dice2) {
                 rollResult.setText(dice1 + " and " + dice2);
                 updatePlayerPositions();
                 playerPlaceField.setText(Game.getInstance().getBoard().getFieldByIndex(Game.getInstance().getCurrentPlayer().getPosition()).getName());
             }
-
             @Override
-            public void onStartDealing(Player currentPlayer) {
-            }
-
+            public void onStartDealing(Player currentPlayer) {}
             @Override
             public void onWin(Player winer) {
                 gc.setFill(Paint.valueOf("#ff0000"));
                 gc.fillText((winer + " WINS!"), 400, 200);
             }
-
             @Override
             public void onBuy(Player player) {
                 playerAccountBalanceField.setText(player.getAccountBalance() + ".-");
@@ -143,27 +130,16 @@ public class MainUI extends BorderPane {
                 }
                 updatePlayerPositions();
             }
-
             @Override
-            public void onHotel() {
-                updatePlayerPositions();
-            }
-
+            public void onHotel() {updatePlayerPositions(); }
             @Override
-            public void onDone() {
-            }
-
+            public void onDone() {}
             @Override
-            public void onMessage(String message) {
-                gameMessages.appendText(message + "\n");
-            }
-
+            public void onMessage(String message) { gameMessages.appendText(message + "\n"); }
             @Override
-            public void onCardShow() {
-            }
+            public void onCardShow() {}
         });
     }
-
     private void updatePlayerPositions() {
         gc.clearRect(0, 0, 900, 900);
         for (Player p : Game.getInstance().getPlayerList()) {
@@ -172,21 +148,14 @@ public class MainUI extends BorderPane {
         }
         updateHotels();
     }
-
-    /**
-     * getPlayerX
+    /** getPlayerX
      * calculate the x pos, that the player can be drawn on the screen
-     *
      * @param player the player object
      * @return X-position to draw the player at
      */
     private int getPlayerX(Player player) {
-        if (player.getPosition() >= 30 && player.getPosition() <= 39 || player.getPosition() == 0) {
-            return 810;
-        }
-        if (player.getPosition() >= 10 && player.getPosition() <= 20) {
-            return 50;
-        }
+        if (player.getPosition() >= 30 && player.getPosition() <= 39 || player.getPosition() == 0) { return 810; }
+        if (player.getPosition() >= 10 && player.getPosition() <= 20) { return 50; }
         if (player.getPosition() > 20 && player.getPosition() < 30) {
             return ((player.getPosition() - 21) * 72 + 140);
         } else {
@@ -194,20 +163,14 @@ public class MainUI extends BorderPane {
         }
     }
 
-    /**
-     * getPlayerY
+    /** getPlayerY
      * calculate the y pos, that the player can be drawn on the screen
-     *
      * @param player the player object
      * @return y-position to draw the player at
      */
     private int getPlayerY(Player player) {
-        if (player.getPosition() >= 0 && player.getPosition() <= 10) {
-            return 810;
-        }
-        if (player.getPosition() >= 20 && player.getPosition() <= 30) {
-            return 50;
-        }
+        if (player.getPosition() >= 0 && player.getPosition() <= 10) { return 810; }
+        if (player.getPosition() >= 20 && player.getPosition() <= 30) { return 50; }
         if (player.getPosition() > 10 && player.getPosition() < 20) {
             return (720 - (player.getPosition() - 11) * 72);
         } else {
@@ -216,7 +179,6 @@ public class MainUI extends BorderPane {
     }
 
     private void updateHotels() {
-
         for (NormalField field : Game.getInstance().getListHousableFields()) {
             if (field.getOwner() != Game.getInstance().getBank() && field.getOwner() != null) {
                 gc.setFill(Paint.valueOf(field.getOwner().getColor()));

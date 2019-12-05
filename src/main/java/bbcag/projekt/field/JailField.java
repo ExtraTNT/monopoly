@@ -16,15 +16,11 @@ public class JailField extends Field {
     public int getWorth() {
         return 0;
     }
-
     /**JailField
      * constructor -> neutral Field nothing special
      * @param bank the bank player
      */
-    public JailField(Player bank) {
-        name = "Gefaengnis / Nur zu Besuch";
-    }
-
+    public JailField(Player bank) { name = "Gefaengnis / Nur zu Besuch";}
     /**steppingOnIt
      * in this case just a message except if you get cachet
      * @param player the current player

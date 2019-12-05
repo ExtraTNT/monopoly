@@ -51,7 +51,6 @@ public class DealUI extends BorderPane {
         options.addAll(Game.getInstance().getPlayerList());
         dealer2Selection = new ComboBox(options);
 
-
         /**dealer2Selection.setOnAction(event -> update());
          * this method provoke exceptions, but doesn't cause any other problems
          * the old method resulted in a failure of the garbage collector xD
@@ -68,7 +67,6 @@ public class DealUI extends BorderPane {
         VBox traderBox2 = new VBox(5);
         traderBox2.setPadding(new Insets(20));
         traderBox2.getChildren().addAll(dealer2Selection, dealer2MoneyText, dealer2PropertyScroll, dealer2FullMoneyLabel, dealer2Field);
-
 
         //dealScreen bottom area
         Button dealDealButton = new Button("Deal");
@@ -87,21 +85,13 @@ public class DealUI extends BorderPane {
 
         Game.getInstance().addListener(new GameListener(){
             @Override
-            public void onStart() {
-            }
-
+            public void onStart() {}
             @Override
-            public void onPlayerAdded(Player player) {
-            }
-
+            public void onPlayerAdded(Player player) {}
             @Override
-            public void onCurrentPlayerChange(Player player) {
-            }
-
+            public void onCurrentPlayerChange(Player player) {}
             @Override
-            public void onDicesRolled(int dice1, int dice2) {
-            }
-
+            public void onDicesRolled(int dice1, int dice2) {}
             @Override
             public void onStartDealing(Player currentPlayer) {
                 dealer1Name.setText(Game.getInstance().getCurrentPlayer().toString());
@@ -109,34 +99,20 @@ public class DealUI extends BorderPane {
                 dealer1FullMoneyLabel.setText(Game.getInstance().getCurrentPlayer().getAccountBalance() + "$");
                 optionsFieldsPlayer1.setAll(Game.getInstance().getFieldsCurrentPlayer());
             }
-
             @Override
-            public void onWin(Player winer) {
-            }
-
+            public void onWin(Player winer) {}
             @Override
-            public void onBuy(Player player) {
-            }
-
+            public void onBuy(Player player) {}
             @Override
-            public void onHotel() {
-            }
-
+            public void onHotel() {}
             @Override
-            public void onDone() {
-            }
-
+            public void onDone() {}
             @Override
-            public void onMessage(String message) {
-            }
-
+            public void onMessage(String message) {}
             @Override
-            public void onCardShow() {
-
-            }
+            public void onCardShow() {}
         });
     }
-
     /**onDealPressed
      * check, if the players have given a number as money-value (if not, 0 will be used) and calls the onDeal method on the Game
      * after that, it calls the onDone method -> back to the mainUI

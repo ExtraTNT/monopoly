@@ -12,11 +12,9 @@ public class NormalField extends BuyableField {
     private int[] Rent;
     private int worthHotel;
     private int groupIndex;
-
     public NormalField(String name, short worth, int[] rent, int worthHotel, int gIndex) {
         this(name, worth, rent, worthHotel, gIndex, null);
     }
-
     public NormalField(String name, short worth, int[] rent, int worthHotel, int gIndex, Player owner) {
         super(owner);
         this.name = name;
@@ -25,16 +23,13 @@ public class NormalField extends BuyableField {
         this.worthHotel = worthHotel;
         this.groupIndex = gIndex;
     }
-
     private int getRent() {
         return Rent[Hotel];
     }
     public int[] getRentList(){return Rent;}
-
     public int getGroupIndex() {
         return groupIndex;
     }
-
     public void buy(Player player) {
         if (owner == null) {
             player.setAccountBalance(player.getAccountBalance() - worth);
@@ -42,24 +37,19 @@ public class NormalField extends BuyableField {
             canBuy = false;
         }
     }
-
     public byte getHotel() {
         return Hotel;
     }
-
     public void setHotel(byte hotel) {
         Hotel = hotel;
     }
-
     public int getWorthHotel() {
         return worthHotel;
     }
-
     @Override
     public int getWorth() {
         return worth;
     }
-
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
         Game.getInstance().message(player.getName() + " ist auf " + this.getName() + " gelandet.");
@@ -75,13 +65,14 @@ public class NormalField extends BuyableField {
             Game.getInstance().littleUpdateGUI();
             if (owner != player) {
                 if (getRent() > 0) {
-                    Game.getInstance().message(player.getName() + " hat " + owner.getName() + " " + getRent() + "$ gezahlt.");
+                    Game.getInstance().message(player.getName() + " hat "
+                            + owner.getName() + " " + getRent() + "$ gezahlt.");
                 } else {
-                    Game.getInstance().message(player.getName() + " hat von " + owner.getName() + " " + (-getRent()) + "$ erhalten.");
+                    Game.getInstance().message(player.getName() + " hat von "
+                            + owner.getName() + " " + (-getRent()) + "$ erhalten.");
                 }
             }
         }
-
     }
 }
 

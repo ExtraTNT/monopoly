@@ -11,11 +11,9 @@ import java.util.List;
  */
 public class WorkField extends BuyableField {
     private short worth = 150;
-
     public WorkField(String name) {
         this.name = name;
     }
-
     public void buy(Player player) {
         if (owner == null) {
             player.setAccountBalance(player.getAccountBalance() - worth);
@@ -23,12 +21,10 @@ public class WorkField extends BuyableField {
             canBuy = false;
         }
     }
-
     @Override
     public int getWorth() {
         return worth;
     }
-
     /**steppingOnIt
      * test, if the field has no owner and the current player have enough money to buy -> if it so, the player can buy it...
      * if the field have a owner, it calculates the rent for it ->
@@ -44,22 +40,17 @@ public class WorkField extends BuyableField {
         if (this.owner == null) {
             if (this.worth < player.getAccountBalance()) {
                 canBuy = true;
-                Game.getInstance().message(player.getName() + " moechtest du " + this.getName() + " kaufen fuer " + this.getWorth() + "$?");
+                Game.getInstance().message(player.getName() + " moechtest du " + this.getName() +
+                        " kaufen fuer " + this.getWorth() + "$?");
             }
         } else {
             List<Field> listToCount = new ArrayList<>();
             for (Field f : Game.getInstance().getBoard().getFieldsByOwner(owner)) {
-                if (f instanceof WorkField) {
-                    listToCount.add(f);
-                }
+                if (f instanceof WorkField) { listToCount.add(f); }
             }
             int toPay = 0;
-            if (listToCount.size() == 2) {
-                toPay = rolledSum * 11;
-            }
-            if (listToCount.size() == 1) {
-                toPay = rolledSum * 4;
-            }
+            if (listToCount.size() == 2) { toPay = rolledSum * 11; }
+            if (listToCount.size() == 1) { toPay = rolledSum * 4;}
             player.setAccountBalance(player.getAccountBalance() - (toPay));
             owner.setAccountBalance(owner.getAccountBalance() + (toPay));
             if (owner != player) {
@@ -67,6 +58,5 @@ public class WorkField extends BuyableField {
             }
             Game.getInstance().littleUpdateGUI();
         }
-
     }
 }

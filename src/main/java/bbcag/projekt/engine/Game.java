@@ -506,7 +506,7 @@ public class Game {
         }
         message(currentPlayer.getName() + " handelt mit " + player2.getName());
         if (dealMoney(currentPlayer, moneyP1, player2, moneyP2)) {
-            if (!dealPlaces(currentPlayer, fieldP1, player2, fieldP2)) {
+            if (!dealPlaces(currentPlayer, fieldP1, player2, fieldP2)) { //to not reate the messages a 2. time
                 player2.setAccountBalance(player2.getAccountBalance() + moneyP2 - moneyP1);
                 currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() + moneyP1 - moneyP2);
             }

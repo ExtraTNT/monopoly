@@ -9,7 +9,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 /**
  * Start UI
  * a simple UI which will displayed, when the game starts, in which the players can create the player-objects
@@ -73,7 +72,6 @@ public class StartUI extends BorderPane {
         setBottom(startBottomArea);
         startCreateButton.setOnAction(event -> {
             Game.getInstance().addPlayer(startPlayerEntry.getText(), (String) startRadioGroup.getSelectedToggle().getUserData());
-
             startRadioGroup.getSelectedToggle().setSelected(false);
             startPlayerEntry.setText("");
         });
@@ -85,41 +83,29 @@ public class StartUI extends BorderPane {
 
         Game.getInstance().addListener(new GameListener() {
             @Override
-            public void onStart() {
-            }
+            public void onStart() {}
             @Override
             public void onPlayerAdded(Player player) {
                 startPlayerListText.appendText(player.getName() + "\n");
             }
             @Override
-            public void onCurrentPlayerChange(Player player) {
-            }
+            public void onCurrentPlayerChange(Player player) {}
             @Override
-            public void onDicesRolled(int dice1, int dice2) {
-            }
+            public void onDicesRolled(int dice1, int dice2) {}
             @Override
-            public void onStartDealing(Player currentPlayer) {
-            }
+            public void onStartDealing(Player currentPlayer) {}
             @Override
-            public void onWin(Player winer) {
-            }
+            public void onWin(Player winer) {}
             @Override
-            public void onBuy(Player player) {
-            }
+            public void onBuy(Player player) {}
             @Override
-            public void onHotel() {
-            }
+            public void onHotel() {}
             @Override
-            public void onDone() {
-            }
+            public void onDone() {}
             @Override
-            public void onMessage(String message) {
-            }
-
+            public void onMessage(String message) {}
             @Override
-            public void onCardShow() {
-
-            }
+            public void onCardShow() {}
         });
     }
 }

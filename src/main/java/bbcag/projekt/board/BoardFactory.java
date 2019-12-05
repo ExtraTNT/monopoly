@@ -3,9 +3,7 @@ package bbcag.projekt.board;
 import bbcag.projekt.player.Player;
 import bbcag.projekt.config.Configuration;
 
-
 public class BoardFactory {
-
     private static final String CONFIG_KEY = "board.type";
     private static BoardFactory instance;
 
@@ -15,7 +13,6 @@ public class BoardFactory {
      */
     private BoardFactory() {
     }
-
     /** createBoard
      * @param bank the bank player object
      * @return the board -> edit the config for an other board
@@ -33,15 +30,11 @@ public class BoardFactory {
                     throw new RuntimeException(type + " does not exist");
         }
     }
-
     /**getInstance
      * Singleton
      * @return instance of the class BoardFactory
      */
     public static BoardFactory getInstance() {
-        if (instance == null) {
-            instance = new BoardFactory();
-        }
-        return instance;
-    }
+        if (instance == null) { instance = new BoardFactory();}
+        return instance;}
 }

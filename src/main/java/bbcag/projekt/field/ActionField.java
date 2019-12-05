@@ -11,7 +11,6 @@ public class ActionField extends Field {
         owner = bank;
         this.name = name;
     }
-
     /**getWorth
      * @return the worth of the field == 0
      */
@@ -19,7 +18,6 @@ public class ActionField extends Field {
     public int getWorth() {
         return 0;
     }
-
     /**steppingOnIt
      * just a random action like give the player money or move player 3 fields back or what ever.
      * @param player the current player
@@ -71,6 +69,5 @@ public class ActionField extends Field {
                 Game.getInstance().message("Du kriegst den 5-Fachen wert, von dem was du gewuerfelt hast ausbezahlt. (" + (rolledSum * 5) + "$)");
                 break;
         }
-
     }
 }

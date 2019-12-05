@@ -54,33 +54,19 @@ public class HotelUI  extends HBox {
 
         Game.getInstance().addListener(new GameListener(){
             @Override
-            public void onStart() {
-            }
-
+            public void onStart() {}
             @Override
-            public void onPlayerAdded(Player player) {
-            }
-
+            public void onPlayerAdded(Player player) {}
             @Override
-            public void onCurrentPlayerChange(Player player) {
-            }
-
+            public void onCurrentPlayerChange(Player player) {}
             @Override
-            public void onDicesRolled(int dice1, int dice2) {
-            }
-
+            public void onDicesRolled(int dice1, int dice2) {}
             @Override
-            public void onStartDealing(Player currentPlayer) {
-            }
-
+            public void onStartDealing(Player currentPlayer) {}
             @Override
-            public void onWin(Player winer) {
-            }
-
+            public void onWin(Player winer) {}
             @Override
-            public void onBuy(Player player) {
-            }
-
+            public void onBuy(Player player) {}
             @Override
             public void onHotel() {
                 scrollText.setText("");
@@ -89,20 +75,12 @@ public class HotelUI  extends HBox {
                     buildableFields.setContent(scrollText);
                 }
             }
-
             @Override
-            public void onDone() {
-            }
-
+            public void onDone() {}
             @Override
-            public void onMessage(String message) {
-            }
-
+            public void onMessage(String message) {}
             @Override
-            public void onCardShow() {
-
-            }
+            public void onCardShow() {}
         });
-
     }
 }

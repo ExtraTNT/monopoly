@@ -3,18 +3,14 @@ package bbcag.projekt.field;
 import bbcag.projekt.engine.Game;
 import bbcag.projekt.player.Player;
 
-
 public class PolicemanField extends Field {
-
     @Override
     public int getWorth() {
         return 0;
     }
-
     public PolicemanField(Player bank) {
         this.name = "Gehe ins Gefaengnis!";
     }
-
     /**steppingOnIt
      * that happens, if you go to the police...
      * make a message, set the position to 10 (the JailField) and set RemainingDaysInPrison
