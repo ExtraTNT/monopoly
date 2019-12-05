@@ -36,5 +36,6 @@ public class BoardFactory {
      */
     public static BoardFactory getInstance() {
         if (instance == null) { instance = new BoardFactory();}
-        return instance;}
+        return instance;
+    }
 }
