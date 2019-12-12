@@ -18,6 +18,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import java.util.List;
 
+/**PreviewUI
+ * a little UI which shows information about the fields, groupd by the owner -> not sold fields are not shown.
+ */
 public class PreviewUI extends BorderPane {
     Label worth;
     TextArea rent;
@@ -93,6 +96,10 @@ public class PreviewUI extends BorderPane {
             public void onCardShow() {optionsPlayers.setAll(Game.getInstance().getPlayerList());}
         });
     }
+
+    /**playerSelectUpdate
+     * update the field list based on the selected player...
+     */
     private void playerSelectUpdate() {
         rent.setText("");
         worth.setText("");
@@ -111,6 +118,11 @@ public class PreviewUI extends BorderPane {
             if (!br) optionsFields.add(field);
         }
     }
+
+    /** update
+     * updates the content, based on the information from the field (param)
+     * @param field the field to show
+     */
     private void update(Field field) {
         String rentStr = "";
         String worthStr = "";
