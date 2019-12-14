@@ -43,7 +43,7 @@ public class ActionField extends Field {
             case 4: //police
                 player.setPosition((byte)10);
                 player.setRemainingDaysInPrison((byte)3);
-                Game.getInstance().message("Ins Gefaengnis!");
+                Game.getInstance().message("Du wurdest von der Polizei erwischt. Du wurdest nach " + Game.getInstance().getBoard().getFieldByIndex(10) + " gebracht.");
                 break;
             case 5: //reduce accountBalance by 10%
                 Game.getInstance().message("Zusatzsteuer 10% deines Vermoegens. (" + (player.getAccountBalance()/10) + "$)");

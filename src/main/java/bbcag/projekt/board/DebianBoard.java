@@ -24,7 +24,7 @@ public class DebianBoard extends Board{
             //Free to reconfigure
             //todo values
 
-            fieldList.add(new StartField((short) 400, getBank()));
+            fieldList.add(new StartField((short) 400, getBank(), "Reboot"));
 
             fieldList.add(new NormalField("xrdp", (short) 60, new int[]{2, 10, 30, 90, 160, 250}, 50, 1));
 
@@ -42,7 +42,7 @@ public class DebianBoard extends Board{
             fieldList.add(new NormalField("htop", (short) 100, new int[]{6, 30, 90, 270, 400, 550}, 50, 2));
             fieldList.add(new NormalField("Monitorix", (short) 120, new int[]{8, 40, 100, 300, 450, 600}, 50, 2));
 
-            fieldList.add(new JailField(getBank()));
+            fieldList.add(new JailField(getBank(), "Windows"));
 
             fieldList.add(new NormalField("Image Magic", (short) 140, new int[]{10, 50, 150, 450, 625, 750},100,3));
             fieldList.add(new NormalField("GIMP", (short) 140, new int[]{10, 50, 150, 450, 625, 750},100, 3));
@@ -67,10 +67,10 @@ public class DebianBoard extends Board{
             fieldList.add(new RailwayField("git"));
             fieldList.add(new NormalField("Mozilla Firefox", (short) 260, new int[]{22, 110, 330, 800, 975, 1150},150, 6));
             fieldList.add(new NormalField("torbrowser", (short) 260, new int[]{22, 110, 330, 800, 975, 1150},150, 6));
-            fieldList.add(new WorkField("Cofee"));
+            fieldList.add(new WorkField("Coffee"));
             fieldList.add(new NormalField("Lynx", (short) 280, new int[]{24, 120, 360, 850, 1025, 1200},150, 6));
 
-            fieldList.add(new PolicemanField(getBank()));
+            fieldList.add(new PolicemanField(getBank(), "Install windows"));
 
             fieldList.add(new NormalField("zsh", (short) 300, new int[]{26, 130, 390, 900, 1100, 1275},200, 7));
             fieldList.add(new NormalField("fish", (short) 300, new int[]{26, 130, 390, 900, 1100, 1275},200, 7));

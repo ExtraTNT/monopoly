@@ -20,7 +20,12 @@ public class JailField extends Field {
      * constructor -> neutral Field nothing special
      * @param bank the bank player
      */
-    public JailField(Player bank) { name = "Gefaengnis / Nur zu Besuch";}
+    public JailField(Player bank) {
+        name = "Gefaengnis";
+    }
+    public JailField(Player bank, String name){
+        this.name = name;
+    }
     /**steppingOnIt
      * in this case just a message except if you get cachet
      * @param player the current player
@@ -28,6 +33,6 @@ public class JailField extends Field {
      */
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
-            Game.getInstance().message(player.getName() + " ist zubesuch im Gefaengnis");
+            Game.getInstance().message(player.getName() + " ist zubesuch in " + name);
     }
 }

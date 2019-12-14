@@ -11,6 +11,10 @@ public class PolicemanField extends Field {
     public PolicemanField(Player bank) {
         this.name = "Gehe ins Gefaengnis!";
     }
+    public PolicemanField(Player bank, String name){
+        this.name = name;
+    }
+
     /**steppingOnIt
      * that happens, if you go to the police...
      * make a message, set the position to 10 (the JailField) and set RemainingDaysInPrison
@@ -19,7 +23,7 @@ public class PolicemanField extends Field {
      */
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
-        Game.getInstance().message(player.getName() + " wurde leider von der Polizei erwischt. Ab ins Gefaengnis");
+        Game.getInstance().message(player.getName() + " wurde leider von der Polizei erwischt. Ab in " + Game.getInstance().getBoard().getFieldByIndex(10));
         player.setPosition((byte) 10);
         player.setRemainingDaysInPrison((byte) 3);
     }

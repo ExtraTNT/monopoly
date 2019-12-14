@@ -10,6 +10,11 @@ public class StartField extends Field {
         startMoney = money;
         owner = bank;
     }
+    public StartField(short money, Player bank, String name){
+        this.name = name;
+        startMoney = money;
+        owner = bank;
+    }
     @Override
     public int getWorth() {
         return 0;
@@ -19,13 +24,13 @@ public class StartField extends Field {
     }
     @Override
     public void steppingOnIt(Player player, int rolledSum) {
-            Game.getInstance().message(player.getName() + " ist auf dem Start-Feld gelandet, das heisst doppeltes Geld");
+            Game.getInstance().message(player.getName() + " ist auf " + name +" gelandet, das heisst doppeltes Geld");
 
         player.setAccountBalance(player.getAccountBalance() + (2 * startMoney));
         Game.getInstance().littleUpdateGUI();
     }
     public void passIt(Player player) {
-        Game.getInstance().message(player.getName() + " ist ueber Los gezogen, das gibt ein bisschen Geld");
+        Game.getInstance().message(player.getName() + " ist ueber " + name +" gezogen, das gibt ein bisschen Geld");
         player.setAccountBalance(player.getAccountBalance() + startMoney);
         Game.getInstance().littleUpdateGUI();
     }
