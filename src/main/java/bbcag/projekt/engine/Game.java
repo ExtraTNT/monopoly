@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
 /** Game
  * the engine as such...
  * this class is a singleton class...
@@ -23,7 +22,6 @@ public class Game {
     private boolean currentPlayerHasRolledDice;
     private Board board;
     private Player bank = new Player("bank", "#FFFFFF");
-
      /** Game
      * the engine as such...
      * crates the listeners and the board...
@@ -32,9 +30,7 @@ public class Game {
         listeners = new HashSet<>();
         board = BoardFactory.getInstance().createBoard(bank);
     }
-
-    /**
-     * getInstance
+    /**getInstance
      * Singleton!
      * @return the instance
      */
@@ -44,9 +40,7 @@ public class Game {
         }
         return instance;
     }
-
-    /**
-     * addListener
+    /**addListener
      * adds new GameListener to the listener set.
      * used in the UI-classes to communicate with the engine
      * @param listener the new listener
@@ -54,9 +48,7 @@ public class Game {
     public void addListener(GameListener listener) {
         listeners.add(listener);
     }
-
-    /**
-     * addPlayer
+    /**addPlayer
      * adds a new player in the allPlayer list, sets the current player and trigger the listener onPlayerAdded
      * @param name  the name of new player
      * @param color the color of the new player
@@ -69,56 +61,38 @@ public class Game {
             listener.onPlayerAdded(player);
         }
     }
-
-    /**
-     * getCurrentPlayer
-     *
+    /**getCurrentPlayer
      * @return the current player
      */
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
-
-    /**
-     * getBank
+    /**getBank
      * returns a non human player, which is used to own field like the StartField
-     *
      * @return the non human player bank
      */
     public Player getBank() {
         return bank;
     }
-
-    /**
-     * getPlayerList
-     *
+    /**getPlayerList
      * @return a list with all not death human-player in this session
      */
     public List<Player> getPlayerList() {
         return allPlayers;
     }
-
-    /**
-     * getBoard
-     *
+    /**getBoard
      * @return the created board-object -> more details in the Game constructor, the BoardFactory class and the Board class
      */
     public Board getBoard() {
         return board;
     }
-
-    /**
-     * getFieldsCurrentPlayer
-     *
+    /**getFieldsCurrentPlayer
      * @return the fields, owned by the current PLayer
      */
     public List<Field> getFieldsCurrentPlayer() {
         return board.getFieldsByOwner(currentPlayer);
     }
-
-    /**
-     * getListHousableFields
-     *
+    /**getListHousableFields
      * @return a list with all normalFields
      */
     public List<NormalField> getListHousableFields() {
@@ -130,15 +104,11 @@ public class Game {
         }
         return normalFields;
     }
-
-    /**
-     * getListOfMyHousableFields
+    /**getListOfMyHousableFields
      * simpler control
-     *
      * @return the fields witch are the current player own -> simpler control
      */
     public List<NormalField> getListOfMyHousableFields() {
-
         List<NormalField> normalFields = new ArrayList<>();
         for (int i = 0; i < board.getFieldsByOwner(currentPlayer).size(); i++) {
             if (board.getFieldsByOwner(currentPlayer).get(i) instanceof NormalField) {
@@ -147,11 +117,8 @@ public class Game {
         }
         return normalFields;
     }
-
-    /**
-     * start
+    /**start
      * Start function to check if there are at least 2 players + listener functions (onStart and on CurrentPlayerChange)
-     *
      * @throws NotEnoughPlayersException not enough players
      */
     public void start() throws NotEnoughPlayersException {
@@ -165,11 +132,8 @@ public class Game {
             listener.onCurrentPlayerChange(currentPlayer);
         }
     }
-
-    /**
-     * message
+    /**message
      * sends a message to the gui, used for things like: playerxy has rolled
-     *
      * @param message the message to display in the gui
      */
     public void message(String message) {
@@ -177,8 +141,7 @@ public class Game {
             listener.onMessage(message);
         }
     }
-    /**
-     * onHotel
+    /**onHotel
      * call the listener onHotel -> ezer control
      */
     public void onHotel() {
@@ -186,9 +149,7 @@ public class Game {
             listener.onHotel();
         }
     }
-
-    /**
-     * startDealing
+    /**startDealing
      * call the listener startDealing -> ezer control
      */
     public void startDealing() {
@@ -196,9 +157,7 @@ public class Game {
             listener.onStartDealing(currentPlayer);
         }
     }
-
-    /**
-     * onDone
+    /**onDone
      * calls a listener
      * is used, if a gui action done...
      */
@@ -207,9 +166,7 @@ public class Game {
             listener.onDone();
         }
     }
-
-    /**
-     * littleUpdateGUI
+    /**littleUpdateGUI
      * updates the gui by using the onBuy listener -> this listener was the first, which needs this default set of actions
      */
     public void littleUpdateGUI() {
@@ -217,9 +174,7 @@ public class Game {
             listener.onBuy(currentPlayer);
         }
     }
-
-    /**
-     * onCardShow
+    /**onCardShow
      * calls the onCardShow listener
      */
     public void onCardShow() {
@@ -227,21 +182,19 @@ public class Game {
             listener.onCardShow();
         }
     }
-
-    /**
-     * nextPlayer
+    /**nextPlayer
      * tests, if the currentPlayer done with the round
      * if it so, change the current player
      */
     public void nextPlayer() {
-        if (!currentPlayerHasRolledDice) {
-            message(currentPlayer.getName() + " hat den Zug nicht richtig beendet!");
-            return;
-        }
         if (currentPlayer.isDeath()) {
             message(currentPlayer.getName() + " hat kein Geld mehr und scheidet darum aus.");
             allPlayers.remove(currentPlayer);
-        } else { message(currentPlayer.getName() + " hat den Zug beendet.");}
+        }
+        else if (!currentPlayerHasRolledDice) {
+            message(currentPlayer.getName() + " hat den Zug nicht richtig beendet!");
+            return;
+        }else { message(currentPlayer.getName() + " hat den Zug beendet.");}
         if (allPlayers.size() == 1) {
             for (GameListener listener : listeners) {
                 listener.onWin(allPlayers.get(0));
@@ -254,9 +207,7 @@ public class Game {
         }
         message(currentPlayer.getName() + " ist nun dran!");
     }
-
-    /**
-     * rollDiceForCurrentPlayer
+    /**rollDiceForCurrentPlayer
      * rolls the Dices for the current player, handles the pach-rules, calls the listener and calls the playMove function
      * edit pach-rules here
      */
@@ -306,24 +257,18 @@ public class Game {
             listener.onDicesRolled(dice1, dice2);
         }
     }
-
     //Function Hugi made to move or check where the Player is using the dice result from rollDiceForCurrentPlayer()
-
-    /**
-     * playMove
+    /**playMove
      * function move the Player if necessary or check if the player has remainingDaysInPrison -> wait, if go from 1 to 0 -> pay
      * tests also if the player wins.
      * if the player move in a field will the method passIt with the player (currentPlayer) called.
      * if the player step to the final field, steppingOnIt will called with the player (currentPlayer)
      * @param diceNbr int -> dice1-result + dice2-result
-
      */
     private void playMove(int diceNbr) {
-
         if (currentPlayer.getRemainingDaysInPrison() <= 0) {
             byte oldPos = currentPlayer.getPosition();
             currentPlayer.setPosition((byte) ((currentPlayer.getPosition() + diceNbr) % board.size()));
-
             for (int i = 1; i <= diceNbr; i++) {
                 if (i < diceNbr) {
                     board.getFieldByIndex((oldPos + i) % board.size()).passIt(currentPlayer);
@@ -344,9 +289,7 @@ public class Game {
             allPlayers.remove(currentPlayer);
         }
     }
-
-    /**
-     * buyField
+    /**buyField
      * test, if the player can buy the fiel, on which he is standing and calls the buy method form this field, with the player + calls the onBuy listener and send a message
      */
     public void buyField() {
@@ -358,13 +301,10 @@ public class Game {
             message(currentPlayer.getName() + " hat " + board.getFieldByIndex(currentPlayer.getPosition()).getName() + " fuer " + board.getFieldByIndex(currentPlayer.getPosition()).getWorth() + "$ gekauft");
         }
     }
-
-    /**
-     * buildHouse
+    /**buildHouse
      * tests, if a field has les, than 5 houses and if it own by the currentPlayer, if true it test, if the current player have all Fields of the group, if that is also true:
      * it increment 1 to the hotel-value from the field and reduce the player accountbalance by the worth of the house / hotel
      * finally the listener onHotel gets called and a message gets created
-     *
      * @param field the selected field
      */
     public void buildHouse(NormalField field) {
@@ -381,7 +321,6 @@ public class Game {
                 }
             }
         }
-
         if(board.getFieldsByGroup(groupIndex).size() > count){
             message( currentPlayer.toString() + " besitzt leider nicht genug Grundstueke dieser Farbe.");
             return;
@@ -394,13 +333,10 @@ public class Game {
         littleUpdateGUI();
         message(field.getName() + ", Haus wurde gebaut");
     }
-
-    /**
-     * removeHouse
+    /**removeHouse
      * test if the field has more than 0 houses and is own by the current player, if true:
      * it reduce the hotel-value from the field by 1 and adds the half of the worth of a hotel / house to the player accountbalance
      * finally the listener onHotel gets called and a message gets created
-     *
      * @param field the selected field
      */
     public void removeHouse(NormalField field) {
@@ -414,14 +350,11 @@ public class Game {
         }
         message(field.getName() + ", Haus wurde entfernt");
     }
-
-    /**
-     * dealMoney
+    /**dealMoney
      * <p>
      * test, if any player have enough money to deal with -> if it not so, make a message "Es konnte nicht getauscht werden, ein Player ist zu arm."
      * deal with the money
      * make a message, which player pays which how much...
-     *
      * @param p1      player1 (current player)
      * @param moneyP1 money given form player1 to player2
      * @param p2      player2
@@ -443,13 +376,10 @@ public class Game {
             return false;
         }
     }
-
-    /**
-     * dealPlaces
+    /**dealPlaces
      * <p>
      * changes the owner of the fields and make messages
      * if a modifyOwner fails, it resets the owner of the fields to the sate before
-     *
      * @param p1 player1 (current player)
      * @param f1 field of player1
      * @param p2 player2
@@ -459,7 +389,6 @@ public class Game {
     private boolean dealPlaces(Player p1, Field f1, Player p2, Field f2) {
         boolean p1Fail = false;
         boolean p2Fail = false;
-
         if (f1 != null) {
             if (f1.modifyOwner(p1, p2)) {
                 message(p1.getName() + " hat " + p2.getName() + " " + f1.getName() + " gegeben");
@@ -486,14 +415,11 @@ public class Game {
         }
         return true;
     }
-
-    /**
-     * onDeal
+    /**onDeal
      * if the current player = player 2 returns straight
      * <p>
      * first calls dealMoney, if this works, calls dealPlaces, if this fails it redo the money changes
      * finally updates the gui
-     *
      * @param player2 the player2
      * @param moneyP1 the money the current player will give to player2
      * @param moneyP2 the money player2 will give to the current player
@@ -505,8 +431,8 @@ public class Game {
             return;
         }
         message(currentPlayer.getName() + " handelt mit " + player2.getName());
-        if (dealMoney(currentPlayer, moneyP1, player2, moneyP2)) {
-            if (!dealPlaces(currentPlayer, fieldP1, player2, fieldP2)) { //to not reate the messages a 2. time
+        if (dealMoney(currentPlayer, moneyP1, player2, moneyP2)) { //-> 2 if to simplify the code...
+            if (!dealPlaces(currentPlayer, fieldP1, player2, fieldP2)) { //to not create the messages a 2. time
                 player2.setAccountBalance(player2.getAccountBalance() + moneyP2 - moneyP1);
                 currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() + moneyP1 - moneyP2);
             }

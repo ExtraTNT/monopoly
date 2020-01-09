@@ -29,7 +29,6 @@ public class Configuration {
             throw new RuntimeException(e);
         }
     }
-
     /**get
      * @param key the property name
      * @return the value of the key

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class DebianBoard extends Board{
 
-        static final String NAME = "DEBIAN";
+    static final String NAME = "DEBIAN";
 
     /** DebianBoard
      * a custom board by myself -> I use debian as my os on my notebooks -> I'm programming a lot on my notebooks... -> I really like debian -> I'm free     * @param bank the bank player object
@@ -22,7 +22,6 @@ public class DebianBoard extends Board{
             List<Field> fieldList = new ArrayList<>();
 
             //Free to reconfigure
-            //todo values
 
             fieldList.add(new StartField((short) 400, getBank(), "Reboot"));
 
@@ -89,5 +88,5 @@ public class DebianBoard extends Board{
             fieldList.add(new NormalField("Vim", (short) 400, new int[]{50, 200, 600, 1400, 1700, 2000},200, 8));
 
             return fieldList;
-        }
+    }
 }

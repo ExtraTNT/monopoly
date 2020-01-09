@@ -7,16 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Board {
-
     private final List<Field> FIELDS;
     private final Player BANK;
-
     /**createFields
      * creates a list with all fields and return it
      * @return a list with all fields
      */
     protected abstract List<Field> createFields();
-
     /**Board
      * FIELDS -> all FIELDS from the Board aka the board... xD
      * @param bank the Player who owns all FIELDS which can't be sold to Player
@@ -25,14 +22,12 @@ public abstract class Board {
         this.BANK = bank;
         FIELDS = createFields();
     }
-
     /**getBank
      * @return BANK, the Player who owns all FIELDS that can't be sold to Player
      */
     Player getBank() {
         return BANK;
     }
-
     /**getFieldByName
      *return field by name
      * @param name the name of the field
@@ -46,7 +41,6 @@ public abstract class Board {
         }
         return null;
     }
-
     /**getFieldsByOwner
      * returns fields by owner
      * @param owner the owner of the field
@@ -55,7 +49,7 @@ public abstract class Board {
     public List<Field> getFieldsByOwner(Player owner){
         List fieldshousable = new ArrayList<>();
         for (Field candidate : FIELDS) {
-            if (candidate.getOwner() != null) {
+            if (candidate.getOwner() != null) { //todo why 2 if -> does it bug with just 1 or what?
                 if (candidate.getOwner().equals(owner)){
                     fieldshousable.add(candidate);
                 }
@@ -63,7 +57,6 @@ public abstract class Board {
         }
     return fieldshousable;
     }
-
     //add fields in group
     public List<NormalField> getFieldsByGroup(int groupIndex){
         List FieldsWithIndexX = new ArrayList<>();
@@ -77,7 +70,6 @@ public abstract class Board {
         }
         return FieldsWithIndexX;
     }
-
     /**getIndexFromField
      * return index of field
      * @param field the field object
@@ -86,14 +78,12 @@ public abstract class Board {
     public int getIndexFromField(Field field){
         return FIELDS.indexOf(field);
     }
-
     /**getFields
      * @return a list with all fields
      */
     public List<Field> getFields() {
         return FIELDS;
     }
-
     /**getFieldByIndex
      * @param index the index of the field
      * @return thef field with index index
@@ -101,7 +91,6 @@ public abstract class Board {
     public Field getFieldByIndex(int index){
         return FIELDS.get(index);
     }
-
     /**size
      * @return the size of the list with the fields -> a little bit useless, because size is always 40
      */

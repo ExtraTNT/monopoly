@@ -8,7 +8,6 @@ class Dice {
     private static Random rand = new Random();
     private Dice() {
     }
-
     /**rollDice
      * @return random number between 1 and 6
      */

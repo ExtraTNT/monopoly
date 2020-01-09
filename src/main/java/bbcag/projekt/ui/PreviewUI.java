@@ -50,7 +50,7 @@ public class PreviewUI extends BorderPane {
 
         VBox textFrame = new VBox();
         textFrame.setAlignment(Pos.TOP_CENTER);
-        textFrame.getChildren().addAll(CBFields, CBPlayers, worth, rent, costHouse);
+        textFrame.getChildren().addAll(CBPlayers, CBFields, worth, rent, costHouse);
 
         ImageView cardImageView = new ImageView("Card" + Configuration.getInstance().get("card.type") + ".png");
         cardImageView.setFitHeight(512);
@@ -127,7 +127,7 @@ public class PreviewUI extends BorderPane {
         String rentStr = "";
         String worthStr = "";
         String houseStr = "";
-        //doesn't work with switch because of type class
+        //doesn't work with switch because of type class -> idk why, but definitively because java...
         if(field.getClass() == NormalField.class){
             worthStr = field.getWorth() + "$";
             houseStr = "Kosten Haus / Hotel " + ((NormalField) field).getWorthHotel() + "$";

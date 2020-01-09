@@ -6,13 +6,11 @@ import bbcag.projekt.config.Configuration;
 public class BoardFactory {
     private static final String CONFIG_KEY = "board.type";
     private static BoardFactory instance;
-
     /**BoardFactory
      * it loads the right board...
      * if you want to load an other board, edit the config
      */
-    private BoardFactory() {
-    }
+    private BoardFactory() {}
     /** createBoard
      * @param bank the bank player object
      * @return the board -> edit the config for an other board
@@ -26,7 +24,7 @@ public class BoardFactory {
                 return new FalloutBoard(bank);
             case DebianBoard.NAME: //special board 2
                 return new DebianBoard(bank);
-                default:
+                default: //boar dows not exit
                     throw new RuntimeException(type + " does not exist");
         }
     }

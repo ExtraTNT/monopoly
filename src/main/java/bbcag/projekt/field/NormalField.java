@@ -67,7 +67,7 @@ public class NormalField extends BuyableField {
                 if (getRent() > 0) {
                     Game.getInstance().message(player.getName() + " hat "
                             + owner.getName() + " " + getRent() + "$ gezahlt.");
-                } else {
+                } else { //free parking field...
                     Game.getInstance().message(player.getName() + " hat von "
                             + owner.getName() + " " + (-getRent()) + "$ erhalten.");
                 }
@@ -75,4 +75,3 @@ public class NormalField extends BuyableField {
         }
     }
 }
-

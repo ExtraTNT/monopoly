@@ -7,7 +7,6 @@ public class Player {
     private byte position = 0;
     private byte remainingDaysInPrison;
     private int count = 0;
-
     /**Player
      * a object with data in it...
      * @param name the player name
