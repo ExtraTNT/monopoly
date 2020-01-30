@@ -170,3 +170,4 @@ public class PreviewUI extends BorderPane {
         costHouse.setText(houseStr);
     }
 }
+//todo make sell to bank

@@ -15,5 +15,3 @@ class Dice {
         return rand.nextInt(6) + 1;
     }
 }
-
-

@@ -440,3 +440,5 @@ public class Game {
         littleUpdateGUI();
     }
 }
+
+//todo make jail better... -> make possible to sell free directly...
