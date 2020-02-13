@@ -106,6 +106,11 @@ public class StartUI extends BorderPane {
             public void onMessage(String message) {}
             @Override
             public void onCardShow() {}
+
+            @Override
+            public void onAlert(String message) {
+
+            }
         });
     }
 }

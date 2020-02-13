@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import java.util.List;
@@ -29,6 +30,7 @@ public class PreviewUI extends BorderPane {
     ObservableList<Field> optionsFields = FXCollections.observableArrayList();
     ComboBox CBPlayers = new ComboBox(optionsPlayers);
     ComboBox CBFields = new ComboBox(optionsFields);
+    Button SellField = new Button();
     public PreviewUI(){
         worth = new Label();
         worth.setPrefHeight(100); //used to make the rent (TextArea) fit in the box (if the picture (card) is made with the original grind)
@@ -60,12 +62,16 @@ public class PreviewUI extends BorderPane {
         centralStack.getChildren().addAll(cardImageView, textFrame);
 
         Button PreviewUIDone = new Button("Done");
+        HBox ButtonBox = new HBox();
         PreviewUIDone.setPrefSize(180, 50);
+        SellField.setPrefSize(180, 50);
         PreviewUIDone.setOnAction(event -> Game.getInstance().onDone());
+        SellField.setOnAction(event -> sell());
+        ButtonBox.getChildren().addAll(PreviewUIDone, SellField);
 
         setAlignment(PreviewUIDone, Pos.CENTER);
         setCenter(centralStack);
-        setBottom(PreviewUIDone);
+        setBottom(ButtonBox);
 
         Game.getInstance().addListener(new GameListener() {
             @Override
@@ -89,11 +95,14 @@ public class PreviewUI extends BorderPane {
                 worth.setText("");
                 rent.setText("");
                 costHouse.setText("");
+                SellField.setText("");
             }
             @Override
             public void onMessage(String message) {}
             @Override
             public void onCardShow() {optionsPlayers.setAll(Game.getInstance().getPlayerList());}
+            @Override
+            public void onAlert(String message) {}
         });
     }
 
@@ -104,6 +113,7 @@ public class PreviewUI extends BorderPane {
         rent.setText("");
         worth.setText("");
         costHouse.setText("");
+        SellField.setText("");
         List<Field> fieldsSP = Game.getInstance().getBoard().getFieldsByOwner((Player) CBPlayers.getValue());
         optionsFields.setAll(fieldsSP);
         if (CBPlayers.getValue() == Game.getInstance().getCurrentPlayer()) {
@@ -118,7 +128,6 @@ public class PreviewUI extends BorderPane {
             if (!br) optionsFields.add(field);
         }
     }
-
     /** update
      * updates the content, based on the information from the field (param)
      * @param field the field to show
@@ -168,6 +177,14 @@ public class PreviewUI extends BorderPane {
         rent.setText(rentStr);
         worth.setText(worthStr);
         costHouse.setText(houseStr);
+        if(field.getOwner() == Game.getInstance().getCurrentPlayer()) {
+            SellField.setText("Verkaufen an Bank für\n" + field.getWorth() / 2 + "$");
+        }
+    }
+    private void sell(){
+        Game.getInstance().sellFieldToBank((Field) CBFields.getValue());
+        optionsPlayers.setAll(Game.getInstance().getPlayerList());
+        playerSelectUpdate();
     }
 }
-//todo make sell to bank
+//todo make sell to bank (done)

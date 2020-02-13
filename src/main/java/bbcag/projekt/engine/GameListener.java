@@ -68,4 +68,6 @@ public interface GameListener {
      * opens a new UI, in which the player can show his cards.
      */
     void onCardShow();
+
+    void onAlert(String message);
 }

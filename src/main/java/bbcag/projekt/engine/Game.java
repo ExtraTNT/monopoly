@@ -22,6 +22,7 @@ public class Game {
     private boolean currentPlayerHasRolledDice;
     private Board board;
     private Player bank = new Player("bank", "#FFFFFF");
+    private boolean alertValue;
      /** Game
      * the engine as such...
      * crates the listeners and the board...
@@ -438,6 +439,18 @@ public class Game {
             }
         }
         littleUpdateGUI();
+    }
+    public void sellFieldToBank(Field field){
+        if(field.getOwner() == currentPlayer){
+            currentPlayer.setAccountBalance(currentPlayer.getAccountBalance() + field.getWorth() / 2);
+            field.setOwner(null);
+            message(field.getName() + " wurde für " + field.getWorth() + "$ an die Bank verkauft.");
+            littleUpdateGUI();
+        }
+    }
+
+    public void setAlertValue(boolean alertValue) {
+        this.alertValue = alertValue;
     }
 }
 

@@ -24,6 +24,7 @@ public class UI extends Application {
         Scene hotelScene = new Scene(new HotelUI(), Color.WHITE);
         Scene winScene = new Scene(new WinnerUI(), Color.WHITE);
         Scene cardScene = new Scene(new PreviewUI(), Color.WHITE);
+        Scene alertScene = new Scene(new AlertUI(), Color.WHITE);
         primaryStage.setScene(startScene);
 
         /**GameListener
@@ -52,6 +53,8 @@ public class UI extends Application {
             public void onMessage(String message) {}
             @Override
             public void onCardShow() { primaryStage.setScene(cardScene); }
+            @Override
+            public void onAlert(String message) {primaryStage.setScene(alertScene);}
         });
         primaryStage.show();
     }

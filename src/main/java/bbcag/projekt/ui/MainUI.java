@@ -138,6 +138,11 @@ public class MainUI extends BorderPane {
             public void onMessage(String message) { gameMessages.appendText(message + "\n"); }
             @Override
             public void onCardShow() {}
+
+            @Override
+            public void onAlert(String message) {
+
+            }
         });
     }
     private void updatePlayerPositions() {
